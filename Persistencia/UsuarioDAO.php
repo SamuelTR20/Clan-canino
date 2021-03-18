@@ -65,7 +65,7 @@ $queryEditUsuario = sprintf(
       mysqli_real_escape_string($connLocalhost, trim($nombre)),
       mysqli_real_escape_string($connLocalhost, trim($correo)),
       mysqli_real_escape_string($connLocalhost, trim($contrasenia)),
-      mysqli_real_escape_string($connLocalhost, trim($rol))
+      mysqli_real_escape_string($connLocalhost, trim($rol)),
       mysqli_real_escape_string($connLocalhost, trim($id))
 
      
@@ -76,4 +76,16 @@ $queryEditUsuario = sprintf(
     $resQueryUsuario = mysqli_query($connLocalhost, $queryEditUsuario) or trigger_error("El query de inserción de usuarios falló");
 
     
+}
+function eliminarUsuario($id){
+
+  include_once("Conexion.php");
+  $queryDeleteUsuario = sprintf(
+    "DELETE from emp_usuarios where id = '%d'",
+    mysqli_real_escape_string($connLocalhost, trim($id))
+
+  );
+
+  // Ejecutamos el query en la BD
+  $resQueryUserData = mysqli_query($connLocalhost, $queryDeleteUsuario) or trigger_error("El query de eliminación de mascotas falló");
 }
