@@ -73,10 +73,47 @@ $queryEditUsuario = sprintf(
     );
 
     // Ejecutamos el query en la BD
-    $resQueryUsuario = mysqli_query($connLocalhost, $queryEditUsuario) or trigger_error("El query de inserción de usuarios falló");
-
-    
+    $resQueryUsuario = mysqli_query($connLocalhost, $queryEditUsuario) or trigger_error("El query de inserción de usuarios falló");  
 }
+
+function inciarSesion($correo, $contrasenia){
+
+  include_once "Entidades/Usuario.php";
+  include_once("Conexion.php");
+
+   // Armamos el query para verificar el correo y contraseña en la base de datos
+    $queryLogin = sprintf("SELECT id, nombre, correo, contrasenia, rol FROM emp_usuarios WHERE correo = '%s' AND contrasenia = '%s'",
+        mysqli_real_escape_string($connLocalhost, trim($correo)),
+        mysqli_real_escape_string($connLocalhost, trim($contrasenia))
+    );
+
+    // Ejecutamos el query
+    $resQueryLogin = mysqli_query($connLocalhost, $queryLogin) or trigger_error("El query de login de usuario falló");
+
+    // Determinamos si el login es valido (email y password sean coincidentes)
+    // Contamos el recordset (el resultado esperado para un login valido es 1)
+    if(mysqli_num_rows($resQueryLogin)) {
+      // Hacemos un fetch del recordset
+      $userData = mysqli_fetch_assoc($resQueryLogin);
+
+      // Definimos variables de sesion en $_SESSION
+      $_SESSION['userId'] = $userData['id'];
+      $_SESSION['userNombre'] = $userData['nombre'];
+      $_SESSION['userCorreo']=$userData['correo'];
+      $_SESSION['userContrasenia'] = $userData['contrasenia'];
+      $_SESSION['userRol'] = $userData['rol'];
+
+      // Redireccionamos al usuario al panel de control
+      header('Location: inicio.php');
+      //nombre de redirección pendiente.
+
+    }
+      else {
+      echo  "Login failed";
+    }
+}
+
+
 function eliminarUsuario($id){
 
   include_once("Conexion.php");
