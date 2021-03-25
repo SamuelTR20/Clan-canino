@@ -19,11 +19,11 @@ if (mysqli_num_rows($resQueryUsuarios)) {
 
 while ($usersData = mysqli_fetch_assoc($resQueryUsuarios)){
     $usu = new Usuario();
-	$usu->id =  $usersData['id'];
-	$usu->nombre =  $usersData['nombre'];
-	$usu->contrasenia =  $usersData['contrasenia'];
-	$usu->correo =  $usersData['correo'];
-	$usu->rol =  $usersData['rol'];
+	$usu->setId =  $usersData['id'];
+	$usu->setNombre =  $usersData['nombre'];
+	$usu->setContrasenia =  $usersData['contrasenia'];
+	$usu->setCorreo =  $usersData['correo'];
+	$usu->setRol =  $usersData['rol'];
 
 	array_push($usuarios, $usu);
 } 

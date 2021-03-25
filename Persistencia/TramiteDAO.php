@@ -19,11 +19,11 @@ if (mysqli_num_rows($resQueryTramites)) {
 
 while ($tramData = mysqli_fetch_assoc($resQueryTramites)){
     $tram = new Tramite();
-	$tram->id =  $tramData['id'];
-	$tram->idUsuario =  $tramData['id_usuario'];
-	$tram->idMascota=  $tramData['id_mascota'];
-	$tram->estado =  $tramData['estado'];
-	$tram->fechaSolicitud =  $tramData['fecha_solicitud'];
+	$tram->setId =  $tramData['id'];
+	$tram->setIdUsuario =  $tramData['id_usuario'];
+	$tram->setIdMascota=  $tramData['id_mascota'];
+	$tram->setEstado =  $tramData['estado'];
+	$tram->setFechaSolicitud =  $tramData['fecha_solicitud'];
 	
 	
 

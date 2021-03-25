@@ -19,14 +19,14 @@ if (mysqli_num_rows($resQueryUsuarioInfo)) {
 
 while ($infoData = mysqli_fetch_assoc($resQueryUsuarioInfo)){
     $info = new UsuarioInfo();
-	$info->id =  $infoData['id'];
-	$info->edad =  $infoData['edad'];
-	$info->direccion=  $infoData['direccion'];
-	$info->numeroMascotas =  $infoData['numero_mascotas'];
-	$info->telefono =  $infoData['telefono'];
-	$info->idUsuario =  $infoData['id_usuario'];
-	$info->cedula =  $infoData['cedula'];
-	$info->celular =  $infoData['celular'];
+	$info->setId =  $infoData['id'];
+	$info->setEdad =  $infoData['edad'];
+	$info->setDireccion=  $infoData['direccion'];
+	$info->setNumeroMascotas =  $infoData['numero_mascotas'];
+	$info->setTelefono =  $infoData['telefono'];
+	$info->setIdUsuario =  $infoData['id_usuario'];
+	$info->setCedula =  $infoData['cedula'];
+	$info->setCelular =  $infoData['celular'];
 	
 	
 

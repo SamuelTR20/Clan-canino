@@ -19,12 +19,12 @@ if (mysqli_num_rows($resQueryRefugios)) {
 
 while ($refData = mysqli_fetch_assoc($resQueryRefugios)){
     $ref = new Refugio();
-	$ref->id =  $refData['id'];
-	$ref->nombre =  $refData['nombre'];
-	$ref->ciudad=  $refData['ciudad'];
-	$ref->telefono =  $refData['telefono'];
-	$ref->direccion =  $refData['direccion'];
-	$ref->descripcion =  $refData['descripcion'];
+	$ref->setId =  $refData['id'];
+	$ref->setNombre =  $refData['nombre'];
+	$ref->setCiudad=  $refData['ciudad'];
+	$ref->setTelefono =  $refData['telefono'];
+	$ref->setDireccion =  $refData['direccion'];
+	$ref->setDescripcion =  $refData['descripcion'];
 	
 	
 

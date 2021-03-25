@@ -19,16 +19,16 @@ if (mysqli_num_rows($resQueryMascotas)) {
 
 while ($mascData = mysqli_fetch_assoc($resQueryMascotas)){
     $masc = new Mascota();
-	$masc->id =  $mascData['id'];
-	$masc->nombre =  $mascData['nombre'];
-	$masc->idRefugio=  $mascData['id_refugio'];
-	$masc->edad =  $mascData['edad'];
-	$masc->sexo =  $mascData['sexo'];
-	$masc->historia =  $mascData['historia'];
-	$masc->foto =  $mascData['foto'];
-	$masc->estado =  $mascData['estado'];
-	$masc->observaciones =  $mascData['observaciones'];
-	$masc->especie =  $mascData['especie'];
+	$masc->setId =  $mascData['id'];
+	$masc->setNombre =  $mascData['nombre'];
+	$masc->setIdRefugio=  $mascData['id_refugio'];
+	$masc->setEdad =  $mascData['edad'];
+	$masc->setSexo =  $mascData['sexo'];
+	$masc->setHistoria =  $mascData['historia'];
+	$masc->setFoto =  $mascData['foto'];
+	$masc->setEstado =  $mascData['estado'];
+	$masc->setObservaciones =  $mascData['observaciones'];
+	$masc->setEspecie =  $mascData['especie'];
 
 	array_push($Mascotas, $masc);
 } 
