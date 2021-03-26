@@ -54,15 +54,17 @@ function getUsuarios(){
 
 
 function login($correo, $contrasenia){
-
 		//Validamos si las variables  vienen vacias
 	if( $correo=="" || $contrasenia=="" ){
 		echo 'Falta(n) completar campo(s)';
 
 	}else{
-		include_once "Persistencia/UsuarioDAO.php";
+		include_once("Persistencia/UsuarioDAO.php");
+		
+
 		iniciarSesion($correo, $contrasenia);
 
+}
 }
 
 

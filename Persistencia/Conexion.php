@@ -3,7 +3,7 @@
  $servidor = "localhost"; 
  $baseDatos = "takecaredb";
  $usuarioBd = "root";
- $passwordBd = "papa";
+ $passwordBd = "bloqueador1";
 
 // Creamos la conexión
 $connLocalhost = mysqli_connect($servidor, $usuarioBd, $passwordBd) or trigger_error(mysqli_error(), E_USER_ERROR);

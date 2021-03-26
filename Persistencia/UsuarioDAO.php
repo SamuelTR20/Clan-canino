@@ -1,6 +1,9 @@
 <?php 
-
-
+  if(!isset($_SESSION)) {
+    session_start();
+    // Protegemos el documento para que solamente sea visible cuando NO HAS INICIADO sesión
+   
+}
 
 function obtenerUsuarios()
 {
@@ -76,9 +79,9 @@ $queryEditUsuario = sprintf(
     $resQueryUsuario = mysqli_query($connLocalhost, $queryEditUsuario) or trigger_error("El query de inserción de usuarios falló");  
 }
 
-function inciarSesion($correo, $contrasenia){
+function iniciarSesion($correo, $contrasenia){
 
-  include_once "Entidades/Usuario.php";
+  include_once("Entidades/Usuario.php");
   include_once("Conexion.php");
 
    // Armamos el query para verificar el correo y contraseña en la base de datos
@@ -104,7 +107,7 @@ function inciarSesion($correo, $contrasenia){
       $_SESSION['userRol'] = $userData['rol'];
 
       // Redireccionamos al usuario al panel de control
-      header('Location: inicio.php');
+    
       //nombre de redirección pendiente.
 
     }

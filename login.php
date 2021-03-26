@@ -1,3 +1,28 @@
+
+<?php
+  // Inicializamos la sesion o la retomamos
+  if(!isset($_SESSION)) {
+    session_start();
+    // Protegemos el documento para que solamente sea visible cuando NO HAS INICIADO sesión
+    if(isset($_SESSION['userId'])) header('Location: index.php');
+}
+
+    if (isset($_POST['login_sent'])){
+          foreach ($_POST as $calzon => $caca) {
+      if($caca == "") $error[] = "La caja $calzon es obligatoria";
+        }
+
+
+        include_once("Negocio/UsuarioNegocio.php");
+
+        login($_POST['correo'],$_POST['contrasena']);
+
+        header('Location:index.php');
+
+    }
+  
+  ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,12 +33,12 @@
 </head>
 <body>
 
-    <form class="center" action="post">
+    <form class="center" action="login.php" method="post">
         <h1>Inicio de sesion</h1>
 
             <div class="txt_field">
-                <label>Usuario</label><br>
-                <input type="text" name="usuario" placeholder="Correo elecontrico o usuario">
+                <label>Correo Electronico</label><br>
+                <input type="text" name="correo" placeholder="Correo elecontrico">
             </div>
 
             <div class="txt_field">
@@ -25,7 +50,7 @@
                 <a href="#">¿Olvidaste tu contraseña?</a>
             </div>
             <div class="spassword">
-            <input type="submit"  value="Iniciar sesión"><br>
+            <input type="submit" name="login_sent"  value="Iniciar sesión"><br>
             </div>
             <h2>o</h2>
             <div class="ssingup">
