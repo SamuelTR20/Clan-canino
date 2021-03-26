@@ -95,10 +95,12 @@ function iniciarSesion($correo, $contrasenia){
 
     // Determinamos si el login es valido (email y password sean coincidentes)
     // Contamos el recordset (el resultado esperado para un login valido es 1)
-    if(mysqli_num_rows($resQueryLogin)) {
+    if(mysqli_num_rows($resQueryLogin) == 1) {
       // Hacemos un fetch del recordset
       $userData = mysqli_fetch_assoc($resQueryLogin);
-
+      if (!isset($_SESSION)){
+      session_start();
+      }
       // Definimos variables de sesion en $_SESSION
       $_SESSION['userId'] = $userData['id'];
       $_SESSION['userNombre'] = $userData['nombre'];
@@ -106,6 +108,9 @@ function iniciarSesion($correo, $contrasenia){
       $_SESSION['userContrasenia'] = $userData['contrasenia'];
       $_SESSION['userRol'] = $userData['rol'];
 
+   
+
+      
       // Redireccionamos al usuario al panel de control
     
       //nombre de redirección pendiente.

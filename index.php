@@ -1,3 +1,9 @@
+<?php 
+//include "Persistencia/UsuarioDAO.php";
+if (!isset($_SESSION)) {
+  session_start();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -64,6 +70,11 @@
 	    </div>
 	  </nav>
     <!-- END nav -->
+   <h1> El nombre de el usuario es: 
+    <?php 
+    echo  $_SESSION['userNombre'];
+    
+    ?> </h1>
     <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_2.jpg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
       <div class="container">

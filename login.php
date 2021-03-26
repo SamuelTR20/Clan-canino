@@ -4,7 +4,8 @@
   if(!isset($_SESSION)) {
     session_start();
     // Protegemos el documento para que solamente sea visible cuando NO HAS INICIADO sesión
-    if(isset($_SESSION['userId'])) header('Location: index.php');
+   // if(isset($_SESSION['userId'])) header('Location: index.php');
+   // if(!isset($_SESSION['userId'])) header('Location: formulario.php');
 }
 
     if (isset($_POST['login_sent'])){
@@ -15,8 +16,9 @@
 
         include_once("Negocio/UsuarioNegocio.php");
 
-        login($_POST['correo'],$_POST['contrasena']);
+        login($_POST['correo'],$_POST['contrasenia']);
 
+       
         header('Location:index.php');
 
     }
@@ -34,7 +36,7 @@
 <body>
 
     <form class="center" action="login.php" method="post">
-        <h1>Inicio de sesion</h1>
+        <h1>Inicio de sesión</h1>
 
             <div class="txt_field">
                 <label>Correo Electronico</label><br>
@@ -43,7 +45,7 @@
 
             <div class="txt_field">
                 <label>Contraseña</label><br>
-                <input type="password" name="contrasena" placeholder="Contraseña">
+                <input type="password" name="contrasenia" placeholder="Contraseña">
             </div>
 
             <div class="password">

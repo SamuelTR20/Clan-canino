@@ -1,9 +1,9 @@
 <?php
 
  $servidor = "localhost"; 
- $baseDatos = "takecaredb";
+ $baseDatos = "clancaninodb";
  $usuarioBd = "root";
- $passwordBd = "bloqueador1";
+ $passwordBd = "753951";
 
 // Creamos la conexión
 $connLocalhost = mysqli_connect($servidor, $usuarioBd, $passwordBd) or trigger_error(mysqli_error(), E_USER_ERROR);
