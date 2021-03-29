@@ -9,10 +9,14 @@ body{
 
 .center{
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 370px;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0; 
+    height: fit-content;
+    /* transform: translate(-50%, -50%);*/
+    width: fit-content;
     background: white;
     border-radius: 35px;
     padding: 35px;
@@ -42,7 +46,7 @@ form .txt_field{
 }
 
 .txt_field input{
-    width: 100%;
+    width: 375px;
     padding: 0 5px;
     height: 40px;
     font-size: 16px;
@@ -115,3 +119,20 @@ form .ssingup [type="submit"]:hover{
     border-color: rgb(32, 126, 214);
     transition: .5s;
 }
+
+@media screen and (max-width: 600px){
+    .center{
+        width: 75%;
+        margin-top: auto;
+        margin-right: 3%;
+        margin-left: 3%;
+
+    }
+    
+    .txt_field input{
+        width: 100%;
+        padding: 0 5px;
+        height: 60%;
+    }
+}
+
