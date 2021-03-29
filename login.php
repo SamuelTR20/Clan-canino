@@ -1,7 +1,8 @@
-
 <?php
   // Inicializamos la sesion o la retomamos
   if(!isset($_SESSION)) {
+    header('Cache-Control: no cache'); //no cache
+    session_cache_limiter('private_no_expire');
     session_start();
     // Protegemos el documento para que solamente sea visible cuando NO HAS INICIADO sesión
    // if(isset($_SESSION['userId'])) header('Location: index.php');
@@ -9,18 +10,27 @@
 }
 
     if (isset($_POST['login_sent'])){
-          foreach ($_POST as $calzon => $caca) {
-      if($caca == "") $error[] = "La caja $calzon es obligatoria";
+          foreach ($_POST as $inputs => $vars) {
+      if(trim($vars) == "") $error[] = "La caja $inputs es obligatoria";
         }
 
 
         include_once("Negocio/UsuarioNegocio.php");
+        if (!isset($error)) {
+        $permitido = login($_POST['correo'],$_POST['contrasenia']);
+        }
+        
+        if(!$permitido){
+            $error[] = "El conjunto de usuario y contraseña no son correctas";            
+        }
 
-        login($_POST['correo'],$_POST['contrasenia']);
-
-       
+        if (!isset($error)) {
         header('Location:index.php');
+        }else{
 
+        }
+    } elseif(isset($_POST['register'])){
+        header('Location:registro.php');
     }
   
   ?>
@@ -34,7 +44,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
+    
     <form class="center" action="login.php" method="post">
         <h1>Inicio de sesión</h1>
 
@@ -55,10 +65,13 @@
             <input type="submit" name="login_sent"  value="Iniciar sesión"><br>
             </div>
             <h2>o</h2>
+
             <div class="ssingup">
-            <input type="submit" value="Registrate">
-            </div>
-    </form>
+            <a href="registro.php"><input type="submit" value="Registro" name="register"></a>
+            
+            </form> 
+            
+        </div>
     
 </body>
 </html>

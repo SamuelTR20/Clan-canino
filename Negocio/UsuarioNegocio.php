@@ -1,17 +1,27 @@
 <?php
 
 
-function addUsuario($nombre, $correo, $contrasenia, $rol){
+function addUsuario($nombre, $email, $contrasenia, $contrasenia2){
+	$correcto = false;
+	//Se manda a llamar el metodo de la persistencia para agregar al usuario a la BD
+	include_once "Persistencia/UsuarioDAO.php";
 
-	//Validamos si las variables  vienen vacias
-	if($nombre =="" || $correo=="" || $contrasenia=="" || $rol=="" ){
-
-		echo 'Falta(n) completar campo(s)';
-	}else{
-			//Se manda a llamar el metodo de la persistencia para agregar al usuario a la BD
-			include_once "Persistencia/UsuarioDAO.php";
-			agregarUsuario($nombre, $correo, $contrasenia, $rol);
+	if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+		$error[]="No se ha introducido un email valido";
+		}
+	if ($contrasenia != $contrasenia2) {
+		$error[] = "Los contraseñas no son coincidentes";
+		}
+	if(verificarEmail($email)){
+		$error[] = "El email ya esta siendo utilizado";
+		
 	}
+	if (!isset($error)) {
+	$correcto = agregarUsuario($nombre, $email, $contrasenia);
+	return $correcto;
+		
+	}
+
 }
 
 
@@ -55,15 +65,14 @@ function getUsuarios(){
 
 function login($correo, $contrasenia){
 		//Validamos si las variables  vienen vacias
-	if( $correo=="" || $contrasenia=="" ){
-		echo 'Falta(n) completar campo(s)';
+	if( trim($correo)=="" || trim($contrasenia)=="" ){
 
 	}else{
 		include_once("Persistencia/UsuarioDAO.php");
 		
+		$permitido = iniciarSesion($correo, $contrasenia);
 
-		iniciarSesion($correo, $contrasenia);
-
+return $permitido;
 }
 }
 
