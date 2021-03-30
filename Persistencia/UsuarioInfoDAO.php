@@ -42,9 +42,12 @@ function agregarInfoUsuario(  $edad, $direccion, $numeroMascotas, $telefono, $id
 {
 
 include_once("Conexion.php");
+  $connLocalhost = conexion();
+
+
 
 $queryInsertUsuInfo = sprintf(
-      "INSERT INTO emp_usuario_info (edad, direccion, numero_mascotas, telefono, id_usuario, cedula, celular) VALUES ( '%d', '%s', '%d', '%s','%s','%d', '%s', '%s')",
+      "INSERT INTO emp_usuario_info (edad, direccion, numero_mascotas, telefono, id_usuario, cedula, celular) VALUES ( '%d', '%s', '%d', '%s','%d', '%s', '%s')",
       mysqli_real_escape_string($connLocalhost, trim($edad)),
       mysqli_real_escape_string($connLocalhost, trim($direccion)),
       mysqli_real_escape_string($connLocalhost, trim($numeroMascotas)),
@@ -58,6 +61,15 @@ $queryInsertUsuInfo = sprintf(
 
     // Ejecutamos el query en la BD
     $resQueryUsuarioInfo = mysqli_query($connLocalhost, $queryInsertUsuInfo) or trigger_error("El query de inserción de usuarios falló");
+
+    if ($resQueryUsuarioInfo) {
+      $connLocalhost->close();
+      return true;
+    } else {
+      $connLocalhost->close();
+      return false;
+    }
+
 
     
 }

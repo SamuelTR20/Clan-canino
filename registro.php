@@ -23,7 +23,7 @@ if (!isset($error)) {
     }
 
     if(!$permitido){
-        $error[] = "Ah ocurrido un error al registrarse";            
+        $error[] = "Ha ocurrido un error al registrarse";            
     }
 
     

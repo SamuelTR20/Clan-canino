@@ -1,3 +1,50 @@
+<?php
+  // Inicializamos la sesion o la retomamos
+if(!isset($_SESSION)) {
+    header('Cache-Control: no cache'); //no cache
+    session_cache_limiter('private_no_expire');
+    session_start();
+    // Protegemos el documento para que solamente sea visible cuando NO HAS INICIADO sesión
+   // if(isset($_SESSION['userId'])) header('Location: index.php');
+   // if(!isset($_SESSION['userId'])) header('Location: formulario.php');
+}
+
+
+
+if (isset($_POST['info_sent'])){
+    foreach ($_POST as $inputs => $vars) {
+if(trim($vars) == "") $error[] = "La caja $inputs es obligatoria";
+	
+
+
+
+
+}
+include 'Negocio/UsuarioInfoNegocio.php';
+$permitido = false;
+if (!isset($error)) {
+    $permitido = addInfo( $_POST['edad'], $_POST['direccion'], $_POST['numeroMascotas'], $_POST['telefono'], $_SESSION['userId'], $_POST['cedula'], $_POST['celular'] );
+	
+	
+	
+
+    }
+
+    if(!$permitido){
+        $error[] = "Ha ocurrido un error al registrarse";            
+    }
+
+    
+    if (!isset($error)) {
+        header('Location:index.php');
+        }else{
+
+        }
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -24,45 +71,7 @@
   </head>
   <body>
 
-    <div class="wrap">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-6 d-flex align-items-center">
-						<p class="mb-0 phone pl-md-2">
-							<a href="#" class="mr-2"><span class="fa fa-phone mr-1"></span> 6221542314</a> 
-							<a href="#"><span class="fa fa-paper-plane mr-1"></span> perla.duran12@gmail.com</a>
-						</p>
-					</div>
-					<div class="col-md-6 d-flex justify-content-md-end">
-						<div class="social-media">
-			    		<p class="mb-0 d-flex">
-			    			<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook"><i class="sr-only">Facebook</i></span></a>
-			    			<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-twitter"><i class="sr-only">Twitter</i></span></a>
-			    			<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram"><i class="sr-only">Instagram</i></span></a>
-			    			<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-dribbble"><i class="sr-only">Dribbble</i></span></a>
-			    		</p>
-		        </div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-	    <div class="container">
-	    	<a class="navbar-brand" href="index.html"><span class="flaticon-pawprint-1 mr-2"></span>Clan canino</a>
-	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="fa fa-bars"></span> Menu
-	      </button>
-	      <div class="collapse navbar-collapse" id="ftco-nav">
-	        <ul class="navbar-nav ml-auto">
-	        	<li class="nav-item"><a href="index.php" class="nav-link">Inicio</a></li>
-	        	<li class="nav-item"><a href="about.html" class="nav-link">Acerca de</a></li>
-	          <li class="nav-item"><a href="formulario.php" class="nav-link">Formulario</a></li>
-	          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
-	          <li class="nav-item"><a href="contact.html" class="nav-link">Contacto</a></li>
-	        </ul>
-	      </div>
-	    </div>
-	  </nav>
+  <?php include("includes/header.php"); ?>
     <!-- END nav -->
     <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_2.jpg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
@@ -132,59 +141,59 @@
 								<div class="col-md-7">
 									<div class="contact-wrap w-100 p-md-5 p-4">
 										<h3 class="mb-4">Registrar para adopción</h3>
-										<form method="POST" id="contactForm" name="contactForm" class="contactForm">
+										<form method="POST" id="contactForm" name="contactForm" class="contactForm" action="formulario.php">
 											<div class="row">
 												<div class="col-md-6">
 													<div class="form-group">
 														<label class="label" for="name">Nombre completo</label>
-														<input type="number" class="form-control" name="name" id="name" placeholder="Name">
+														<input type="text" class="form-control" name="name" id="name" value= <?php echo $_SESSION['userNombre'] ?> disabled>
 													</div>
 												</div>
 												<div class="col-md-6"> 
 													<div class="form-group">
 														<label class="label" for="edad">Edad </label>
-														<input type="email" class="form-control" name="edad" id="edad" placeholder="Edad">
+														<input type="number" class="form-control" name="edad" id="edad" placeholder="Edad">
 													</div>
 												</div>
 												<div class="col-md-6"> 
 													<div class="form-group">
 														<label class="label" for="email">Email </label>
-														<input type="email" class="form-control" name="email" id="email" placeholder="Email">
+														<input type="email" class="form-control" name="email" id="email" value=<?php echo $_SESSION['userCorreo'] ?> disabled>
 													</div>
 												</div>
 												<div class="col-md-6"> 
 													<div class="form-group">
 														<label class="label" for="telefono">telefono </label>
-														<input type="email" class="form-control" name="telefono" id="telefono" placeholder="Teléfono">
+														<input type="text" class="form-control" name="telefono" id="telefono" placeholder="Teléfono">
 													</div>
 												</div>
 												<div class="col-md-6"> 
 													<div class="form-group">
-														<label class="label" for="mascotas">Número de mascotas </label>
-														<input type="email" class="form-control" name="mascotas" id="mascotas" placeholder="Número de mascotas">
+														<label class="label" for="numeroMascotas">Número de mascotas </label>
+														<input type="number" class="form-control" name="numeroMascotas" id="mascotas" placeholder="Número de mascotas">
 													</div>
 												</div>
 												<div class="col-md-6"> 
 													<div class="form-group">
 														<label class="label" for="celular">Celular </label>
-														<input type="email" class="form-control" name="celular" id="celular" placeholder="celular">
+														<input type="text" class="form-control" name="celular" id="celular" placeholder="celular">
 													</div>
 												</div>
 												<div class="col-md-12">
 													<div class="form-group">
-														<label class="label" for="subject">Cedula</label>
-														<input type="text" class="form-control" name="subject" id="subject" placeholder="Subject">
+														<label class="label" for="cedula">Cedula</label>
+														<input type="text" class="form-control" name="cedula" id="cedula" placeholder="Cedula">
 													</div>
 												</div>
 												<div class="col-md-12">
 													<div class="form-group">
 														<label class="label" for="#">Dirección</label>
-														<textarea name="message" class="form-control" id="message" cols="30" rows="4" placeholder="Message"></textarea>
+														<textarea name="direccion" class="form-control" id="message" cols="30" rows="4" placeholder="Ingresa tu dirección"></textarea>
 													</div>
 												</div>
 												<div class="col-md-12">
 													<div class="form-group">
-														<input type="submit" value="Guardar información" class="btn btn-primary">
+														<input type="submit" value="Guardar información" class="btn btn-primary" name="info_sent">
 														<div class="submitting"></div>
 													</div>
 												</div>
@@ -206,76 +215,7 @@
 
 	
 
-		<footer class="footer">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-6 col-lg-3 mb-4 mb-md-0">
-						<h2 class="footer-heading">Clan canino</h2>
-						<p>Una asociación para el cuidado y rescate de animales que buscan una casita y mucho amor</p>
-						<ul class="ftco-footer-social p-0">
-              <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><span class="fa fa-twitter"></span></a></li>
-              <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><span class="fa fa-facebook"></span></a></li>
-              <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Instagram"><span class="fa fa-instagram"></span></a></li>
-            </ul>
-					</div>
-					<div class="col-md-6 col-lg-3 mb-4 mb-md-0">
-						<h2 class="footer-heading">Latest News</h2>
-						<div class="block-21 mb-4 d-flex">
-              <a class="img mr-4 rounded" style="background-image: url(images/image_1.jpg);"></a>
-              <div class="text">
-                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
-                <div class="meta">
-                  <div><a href="#"><span class="icon-calendar"></span> April 7, 2020</a></div>
-                  <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                  <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                </div>
-              </div>
-            </div>
-            <div class="block-21 mb-4 d-flex">
-              <a class="img mr-4 rounded" style="background-image: url(images/image_2.jpg);"></a>
-              <div class="text">
-                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
-                <div class="meta">
-                  <div><a href="#"><span class="icon-calendar"></span> April 7, 2020</a></div>
-                  <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                  <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                </div>
-              </div>
-            </div>
-					</div>
-					<div class="col-md-6 col-lg-3 pl-lg-5 mb-4 mb-md-0">
-						<h2 class="footer-heading">Quick Links</h2>
-						<ul class="list-unstyled">
-              <li><a href="#" class="py-2 d-block">Home</a></li>
-              <li><a href="#" class="py-2 d-block">About</a></li>
-              <li><a href="#" class="py-2 d-block">Services</a></li>
-              <li><a href="#" class="py-2 d-block">Works</a></li>
-              <li><a href="#" class="py-2 d-block">Blog</a></li>
-              <li><a href="#" class="py-2 d-block">Contact</a></li>
-            </ul>
-					</div>
-					<div class="col-md-6 col-lg-3 mb-4 mb-md-0">
-						<h2 class="footer-heading">Contacto</h2>
-						<div class="block-23 mb-3">
-              <ul>
-                <li><span class="icon fa fa-map"></span><span class="text">Aquí va la direccion jaja</span></li>
-                <li><a href="#"><span class="icon fa fa-phone"></span><span class="text">Aqui el telefono</span></a></li>
-                <li><a href="#"><span class="icon fa fa-paper-plane"></span><span class="text">perla.duran12@gmail.com</span></a></li>
-              </ul>
-            </div>
-					</div>
-				</div>
-				<div class="row mt-5">
-          <div class="col-md-12 text-center">
-
-            <p class="copyright"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> 
-  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-          </div>
-        </div>
-			</div>
-		</footer>
-
+		<?php include("includes/footer.php"); ?>
     
   
 
