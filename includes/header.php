@@ -29,7 +29,7 @@
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
 	        	<li class="nav-item"><a href="index.php" class="nav-link">Inicio</a></li>
-	        	<li class="nav-item"><a href="about.html" class="nav-link">Acerca de</a></li>
+	        	<li class="nav-item"><a href="agregarMascota.php" class="nav-link">Agregar mascota</a></li>
 	          <li class="nav-item"><a href="formulario.php" class="nav-link">Formulario</a></li>
 	          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
 	          <li class="nav-item"><a href="contact.html" class="nav-link">Contacto</a></li>

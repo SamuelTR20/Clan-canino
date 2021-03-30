@@ -38,13 +38,14 @@ while ($mascData = mysqli_fetch_assoc($resQueryMascotas)){
 
 }
 
-function agregarMascota($idRefugio, $nombre, $especie, $edad, $sexo, $observaciones, $estado, $historia)
+function agregarMascota($idRefugio, $nombre, $especie, $edad, $sexo, $observaciones, $estado, $historia, $foto)
 {
 include_once "Entidades/Mascota.php";
 include_once("Conexion.php");
+$connLocalhost = conexion();
 
 $queryInsertMascota = sprintf(
-      "INSERT INTO emp_mascota (id_refugio, nombre, especie, edad, sexo, observaciones, estado, historia) VALUES ('%d', '%s', '%s', '%d', '%s', '%s', '%s', '%s')",
+      "INSERT INTO emp_mascota (id_refugio, nombre, especie, edad, sexo, observaciones, estado, historia, foto) VALUES ('%d', '%s', '%s', '%d', '%s', '%s', '%s', '%s', '%s')",
       mysqli_real_escape_string($connLocalhost, trim($idRefugio)),
       mysqli_real_escape_string($connLocalhost, trim($nombre)),
       mysqli_real_escape_string($connLocalhost, trim($especie)),
@@ -52,12 +53,21 @@ $queryInsertMascota = sprintf(
       mysqli_real_escape_string($connLocalhost, trim($sexo)),
       mysqli_real_escape_string($connLocalhost, trim($observaciones)),
       mysqli_real_escape_string($connLocalhost, trim($estado)),
-      mysqli_real_escape_string($connLocalhost, trim($historia))
+      mysqli_real_escape_string($connLocalhost, trim($historia)),
+      mysqli_real_escape_string($connLocalhost, trim($foto))
 
     );
 
     // Ejecutamos el query en la BD
     $resQueryMascota = mysqli_query($connLocalhost, $queryInsertMascota) or trigger_error("El query de inserción de usuarios falló");
+
+    if ($resQueryMascota) {
+      $connLocalhost->close();
+      return true;
+    } else {
+      $connLocalhost->close();
+      return false;
+    }
 
     
 }
