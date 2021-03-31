@@ -85,8 +85,8 @@ if (!isset($error)) {
       <div class="container">
         <div class="row no-gutters slider-text align-items-end">
           <div class="col-md-9 ftco-animate pb-5">
-          	<p class="breadcrumbs mb-2"><span class="mr-2"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Contact <i class="ion-ios-arrow-forward"></i></span></p>
-            <h1 class="mb-0 bread">Contact</h1>
+          	<p class="breadcrumbs mb-2"><span class="mr-2"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Agregar Mascota <i class="ion-ios-arrow-forward"></i></span></p>
+            <h1 class="mb-0 bread">Agregar Mascota</h1>
           </div>
         </div>
       </div>
@@ -147,7 +147,7 @@ if (!isset($error)) {
 							<div class="row no-gutters">
 								<div class="col-md-7">
 									<div class="contact-wrap w-100 p-md-5 p-4">
-										<h3 class="mb-4">Registrar para adopción</h3>
+										<h3 class="mb-4">Registrar Mascota</h3>
 										<form method="POST" id="contactForm" name="contactForm" class="contactForm" action="agregarMascota.php" enctype="multipart/form-data">
 											<div class="row">
 												<div class="col-md-6">
@@ -165,13 +165,18 @@ if (!isset($error)) {
 												<div class="col-md-6"> 
 													<div class="form-group">
 														<label class="label" for="especie">Especie </label>
-														<input type="text" class="form-control" name="especie" id="email">
+														<input type="text" class="form-control" name="especie" id="email" placeholder="Especie">
 													</div>
 												</div>
 												<div class="col-md-6"> 
 													<div class="form-group">
 														<label class="label" for="sexo">Sexo </label>
-														<input type="text" class="form-control" name="sexo" id="telefono" placeholder="Sexo">
+														<select name="sexo" id="sexo">
+                 											<option value="hembra" >Hembra</option>
+                  											<option value="macho" >Macho</option>
+                										</select>
+
+														
 													</div>
 												</div>
 												<div class="col-md-6"> 
@@ -206,7 +211,7 @@ if (!isset($error)) {
 									</div>
 								</div>
 								<div class="col-md-5 d-flex align-items-stretch">
-									<div class="info-wrap w-100 p-5 img" style="background-image: url(images/img.jpg);">
+									<div class="info-wrap w-100 p-5 img" style="background-image: url(images/adopt.jpg);">
 				          </div>
 								</div>
 							</div>
