@@ -13,7 +13,7 @@
           foreach ($_POST as $inputs => $vars) {
       if(trim($vars) == "") $error[] = "La caja $inputs es obligatoria";
         }
-
+        $permitido = false;
 
         include_once("Negocio/UsuarioNegocio.php");
         if (!isset($error)) {
