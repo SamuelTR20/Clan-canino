@@ -6,6 +6,7 @@ function obtenerMascotas()
 {
 include_once "Entidades/Mascota.php";
 include_once("Conexion.php");
+$connLocalhost = conexion();
 
  $queryMascotas = "SELECT id, id_refugio, nombre, edad, sexo, historia, foto, estado, observaciones,especie FROM emp_mascota";
 
@@ -14,25 +15,29 @@ include_once("Conexion.php");
 
   $Mascotas = [];
 
+  
 
 if (mysqli_num_rows($resQueryMascotas)) { 
 
 while ($mascData = mysqli_fetch_assoc($resQueryMascotas)){
-    $masc = new Mascota();
-	$masc->setId =  $mascData['id'];
-	$masc->setNombre =  $mascData['nombre'];
-	$masc->setIdRefugio=  $mascData['id_refugio'];
-	$masc->setEdad =  $mascData['edad'];
-	$masc->setSexo =  $mascData['sexo'];
-	$masc->setHistoria =  $mascData['historia'];
-	$masc->setFoto =  $mascData['foto'];
-	$masc->setEstado =  $mascData['estado'];
-	$masc->setObservaciones =  $mascData['observaciones'];
-	$masc->setEspecie =  $mascData['especie'];
+  $masc = new Mascota();
+  echo($mascData['nombre']);
+	$masc->setId($mascData['id']);
+	$masc->setNombre($mascData['nombre']);
+	$masc->setIdRefugio($mascData['id_refugio']);
+	$masc->setEdad($mascData['edad']);
+	$masc->setSexo($mascData['sexo']);
+	$masc->setHistoria($mascData['historia']);
+	$masc->setFoto($mascData['foto']);
+	$masc->setEstado($mascData['estado']);
+	$masc->setObservaciones($mascData['observaciones']);
+	$masc->setEspecie($mascData['especie']);
 
 	array_push($Mascotas, $masc);
 } 
+
 }
+echo "<br> Probando en dao".$Mascotas[2]->getNombre();
 
  return $Mascotas;
 

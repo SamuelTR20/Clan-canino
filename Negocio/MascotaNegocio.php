@@ -3,8 +3,8 @@
 function getMascotas(){
 
 	include_once "Persistencia/MascotaDAO.php";
+	
 	$mascotas = obtenerMascotas();
-
 	return $mascotas;
 	}
 

@@ -2,7 +2,7 @@
 class Mascota{
 	private $id;
 	private $idRefugio;
-	private $nombre;
+	protected $nombre;
 	private $edad;
 	private $sexo;
 	private $historia;
