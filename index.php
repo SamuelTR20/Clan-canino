@@ -53,7 +53,7 @@ $mascotas = getMascotas();
           foreach($mascotas as $mascota ){ ?>
           <div class="col-md-4 d-flex ftco-animate">
             <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20 rounded" style="background-image: url('images/IMG_2753 (2).JPG ?>');">
+              <a href="blog-single.html" class="block-20 rounded" style="background-image: url(<?php echo $mascota->getFoto(); ?>);">
               </a>
               <div class="text p-4">
               	<div class="meta mb-2">

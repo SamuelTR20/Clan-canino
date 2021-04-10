@@ -37,7 +37,7 @@ while ($mascData = mysqli_fetch_assoc($resQueryMascotas)){
 } 
 
 }
-echo "<br> Probando en dao".$Mascotas[2]->getNombre();
+
 
  return $Mascotas;
 

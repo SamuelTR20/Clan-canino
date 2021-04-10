@@ -1,4 +1,8 @@
 <?php
+
+use BenMajor\ImageResize\Image;
+include 'benmajor\PHP-Image-Resize-master\src\BenMajor\Image.php';
+
   // Inicializamos la sesion o la retomamos
 if(!isset($_SESSION)) {
     header('Cache-Control: no cache'); //no cache
@@ -25,16 +29,33 @@ $permitido = false;
 if (!isset($error)) {
 
 
-    $nom_foto = $_FILES['file']['name'];
-    $ruta = "images/".$nom_foto;
-    $foto = $_FILES['file']['tmp_name'];
-    $subir = move_uploaded_file($foto, $ruta);
 
+	$mimeType = $_FILES['file']['type'];
+
+    # Generate a new image resize object using a upload image:
+    $image = new Image($_FILES['file']['tmp_name']);
+
+    if ($mimeType == "image/png" || $mimeType == "image/gif" || $mimeType == "image/svg+xml" || $mimeType == "image/svg") {
+        $image->setTransparency(true); // agregar transparencia si el formato de imagen acepta transparencia
+    } else {
+        $image->setTransparency(false); // no agregar transparencia si el formato de la imagen no acepta transparencia
+    }
+
+	# Set the background to white:
+    $image->setBackgroundColor('#ffffff');
+
+    # Contain the image:
+    $image->contain(1136, 640);
+
+	$nom = str_replace(' ', '',$_POST['nombre']);
+	$nom2 = $nom.rand ( 1 , 10000000 ).".jpg"; 
+    $ruta = "images/".$nom2;
+    
+	$image->output("images");
+
+    echo rename($image->getOutputFilename(), $ruta);
     $permitido = addMascota( 16, $_POST['nombre'], $_POST['especie'], $_POST['edad'], $_POST['sexo'], $_POST['observaciones'],'disponible', $_POST['historia'],$ruta );
 	
-	
-	
-
     }
 
     if(!$permitido){
