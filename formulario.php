@@ -2,32 +2,36 @@
   // Inicializamos la sesion o la retomamos
 if(!isset($_SESSION)) {
     header('Cache-Control: no cache'); //no cache
-    session_cache_limiter('private_no_expire');
+    session_cache_limiter('private');
     session_start();
     // Protegemos el documento para que solamente sea visible cuando NO HAS INICIADO sesión
    // if(isset($_SESSION['userId'])) header('Location: index.php');
    // if(!isset($_SESSION['userId'])) header('Location: formulario.php');
 }
+include 'Negocio/UsuarioInfoNegocio.php';
 
-
+$usuario = infoById($_SESSION['userId']);
+if (count($usuario) == 1){
+$edad = $usuario[0]->getEdad();
+$telefono = $usuario[0]->gettelefono();
+$celular = $usuario[0]->getCelular();
+$numeroMascotas = $usuario[0]->getNumeroMascotas();
+$cedula = $usuario[0]->getCedula();
+$direccion = $usuario[0]->getDireccion();
+}
 
 if (isset($_POST['info_sent'])){
     foreach ($_POST as $inputs => $vars) {
 if(trim($vars) == "") $error[] = "La caja $inputs es obligatoria";
 	
-
-
-
-
 }
-include 'Negocio/UsuarioInfoNegocio.php';
 $permitido = false;
 if (!isset($error)) {
+	if (count($usuario) == 1){
+	$permitido = UpdateInfo($_POST['edad'], $_POST['direccion'], $_POST['numeroMascotas'], $_POST['telefono'], $_SESSION['userId'], $_POST['cedula'], $_POST['celular'] );	
+	}else {
     $permitido = addInfo( $_POST['edad'], $_POST['direccion'], $_POST['numeroMascotas'], $_POST['telefono'], $_SESSION['userId'], $_POST['cedula'], $_POST['celular'] );
-	
-	
-	
-
+	}
     }
 
     if(!$permitido){
@@ -152,7 +156,7 @@ if (!isset($error)) {
 												<div class="col-md-6"> 
 													<div class="form-group">
 														<label class="label" for="edad">Edad </label>
-														<input type="number" class="form-control" name="edad" id="edad" placeholder="Edad">
+														<input type="number" class="form-control" name="edad" id="edad" placeholder="Edad" value="<?php if (count($usuario) == 1) echo $edad?>">
 													</div>
 												</div>
 												<div class="col-md-6"> 
@@ -164,31 +168,31 @@ if (!isset($error)) {
 												<div class="col-md-6"> 
 													<div class="form-group">
 														<label class="label" for="telefono">telefono </label>
-														<input type="text" class="form-control" name="telefono" id="telefono" placeholder="Teléfono">
+														<input type="text" class="form-control" name="telefono" id="telefono" placeholder="Teléfono" value="<?php if (count($usuario) == 1) echo $telefono?>">
 													</div>
 												</div>
 												<div class="col-md-6"> 
 													<div class="form-group">
 														<label class="label" for="numeroMascotas">Número de mascotas </label>
-														<input type="number" class="form-control" name="numeroMascotas" id="mascotas" placeholder="Número de mascotas">
+														<input type="number" class="form-control" name="numeroMascotas" id="mascotas" placeholder="Número de mascotas" value="<?php if (count($usuario) == 1) echo $numeroMascotas?>">
 													</div>
 												</div>
 												<div class="col-md-6"> 
 													<div class="form-group">
 														<label class="label" for="celular">Celular </label>
-														<input type="text" class="form-control" name="celular" id="celular" placeholder="celular">
+														<input type="text" class="form-control" name="celular" id="celular" placeholder="celular" value="<?php if (count($usuario) == 1) echo $celular?>">
 													</div>
 												</div>
 												<div class="col-md-12">
 													<div class="form-group">
 														<label class="label" for="cedula">Cedula</label>
-														<input type="text" class="form-control" name="cedula" id="cedula" placeholder="Cedula">
+														<input type="text" class="form-control" name="cedula" id="cedula" placeholder="Cedula" value="<?php if (count($usuario) == 1) echo $cedula?>">
 													</div>
 												</div>
 												<div class="col-md-12">
 													<div class="form-group">
 														<label class="label" for="#">Dirección</label>
-														<textarea name="direccion" class="form-control" id="message" cols="30" rows="4" placeholder="Ingresa tu dirección"></textarea>
+														<textarea name="direccion" class="form-control" id="message" cols="30" rows="4" placeholder="Ingresa tu dirección"><?php if (count($usuario) == 1) echo $direccion?></textarea>
 													</div>
 												</div>
 												<div class="col-md-12">

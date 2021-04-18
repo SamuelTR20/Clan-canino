@@ -6,6 +6,7 @@ function obtenerRefugios()
 {
 include_once "Entidades/Refugio.php";
 include("Conexion.php");
+$connLocalhost = conexion();
 
  $queryRefugios = "SELECT id, nombre, ciudad, telefono, direccion, descripcion FROM emp_refugio";
 
@@ -31,6 +32,7 @@ while ($refData = mysqli_fetch_assoc($resQueryRefugios)){
 	array_push($refugios, $ref);
 } 
 }
+$connLocalhost->close();
 
  return $refugios;
 

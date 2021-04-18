@@ -25,6 +25,7 @@
         }
 
         if (!isset($error)) {
+            
         header('Location:index.php');
         }else{
 

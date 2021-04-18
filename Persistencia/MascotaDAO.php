@@ -21,7 +21,6 @@ if (mysqli_num_rows($resQueryMascotas)) {
 
 while ($mascData = mysqli_fetch_assoc($resQueryMascotas)){
   $masc = new Mascota();
-  echo($mascData['nombre']);
 	$masc->setId($mascData['id']);
 	$masc->setNombre($mascData['nombre']);
 	$masc->setIdRefugio($mascData['id_refugio']);
@@ -33,12 +32,13 @@ while ($mascData = mysqli_fetch_assoc($resQueryMascotas)){
 	$masc->setObservaciones($mascData['observaciones']);
 	$masc->setEspecie($mascData['especie']);
 
+  
 	array_push($Mascotas, $masc);
 } 
 
 }
 
-
+$connLocalhost->close();
  return $Mascotas;
 
 }
@@ -81,6 +81,7 @@ function editarMascota($id, $idRefugio, $nombre, $especie, $edad, $sexo, $observ
 {
 include_once "Entidades/Mascota.php";
 include_once("Conexion.php");
+$connLocalhost = conexion();
 
 $queryEditMascota = sprintf(
       "UPDATE emp_mascota SET id_refugio ='%d', nombre ='%s', especie='%s', edad='%d', sexo='%s', observaciones='%s', estado='%s', historia= '%s' WHERE id = '%d'",
@@ -99,7 +100,8 @@ $queryEditMascota = sprintf(
     // Ejecutamos el query en la BD
     $resQueryMascota = mysqli_query($connLocalhost, $queryEditMascota) or trigger_error("El query de inserción de usuarios falló");
 
-    
+    $connLocalhost->close();
+
 }
 
 function eliminarMascota($id){
