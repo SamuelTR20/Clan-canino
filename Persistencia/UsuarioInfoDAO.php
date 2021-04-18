@@ -5,6 +5,7 @@
 function obtenerInfoUsuarios(){
 include_once "Entidades/UsuarioInfo.php";
 include("Conexion.php");
+$connLocalhost = conexion();
 
  $queryUsuarioInfo = "SELECT id, edad, direccion, numero_mascotas, telefono, id_usuario, cedula, celular FROM emp_usuario_info";
 
@@ -32,7 +33,7 @@ while ($infoData = mysqli_fetch_assoc($resQueryUsuarioInfo)){
 	array_push($usuariosInfo, $info);
 } 
 }
-
+$connLocalhost->close();
  return $usuariosInfo;
 
 }
