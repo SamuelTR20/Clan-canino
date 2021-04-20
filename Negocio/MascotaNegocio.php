@@ -8,6 +8,16 @@ function getMascotas(){
 	return $mascotas;
 	}
 
+	function getMascota($idMascota){
+		//Validamos si las variables  vienen vacias
+	
+		include_once("Persistencia/MascotaDAO.php");
+		
+		$mascota = obtenerMascota($idMascota);
+
+        return $mascota;
+	}
+
 
 function addMascota($idRefugio, $nombre, $especie, $edad, $sexo, $observaciones, $estado, $historia, $foto){
 

@@ -116,3 +116,48 @@ function eliminarMascota($id){
   // Ejecutamos el query en la BD
   $resQueryDeleteMascota = mysqli_query($connLocalhost, $queryDeleteMascota) or trigger_error("El query de eliminación de mascotas falló");
 }
+
+function obtenerMascota($idMascota){
+  include_once("Conexion.php");
+  $connLocalhost = conexion();
+  
+
+  $permitido = false;
+  include_once("Entidades/Mascota.php");
+  $masc = new Mascota();
+  $queryMasc = sprintf(
+    "SELECT id, id_refugio, nombre, edad, sexo, historia, foto, estado, observaciones,especie FROM emp_mascota WHERE id = '%s' ",
+    mysqli_real_escape_string($connLocalhost, trim($idMascota))
+    
+  );
+
+  // Ejecutamos el query
+  $resQueryMasc = mysqli_query($connLocalhost, $queryMasc) or trigger_error("El query de macota falló");
+
+ 
+  if (mysqli_num_rows($resQueryMasc) == 1) {
+    $mascData = mysqli_fetch_assoc($resQueryMasc);
+    
+    $masc->setId($mascData['id']);
+    $masc->setNombre($mascData['nombre']);
+    $masc->setIdRefugio($mascData['id_refugio']);
+    $masc->setEdad($mascData['edad']);
+    $masc->setSexo($mascData['sexo']);
+    $masc->setHistoria($mascData['historia']);
+    $masc->setFoto($mascData['foto']);
+    $masc->setEstado($mascData['estado']);
+    $masc->setObservaciones($mascData['observaciones']);
+    $masc->setEspecie($mascData['especie']);
+
+    $permitido = true;
+
+    $connLocalhost->close();
+    return $masc;
+    
+
+
+  } else {
+    $connLocalhost->close();
+    return $permitido;
+  }
+}
