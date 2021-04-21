@@ -4,6 +4,12 @@
 if(isset($_GET['idMascota'])){
 	include "Negocio/MascotaNegocio.php";
 	$mascota = getMascota($_GET['idMascota']);
+
+  if (!$mascota){
+	header('Location:index.php');
+
+  }
+
 }else{
 	header('Location:index.php');
 }

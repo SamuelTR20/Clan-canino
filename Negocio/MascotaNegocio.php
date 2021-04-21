@@ -34,15 +34,15 @@ function addMascota($idRefugio, $nombre, $especie, $edad, $sexo, $observaciones,
 }
 
 
-function editMascota($id, $idRefugio, $nombre, $especie, $edad, $sexo, $observaciones, $estado, $historia){
+function editMascota($id, $idRefugio, $nombre, $especie, $edad, $sexo, $observaciones, $estado, $historia, $foto){
 
 	if ($id =="" || $idRefugio=="" || $nombre=="" || $especie=="" || $edad=="" || $sexo=="" || $observaciones=="" || $estado =="" || $historia==""){
-				echo 'Falta(n) completar campo(s)';
+				
 	}else{
 
 		//Se manda a llamar el metodo de la persistencia para agregar la mascota a la BD
 	include_once "Persistencia/MascotaDAO.php";
-			editarMascota($id, $idRefugio, $nombre, $especie, $edad, $sexo, $observaciones, $estado, $historia);
+			editarMascota($id, $idRefugio, $nombre, $especie, $edad, $sexo, 'disponible', $estado, $historia, $foto);
 	}
 }
 

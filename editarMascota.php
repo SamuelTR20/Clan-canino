@@ -1,28 +1,78 @@
 <?php
+
+use BenMajor\ImageResize\Image;
+include 'benmajor\PHP-Image-Resize-master\src\BenMajor\Image.php';
+
   // Inicializamos la sesion o la retomamos
 if(!isset($_SESSION)) {
     header('Cache-Control: no cache'); //no cache
-    session_cache_limiter('private');
+    session_cache_limiter('private_no_expire');
     session_start();
     // Protegemos el documento para que solamente sea visible cuando NO HAS INICIADO sesión
    // if(isset($_SESSION['userId'])) header('Location: index.php');
    // if(!isset($_SESSION['userId'])) header('Location: formulario.php');
 }
-include 'Negocio/UsuarioInfoNegocio.php';
-$usuario = infoById($_SESSION['userId']);
 
-if (isset($_POST['info_sent'])){
+if(isset($_GET['idMascota'])){
+	include "Negocio/MascotaNegocio.php";
+	$mascota = getMascota($_GET['idMascota']);
+	
+  if (!$mascota){
+	//header('Location:index.php');
+
+  }
+
+}else{
+	//header('Location:index.php');
+}
+if (isset($_GET['idMascota'])) {
+	$idMascota = $_GET['idMascota'];
+  } else {
+	  
+	$idMascota = $_POST['mascotaId'];
+  }
+
+if (isset($_POST['masc_sent'])){
     foreach ($_POST as $inputs => $vars) {
 if(trim($vars) == "") $error[] = "La caja $inputs es obligatoria";
 	
+
+
+
+
 }
+include 'Negocio/MascotaNegocio.php';
 $permitido = false;
 if (!isset($error)) {
-	if ($usuario){
-	$permitido = UpdateInfo($_POST['edad'], $_POST['direccion'], $_POST['numeroMascotas'], $_POST['telefono'], $_SESSION['userId'], $_POST['cedula'], $_POST['celular'] );	
-	}else {
-    $permitido = addInfo( $_POST['edad'], $_POST['direccion'], $_POST['numeroMascotas'], $_POST['telefono'], $_SESSION['userId'], $_POST['cedula'], $_POST['celular'] );
-	}
+
+
+
+	$mimeType = $_FILES['file']['type'];
+
+    # Generate a new image resize object using a upload image:
+    $image = new Image($_FILES['file']['tmp_name']);
+
+    if ($mimeType == "image/png" || $mimeType == "image/gif" || $mimeType == "image/svg+xml" || $mimeType == "image/svg") {
+        $image->setTransparency(true); // agregar transparencia si el formato de imagen acepta transparencia
+    } else {
+        $image->setTransparency(false); // no agregar transparencia si el formato de la imagen no acepta transparencia
+    }
+
+	# Set the background to white:
+    $image->setBackgroundColor('#ffffff');
+
+    # Contain the image:
+    $image->contain(1136, 640);
+
+	$nom = str_replace(' ', '',$_POST['nombre']);
+	$nom2 = $nom.rand ( 1 , 10000000 ).".jpg"; 
+    $ruta = "images/".$nom2;
+    
+	$image->output("images");
+
+    rename($image->getOutputFilename(), $ruta);
+    $permitido = editMascota($idMascota, 16, $_POST['nombre'], $_POST['especie'], $_POST['edad'], $_POST['sexo'], $_POST['observaciones'],'disponible', $_POST['historia'],$ruta );
+	
     }
 
     if(!$permitido){
@@ -31,7 +81,7 @@ if (!isset($error)) {
 
     
     if (!isset($error)) {
-        header('Location:index.php');
+        //header('Location:index.php');
         }else{
 
         }
@@ -73,8 +123,8 @@ if (!isset($error)) {
       <div class="container">
         <div class="row no-gutters slider-text align-items-end">
           <div class="col-md-9 ftco-animate pb-5">
-          	<p class="breadcrumbs mb-2"><span class="mr-2"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Adopción <i class="ion-ios-arrow-forward"></i></span></p>
-            <h1 class="mb-0 bread">Formulario de adopción</h1>
+          	<p class="breadcrumbs mb-2"><span class="mr-2"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Agregar Mascota <i class="ion-ios-arrow-forward"></i></span></p>
+            <h1 class="mb-0 bread">Agregar Mascota</h1>
           </div>
         </div>
       </div>
@@ -135,60 +185,63 @@ if (!isset($error)) {
 							<div class="row no-gutters">
 								<div class="col-md-7">
 									<div class="contact-wrap w-100 p-md-5 p-4">
-										<h3 class="mb-4">Registrar para adopción</h3>
-										<form method="POST" id="contactForm" name="contactForm" class="contactForm" action="formulario.php">
+										<h3 class="mb-4">Registrar Mascota</h3>
+										<form method="POST" id="contactForm" name="contactForm" class="contactForm" action="editarMascota.php" enctype="multipart/form-data">
 											<div class="row">
 												<div class="col-md-6">
 													<div class="form-group">
-														<label class="label" for="name">Nombre completo</label>
-														<input type="text" class="form-control" name="name" id="name" value= <?php echo $_SESSION['userNombre'] ?> disabled>
+														<label class="label" for="nombre">Nombre</label>
+														<input type="text" class="form-control" name="nombre" id="name" placeholder="Nombre">
 													</div>
 												</div>
 												<div class="col-md-6"> 
 													<div class="form-group">
 														<label class="label" for="edad">Edad </label>
-														<input type="number" class="form-control" name="edad" id="edad" placeholder="Edad" value="<?php if (($usuario)) echo $usuario->getEdad();?>">
+														<input type="number" class="form-control" name="edad" id="edad" placeholder="Edad">
 													</div>
 												</div>
 												<div class="col-md-6"> 
 													<div class="form-group">
-														<label class="label" for="email">Email </label>
-														<input type="email" class="form-control" name="email" id="email" value=<?php echo $_SESSION['userCorreo'] ?> disabled>
+														<label class="label" for="especie">Especie </label>
+														<input type="text" class="form-control" name="especie" id="email" placeholder="Especie">
 													</div>
 												</div>
 												<div class="col-md-6"> 
 													<div class="form-group">
-														<label class="label" for="telefono">telefono </label>
-														<input type="text" class="form-control" name="telefono" id="telefono" placeholder="Teléfono" value="<?php if($usuario) echo $usuario->getTelefono();?>">
+														<label class="label" for="sexo">Sexo </label>
+														<select name="sexo" id="sexo">
+                 											<option value="hembra" >Hembra</option>
+                  											<option value="macho" >Macho</option>
+                										</select>
+
+														
 													</div>
 												</div>
 												<div class="col-md-6"> 
 													<div class="form-group">
-														<label class="label" for="numeroMascotas">Número de mascotas </label>
-														<input type="number" class="form-control" name="numeroMascotas" id="mascotas" placeholder="Número de mascotas" value="<?php if($usuario) echo $usuario->getNumeroMascotas();?>">
+														<label class="label" for="observaciones">Observaciones </label>
+														<input type="text" class="form-control" name="observaciones" id="observaciones" placeholder="Observaciones">
 													</div>
 												</div>
 												<div class="col-md-6"> 
 													<div class="form-group">
-														<label class="label" for="celular">Celular </label>
-														<input type="text" class="form-control" name="celular" id="celular" placeholder="celular" value="<?php if($usuario) echo $usuario->getCelular();?>">
+														<label class="label" for="historia">Historia </label>
+														<input type="text" class="form-control" name="historia" id="historia" placeholder="Historia">
 													</div>
 												</div>
+												
+                                                <div class="col-md-12">
+													<div class="form-group">
+														<label class="label" for="file">Foto</label>
+														<input type="file" class="form-control" name="file" id="file" placeholder="Agregar">
+													</div>
+												</div>
+
+												<input type="hidden" name="mascotaId" value="<?php echo $idMascota ?>">
+
 												<div class="col-md-12">
 													<div class="form-group">
-														<label class="label" for="cedula">Cedula</label>
-														<input type="text" class="form-control" name="cedula" id="cedula" placeholder="Cedula" value="<?php if($usuario) echo $usuario->getCedula();?>">
-													</div>
-												</div>
-												<div class="col-md-12">
-													<div class="form-group">
-														<label class="label" for="#">Dirección</label>
-														<textarea name="direccion" class="form-control" id="message" cols="30" rows="4" placeholder="Ingresa tu dirección"><?php if($usuario) echo $usuario->getDireccion();?></textarea>
-													</div>
-												</div>
-												<div class="col-md-12">
-													<div class="form-group">
-														<input type="submit" value="Guardar información" class="btn btn-primary" name="info_sent">
+														<input type="submit" value="Guardar información" class="btn btn-primary" name="masc_sent">
 														<div class="submitting"></div>
 													</div>
 												</div>
@@ -198,7 +251,7 @@ if (!isset($error)) {
 									</div>
 								</div>
 								<div class="col-md-5 d-flex align-items-stretch">
-									<div class="info-wrap w-100 p-5 img" style="background-image: url(images/img.jpg);">
+									<div class="info-wrap w-100 p-5 img" style="background-image: url(images/adopt.jpg);">
 				          </div>
 								</div>
 							</div>

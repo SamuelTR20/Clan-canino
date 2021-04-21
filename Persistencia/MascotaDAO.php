@@ -77,14 +77,12 @@ $queryInsertMascota = sprintf(
     
 }
 
-function editarMascota($id, $idRefugio, $nombre, $especie, $edad, $sexo, $observaciones, $estado, $historia)
-{
+function editarMascota($id, $idRefugio, $nombre, $especie, $edad, $sexo, $observaciones, $estado, $historia, $foto){
 include_once "Entidades/Mascota.php";
 include_once("Conexion.php");
 $connLocalhost = conexion();
-
 $queryEditMascota = sprintf(
-      "UPDATE emp_mascota SET id_refugio ='%d', nombre ='%s', especie='%s', edad='%d', sexo='%s', observaciones='%s', estado='%s', historia= '%s' WHERE id = '%d'",
+      "UPDATE emp_mascota SET id_refugio ='%d', nombre ='%s', especie='%s', edad='%d', sexo='%s', observaciones='%s', estado='%s', historia= '%s', foto= '%s'  WHERE id = '%d'",
       mysqli_real_escape_string($connLocalhost, trim($idRefugio)),
       mysqli_real_escape_string($connLocalhost, trim($nombre)),
       mysqli_real_escape_string($connLocalhost, trim($especie)),
@@ -93,6 +91,7 @@ $queryEditMascota = sprintf(
       mysqli_real_escape_string($connLocalhost, trim($observaciones)),
       mysqli_real_escape_string($connLocalhost, trim($estado)),
       mysqli_real_escape_string($connLocalhost, trim($historia)),
+      mysqli_real_escape_string($connLocalhost, trim($foto)),
       mysqli_real_escape_string($connLocalhost, trim($id))
 
     );
@@ -100,7 +99,13 @@ $queryEditMascota = sprintf(
     // Ejecutamos el query en la BD
     $resQueryMascota = mysqli_query($connLocalhost, $queryEditMascota) or trigger_error("El query de inserción de usuarios falló");
 
-    $connLocalhost->close();
+    if ($resQueryMascota) {
+      $connLocalhost->close();
+      return true;
+    } else {
+      $connLocalhost->close();
+      return false;
+    }
 
 }
 

@@ -51,12 +51,11 @@ function obtenerInfoUsuariosPorId($idUsuario){
     // Ejecutamos el query
     $resQueryUsuarioInfo = mysqli_query($connLocalhost, $queryUsuarioInfo) or trigger_error("El query de login de usuario falló");
   
-    $usuariosInfo = [];
-  
+  $correcto = false;
   
   if (mysqli_num_rows($resQueryUsuarioInfo)) { 
-  
-  while ($infoData = mysqli_fetch_assoc($resQueryUsuarioInfo)){
+    $infoData = mysqli_fetch_assoc($resQueryUsuarioInfo);
+
     $info = new UsuarioInfo();
     $info->setId ($infoData['id']);
     $info->setEdad ($infoData['edad']);
@@ -69,11 +68,13 @@ function obtenerInfoUsuariosPorId($idUsuario){
     
     
    
-    array_push($usuariosInfo, $info);
-  } 
-  }
+    $connLocalhost->close();
+    return $info;
+}else{
   $connLocalhost->close();
-   return $usuariosInfo;
+  return $correcto;
+}
+  
   
   }
 function agregarInfoUsuario(  $edad, $direccion, $numeroMascotas, $telefono, $idUsuario, $cedula, $celular){

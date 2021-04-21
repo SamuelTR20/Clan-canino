@@ -53,7 +53,7 @@ $mascotas = getMascotas();
           foreach($mascotas as $mascota ){ ?>
           <div class="col-md-4 d-flex ftco-animate">
             <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20 rounded" style="background-image: url(<?php echo $mascota->getFoto(); ?>);">
+              <a href="<?php echo "pet.php?idMascota=".$mascota->getId(); ?>" class="block-20 rounded" style="background-image: url(<?php echo $mascota->getFoto(); ?>);">
               </a>
               <div class="text p-4">
               	<div class="meta mb-2">
@@ -61,7 +61,7 @@ $mascotas = getMascotas();
                   <div><a href="#">Admin</a></div>
                   <div><a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a></div>
                 </div>
-                <h3 class="heading"><a href="#"><?php echo $mascota->getNombre()." ". $mascota->getHistoria(); ?></a></h3>
+                <h3 class="heading"><a href="<?php echo "pet.php?idMascota=".$mascota->getId(); ?>"><?php echo $mascota->getNombre()." ". $mascota->getHistoria(); ?></a></h3>
                 <a href="pet.php?idMascota=<?php echo $mascota->getId() ?>">Ver más</a>
              
               </div>
