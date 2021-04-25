@@ -83,10 +83,32 @@ function editarUsuario($id, $nombre, $correo, $contrasenia, $rol){
 
   );
 
+
   // Ejecutamos el query en la BD
   $resQueryUsuario = mysqli_query($connLocalhost, $queryEditUsuario) or trigger_error("El query de inserción de usuarios falló");
 
-  $connLocalhost->close();
+
+  if ($resQueryUsuario) {
+    $connLocalhost->close();
+
+    if (!isset($_SESSION)) {
+      session_start();
+    }
+    // Definimos variables de sesion en $_SESSION
+    $_SESSION['userId'] = $id;
+    $_SESSION['userNombre'] = $nombre;
+    $_SESSION['userCorreo'] = $correo;
+    $_SESSION['userContrasenia'] =$contrasenia;
+    $_SESSION['userRol'] = $rol;
+
+
+
+
+    return true;
+  } else {
+    $connLocalhost->close();
+    return false;
+  }
 
 }
 

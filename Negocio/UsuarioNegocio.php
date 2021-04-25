@@ -27,6 +27,8 @@ function addUsuario($nombre, $email, $contrasenia, $contrasenia2){
 
 function editUsuario ($id, $nombre, $correo, $contrasenia, $rol){
 
+
+
 	//Validamos si las variables  vienen vacias
 	if($id=="" || $nombre =="" || $correo=="" || $contrasenia=="" || $rol=="" ){
 		echo 'Falta(n) completar campo(s)';
@@ -34,7 +36,7 @@ function editUsuario ($id, $nombre, $correo, $contrasenia, $rol){
 	}else{
 			//Se manda a llamar el metodo de la persistencia para editar la info del usuario en la BD
 			include_once "Persistencia/UsuarioDAO.php";
-			editarUsuario($id, $nombre, $correo, $contrasenia, $rol);
+		 return	editarUsuario($id, $nombre, $correo, $contrasenia, $rol);
 	}
 }
 

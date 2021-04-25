@@ -32,7 +32,7 @@
 	        	<li class="nav-item"><a href="agregarMascota.php" class="nav-link">Agregar mascota</a></li>
 	          <li class="nav-item"><a href="formulario.php" class="nav-link">Formulario</a></li>
 	          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
-	          <li class="nav-item"><a href="contact.html" class="nav-link">Contacto</a></li>
+	          <li class="nav-item"><a href="editarPerfil.php" class="nav-link">Perfil</a></li>
 	        </ul>
 	      </div>
 	    </div>
