@@ -35,12 +35,13 @@ while ($tramData = mysqli_fetch_assoc($resQueryTramites)){
 
 }
 
-function agregarTramite( $idUsuario, $idMascota, $estado, $rol)
+function agregarTramite( $idUsuario, $idMascota, $estado)
 {
 
-include_once("Conexion.php");
+  include_once("Conexion.php");
+  $connLocalhost = conexion();
 
-$queryInsertUsuario = sprintf(
+$queryInsertTramite = sprintf(
       "INSERT INTO emp_tramite (id_usuario, id_mascota, estado) VALUES ( '%d', '%d', '%s')",
       mysqli_real_escape_string($connLocalhost, trim($idUsuario)),
       mysqli_real_escape_string($connLocalhost, trim($idMascota)),
@@ -50,7 +51,16 @@ $queryInsertUsuario = sprintf(
     );
 
     // Ejecutamos el query en la BD
-    $resQueryUsuario = mysqli_query($connLocalhost, $queryInsertUsuario) or trigger_error("El query de inserción de usuarios falló");
+    $resQueryTramite = mysqli_query($connLocalhost, $queryInsertTramite) or trigger_error("El query de inserción de usuarios falló");
+
+    if ($resQueryTramite) {
+      $connLocalhost->close();
+      return true;
+    } else {
+      $connLocalhost->close();
+      return false;
+    }
+
 
     
 }

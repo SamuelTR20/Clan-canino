@@ -8,8 +8,21 @@ if(!isset($_SESSION)) {
    // if(isset($_SESSION['userId'])) header('Location: index.php');
    // if(!isset($_SESSION['userId'])) header('Location: formulario.php');
 }
+include 'Negocio/TramiteNegocio.php';
 include 'Negocio/UsuarioInfoNegocio.php';
 $usuario = infoById($_SESSION['userId']);
+
+
+if(isset($_GET['idMascota'])){
+	$idMascota = $_GET['idMascota'];
+	
+}
+if(isset($_POST['idMascota'])){
+	$idMascota = $_POST['idMascota'];
+	
+}
+echo $idMascota;
+
 
 if (isset($_POST['info_sent'])){
     foreach ($_POST as $inputs => $vars) {
@@ -20,9 +33,21 @@ $permitido = false;
 if (!isset($error)) {
 	if ($usuario){
 	$permitido = UpdateInfo($_POST['edad'], $_POST['direccion'], $_POST['numeroMascotas'], $_POST['telefono'], $_SESSION['userId'], $_POST['cedula'], $_POST['celular'] );	
-	}else {
+	
+}else {
     $permitido = addInfo( $_POST['edad'], $_POST['direccion'], $_POST['numeroMascotas'], $_POST['telefono'], $_SESSION['userId'], $_POST['cedula'], $_POST['celular'] );
 	}
+
+	
+	if($permitido == true and isset($idMascota)){
+		$agregado = addTramite($_SESSION['userId'], $idMascota, 'procesando');
+		
+	}else{
+		$error[] ="Error al ingresar información";
+	}
+
+
+
     }
 
     if(!$permitido){
@@ -67,6 +92,10 @@ if (!isset($error)) {
   <body>
 
   <?php include("includes/header.php"); ?>
+
+
+  
+
     <!-- END nav -->
     <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_2.jpg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
@@ -186,8 +215,10 @@ if (!isset($error)) {
 														<textarea name="direccion" class="form-control" id="message" cols="30" rows="4" placeholder="Ingresa tu dirección"><?php if($usuario) echo $usuario->getDireccion();?></textarea>
 													</div>
 												</div>
+												
 												<div class="col-md-12">
 													<div class="form-group">
+													<input type="hidden" name="idMascota" value="<?php echo $idMascota; ?>">
 														<input type="submit" value="Guardar información" class="btn btn-primary" name="info_sent">
 														<div class="submitting"></div>
 													</div>

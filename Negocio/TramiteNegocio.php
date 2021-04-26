@@ -9,15 +9,15 @@ function getTramites(){
 	}
 
 
-function addTramite($idUsuario, $idMascota, $estado, $rol){
+function addTramite($idUsuario, $idMascota, $estado){
 
-	if ($idUsuario=="" || $idMascota=="" || $estado=="" || $rol==""){
+	if ($idUsuario=="" || $idMascota=="" || $estado==""){
 				echo 'Falta(n) completar campo(s)';
 	}else{
 
 		//Se manda a llamar el metodo de la persistencia para agregar la mascota a la BD
 	include_once "Persistencia/TramiteDAO.php";
-			agregarTramite($idUsuario, $idMascota, $estado, $rol);
+		return	agregarTramite($idUsuario, $idMascota, $estado);
 	}
 }
 
