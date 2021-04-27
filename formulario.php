@@ -21,7 +21,7 @@ if(isset($_POST['idMascota'])){
 	$idMascota = $_POST['idMascota'];
 	
 }
-echo $idMascota;
+//echo $idMascota;
 
 
 if (isset($_POST['info_sent'])){

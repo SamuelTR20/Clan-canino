@@ -13,44 +13,31 @@ if(!isset($_SESSION)) {
    // if(!isset($_SESSION['userId'])) header('Location: formulario.php');
 }
 
+include "Negocio/RefugioNegocio.php";
+getRefugio();
 
-if (isset($_SESSION['userId'])) {
+if (isset($_POST['refu_sent'])){
 
-   if (isset($_POST['usu_sent'])){
     foreach ($_POST as $inputs => $vars) {
-
-		if($inputs != "contrasenia1" and $inputs != "contrasenia2" ){
-	if(trim($vars) == "") $error[] = "La caja $inputs es obligatoria";
-		}
+if(trim($vars) == "") $error[] = "La caja $inputs es obligatoria";
+	
 }
-
-if($_POST['contrasenia'] == ""){
-	$error[] = "Debes ingresar tu contraseña para poder realizar los cambios";
-}  
-if($_POST['contrasenia1'] != $_POST['contrasenia2']){
-	$error[] = "La contraseña nueva y su confirmación no coinciden";
-}
-
-
 
 
 
 if (!isset($error)) {
 
-	include 'Negocio/UsuarioNegocio.php';
-	$permitido = editUsuario($_SESSION['userId'], $_POST['nombre'], $_POST['correo'],  $_POST['contrasenia1'], $_SESSION['userRol']);
 
+	 editRefugio( $_POST['nombre'], $_POST['ciudad'],  $_POST['telefono'],$_POST['direccion'],  $_POST['descripcion'] );
 
-
-
+     header('Location:refugio.php');
+}else{
+    echo $error;
 }
-}
 
+} 
 
-  } else {
-	  
-	header('Location: login.php');
-  }
+ 
 
 
 
@@ -91,8 +78,8 @@ if (!isset($error)) {
       <div class="container">
         <div class="row no-gutters slider-text align-items-end">
           <div class="col-md-9 ftco-animate pb-5">
-          	<p class="breadcrumbs mb-2"><span class="mr-2"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Editar Perfil <i class="ion-ios-arrow-forward"></i></span></p>
-            <h1 class="mb-0 bread">Editar Perfil </h1>
+          	<p class="breadcrumbs mb-2"><span class="mr-2"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Refugio <i class="ion-ios-arrow-forward"></i></span></p>
+            <h1 class="mb-0 bread">Refugio </h1>
           </div>
         </div>
       </div>
@@ -153,44 +140,44 @@ if (!isset($error)) {
 							<div class="row no-gutters">
 								<div class="col-md-7">
 									<div class="contact-wrap w-100 p-md-5 p-4">
-										<h3 class="mb-4">Editar información</h3>
-										<form method="POST" id="contactForm" name="contactForm" class="contactForm" action="editarPerfil.php" enctype="multipart/form-data">
+										<h3 class="mb-4">Editar Refugio</h3>
+										<form method="POST" id="contactForm" name="contactForm" class="contactForm" action="refugio.php" enctype="multipart/form-data">
 											<div class="row">
 												<div class="col-md-6">
 													<div class="form-group">
 														<label class="label" for="nombre">Nombre</label>
-														<input type="text" class="form-control" name="nombre" id="name" placeholder="Nombre" value=" <?php echo $_SESSION['userNombre']?>">
+														<input type="text" class="form-control" name="nombre" id="name"  value=" <?php echo $_SESSION['refugioNombre']?>">
 													</div>
 												</div>
 												<div class="col-md-6"> 
 													<div class="form-group">
-														<label class="label" for="edad">Correo electronico</label>
-														<input type="email" class="form-control" name="correo" id="edad" placeholder="Correo" value=" <?php echo $_SESSION['userCorreo']?>">
+														<label class="label" for="edad">Ciudad</label>
+														<input type="text" class="form-control" name="ciudad" id="edad"  value=" <?php echo $_SESSION['refugioCiudad']?>">
 													</div>
 												</div>
 												<div class="col-md-6"> 
 													<div class="form-group">
-														<label class="label" for="especie">Contraseña </label>
-														<input type="password" class="form-control" name="contrasenia" id="email" placeholder="Contraseña">
+														<label class="label" for="especie">Teléfono </label>
+														<input type="text" class="form-control" name="telefono" id="email"  value=" <?php echo $_SESSION['refugioTelefono']?>" >
 													</div>
 												</div>
 												<div class="col-md-6"> 
 													<div class="form-group">
-														<label class="label" for="especie">Contraseña nueva</label>
-														<input type="password" class="form-control" name="contrasenia1" id="email" placeholder="Contraseña">
+														<label class="label" for="especie">Dirección</label>
+														<input type="text" class="form-control" name="direccion" id="email"  value=" <?php echo $_SESSION['refugioDireccion']?>" >
 													</div>
 												</div>
-												<div class="col-md-6"> 
+												<div class="col-md-12"> 
 													<div class="form-group">
-														<label class="label" for="especie">Confirma contraseña nueva </label>
-														<input type="password" class="form-control" name="contrasenia2" id="email" placeholder="Contraseña">
+														<label class="label" for="especie">Descripción </label>
+														<textarea type="text" class="form-control" name="descripcion" id="email"  ><?php echo $_SESSION['refugioDescripcion']?></textarea>
 													</div>
 												</div>
 												
 												
 												<div class="col-md-12">
 													<div class="form-group">
-														<input type="submit" value="Guardar información" class="btn btn-primary" name="usu_sent">
+														<input type="submit" value="Guardar información" class="btn btn-primary" name="refu_sent">
 														<div class="submitting"></div>
 													</div>
 												</div>

@@ -33,6 +33,7 @@
 	          <li class="nav-item"><a href="formulario.php" class="nav-link">Formulario</a></li>
 	          <li class="nav-item"><a href="tramites.php" class="nav-link">Tramites</a></li>
 	          <li class="nav-item"><a href="editarPerfil.php" class="nav-link">Perfil</a></li>
+			  <li class="nav-item"><a href="refugio.php" class="nav-link">Refugio</a></li>
 	        </ul>
 	      </div>
 	    </div>
