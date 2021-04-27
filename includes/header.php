@@ -31,7 +31,7 @@
 	        	<li class="nav-item"><a href="index.php" class="nav-link">Inicio</a></li>
 	        	<li class="nav-item"><a href="agregarMascota.php" class="nav-link">Agregar mascota</a></li>
 	          <li class="nav-item"><a href="formulario.php" class="nav-link">Formulario</a></li>
-	          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+	          <li class="nav-item"><a href="tramites.php" class="nav-link">Tramites</a></li>
 	          <li class="nav-item"><a href="editarPerfil.php" class="nav-link">Perfil</a></li>
 	        </ul>
 	      </div>

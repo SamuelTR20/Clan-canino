@@ -1,9 +1,9 @@
 <?php
 
-function getTramites(){
+function getTramites($busqueda){
 
 	include_once "Persistencia/TramiteDAO.php";
-	$tramites = obtenerTramites();
+	$tramites = obtenerTramites($busqueda);
 
 	return $tramites;
 	}

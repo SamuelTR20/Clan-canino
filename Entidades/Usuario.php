@@ -6,6 +6,15 @@ class Usuario
 	private $correo;
 	private $contrasenia;
 	private $rol;
+	private $info;
+
+	public function getInfo(){
+		return $this->id;
+	}
+
+	public function setInfo($info){
+		$this->info = $info;
+	}
 
 	public function getId(){
 		return $this->id;

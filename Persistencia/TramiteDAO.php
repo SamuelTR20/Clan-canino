@@ -2,7 +2,95 @@
 
 
 
-function obtenerTramites()
+function obtenerTramites($busqueda)
+{
+include_once "Entidades/Tramite.php";
+include_once "Entidades/Mascota.php";
+include_once "Entidades/UsuarioInfo.php";
+include_once "Entidades/Usuario.php";
+include_once "Entidades/Refugio.php";
+
+
+include("Conexion.php");
+$connLocalhost = conexion();
+
+$queryGetTram = sprintf("SELECT  DISTINCTROW tra.id as id_tramite, usu.id as id_us, usu.nombre as nombre_us, 
+usu.correo as correo_usu, inf.telefono as tel_usu, inf.celular as cel_usu, 
+mas.nombre as nombre_mas, mas.especie as especie_mas, mas.sexo as sexo_mas,
+ref.nombre as nombre_ref, ref.ciudad as ciudad_ref, ref.telefono as telefono_ref,
+tra.estado as estado_tra, tra.fecha_solicitud as fecha_tra
+from emp_tramite as tra join emp_usuarios as usu on tra.id_usuario = usu.id 
+join emp_mascota as mas on tra.id_mascota=mas.id join emp_refugio as ref on mas.id_refugio = ref.id 
+join emp_usuario_info as inf on usu.id=inf.id_usuario where tra.estado like '%%%s%%' or usu.nombre like '%%%s%%' or mas.nombre like '%%%s%%'",
+mysqli_real_escape_string($connLocalhost, $busqueda),
+mysqli_real_escape_string($connLocalhost, $busqueda),
+mysqli_real_escape_string($connLocalhost, $busqueda));
+
+
+  // Ejecutamos el query
+  $resQueryTramites = mysqli_query($connLocalhost, $queryGetTram) or trigger_error("El query de login de usuario falló");
+
+  $Tramites = [];
+
+
+if (mysqli_num_rows($resQueryTramites)) { 
+
+while ($tramData = mysqli_fetch_assoc($resQueryTramites)){
+  
+ 
+      
+  $info = new UsuarioInfo();
+  $info->setTelefono ( $tramData['tel_usu']);
+  $info->setIdUsuario ($tramData['id_us']);
+  $info->setCelular ($tramData['cel_usu']);
+
+  $usu = new Usuario();
+  $usu->setId ( $tramData['id_us']);
+  $usu->setNombre($tramData['nombre_us']);
+  $usu->setCorreo($tramData['correo_usu']);
+  $usu->setInfo($info);
+
+  $ref = new Refugio();
+  $ref->setNombre($tramData['nombre_ref']);
+	$ref->setCiudad($tramData['ciudad_ref']);
+	$ref->setTelefono($tramData['telefono_ref']);
+
+
+  $masc = new Mascota();
+	$masc->setNombre($tramData['nombre_mas']);
+	$masc->setSexo($tramData['sexo_mas']);
+	$masc->setEspecie($tramData['especie_mas']);
+  $masc->setIdRefugio($ref);
+
+
+  
+  $tram = new Tramite();
+	$tram->setId($tramData['id_tramite']);
+	$tram->setIdUsuario($usu);
+	$tram->setIdMascota($masc);
+	$tram->setEstado($tramData['estado_tra']);
+	$tram->setFechaSolicitud ($tramData['fecha_tra']);
+	
+	
+
+	array_push($Tramites, $tram);
+} 
+}
+ $connLocalhost->close();
+ return $Tramites;
+
+}
+
+
+
+
+
+
+
+
+
+
+function obtenerTramites2()
 {
 include_once "Entidades/Tramite.php";
 include("Conexion.php");
