@@ -1,7 +1,8 @@
 <?php
 
 use BenMajor\ImageResize\Image;
-include 'benmajor\PHP-Image-Resize-master\src\BenMajor\Image.php';
+include 'benmajor/PHP-Image-Resize-master/src/BenMajor/Image.php';
+
 
   // Inicializamos la sesion o la retomamos
 if(!isset($_SESSION)) {
@@ -27,9 +28,7 @@ if(trim($vars) == "") $error[] = "La caja $inputs es obligatoria";
 include 'Negocio/MascotaNegocio.php';
 $permitido = false;
 if (!isset($error)) {
-
-
-
+	
 	$mimeType = $_FILES['file']['type'];
 
     # Generate a new image resize object using a upload image:
@@ -54,7 +53,8 @@ if (!isset($error)) {
 	$image->output("images");
 
     echo rename($image->getOutputFilename(), $ruta);
-    $permitido = addMascota( 16, $_POST['nombre'], $_POST['especie'], $_POST['edad'], $_POST['sexo'], $_POST['observaciones'],'disponible', $_POST['historia'],$ruta );
+
+	$permitido = addMascota( 16, $_POST['nombre'], $_POST['especie'], $_POST['edad'], $_POST['sexo'], $_POST['observaciones'],'disponible', $_POST['historia'],$ruta );
 	
     }
 
@@ -189,17 +189,17 @@ if (!isset($error)) {
 														<input type="text" class="form-control" name="especie" id="email" placeholder="Especie">
 													</div>
 												</div>
+												
 												<div class="col-md-6"> 
-													<div class="form-group">
 														<label class="label" for="sexo">Sexo </label>
-														<select name="sexo" id="sexo">
+
+														<select name="sexo" id="sexo" class="form-control">
                  											<option value="hembra" >Hembra</option>
                   											<option value="macho" >Macho</option>
                 										</select>
+												</div> 	
 
-														
-													</div>
-												</div>
+
 												<div class="col-md-6"> 
 													<div class="form-group">
 														<label class="label" for="observaciones">Observaciones </label>
@@ -219,8 +219,10 @@ if (!isset($error)) {
 														<input type="file" class="form-control" name="file" id="file" placeholder="Agregar">
 													</div>
 												</div>
+
 												
-												<div class="col-md-12">
+												
+												<div class="col-md-12 pt-2">
 													<div class="form-group">
 														<input type="submit" value="Guardar información" class="btn btn-primary" name="masc_sent">
 														<div class="submitting"></div>

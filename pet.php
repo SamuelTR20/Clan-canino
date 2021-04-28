@@ -59,7 +59,7 @@ if(isset($_GET['idMascota'])){
       </div>
     </section>
 
-    <section class="ftco-section ftco-no-pt ftco-no-pb">
+    <section class="ftco-section pt-5 pb-5">
     	<div class="container">
     		<div class="row d-flex no-gutters">
     			<div class="col-md-5 d-flex">

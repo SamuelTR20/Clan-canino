@@ -1,7 +1,7 @@
 <?php
 
 use BenMajor\ImageResize\Image;
-include 'benmajor\PHP-Image-Resize-master\src\BenMajor\Image.php';
+include 'benmajor/PHP-Image-Resize-master/src/BenMajor/Image.php';
 
   // Inicializamos la sesion o la retomamos
 if(!isset($_SESSION)) {
@@ -12,29 +12,29 @@ if(!isset($_SESSION)) {
    // if(isset($_SESSION['userId'])) header('Location: index.php');
    // if(!isset($_SESSION['userId'])) header('Location: formulario.php');
 }
-
+$ruta = "";
 if(isset($_GET['idMascota'])){
 	include "Negocio/MascotaNegocio.php";
 	$mascota = getMascota($_GET['idMascota']);
 	
   if (!$mascota){
-	//header('Location:index.php');
+	header('Location:index.php');
 
   }
 
-}else{
-	//header('Location:index.php');
 }
+
 if (isset($_GET['idMascota'])) {
 	$idMascota = $_GET['idMascota'];
   } else {
 	  
 	$idMascota = $_POST['mascotaId'];
+	$ruta = $_POST['rutaAnt'];
   }
 
 if (isset($_POST['masc_sent'])){
     foreach ($_POST as $inputs => $vars) {
-if(trim($vars) == "") $error[] = "La caja $inputs es obligatoria";
+if(trim($vars) == "" and $inputs =! "file" ) $error[] = "La caja $inputs es obligatoria";
 	
 
 
@@ -45,8 +45,7 @@ include 'Negocio/MascotaNegocio.php';
 $permitido = false;
 if (!isset($error)) {
 
-
-
+	if(!$_FILES['file']['type'] == ''){
 	$mimeType = $_FILES['file']['type'];
 
     # Generate a new image resize object using a upload image:
@@ -71,20 +70,25 @@ if (!isset($error)) {
 	$image->output("images");
 
     rename($image->getOutputFilename(), $ruta);
-    $permitido = editMascota($idMascota, 16, $_POST['nombre'], $_POST['especie'], $_POST['edad'], $_POST['sexo'], $_POST['observaciones'],'disponible', $_POST['historia'],$ruta );
+
+}
+
+    $permitido = editMascota($idMascota, 16, $_POST['nombre'], $_POST['especie'], $_POST['edad'], $_POST['sexo'], $_POST['observaciones'],$_POST['estado'], $_POST['historia'],$ruta );
+
 	
     }
 
     if(!$permitido){
         $error[] = "Ha ocurrido un error al registrarse";            
-    }
+    }else{
+
+		header('Location:index.php');
+
+
+	}
 
     
-    if (!isset($error)) {
-        //header('Location:index.php');
-        }else{
-
-        }
+    
 }
 ?>
 
@@ -191,55 +195,62 @@ if (!isset($error)) {
 												<div class="col-md-6">
 													<div class="form-group">
 														<label class="label" for="nombre">Nombre</label>
-														<input type="text" class="form-control" name="nombre" id="name" placeholder="Nombre">
+														<input type="text" class="form-control" name="nombre" id="name" placeholder="Nombre" value="<?php if (($mascota)) echo $mascota->getNombre();?>">
 													</div>
 												</div>
 												<div class="col-md-6"> 
 													<div class="form-group">
 														<label class="label" for="edad">Edad </label>
-														<input type="number" class="form-control" name="edad" id="edad" placeholder="Edad">
+														<input type="number" class="form-control" name="edad" id="edad" placeholder="Edad" value="<?php if (($mascota)) echo $mascota->getEdad();?>">
 													</div>
 												</div>
 												<div class="col-md-6"> 
 													<div class="form-group">
 														<label class="label" for="especie">Especie </label>
-														<input type="text" class="form-control" name="especie" id="email" placeholder="Especie">
+														<input type="text" class="form-control" name="especie" id="email" placeholder="Especie" value="<?php if (($mascota)) echo $mascota->getEspecie();?>">
 													</div>
 												</div>
 												<div class="col-md-6"> 
-													<div class="form-group">
 														<label class="label" for="sexo">Sexo </label>
-														<select name="sexo" id="sexo">
-                 											<option value="hembra" >Hembra</option>
-                  											<option value="macho" >Macho</option>
-                										</select>
 
-														
-													</div>
-												</div>
+														<select name="sexo" id="sexo" class="form-control">
+                 											<option value="hembra" <?php if ($mascota->getSexo() == 'hembra') echo "selected"?>>Hembra</option>
+                  											<option value="macho"<?php if ($mascota->getSexo() == 'macho') echo "selected"?>>Macho</option>
+                										</select>
+												</div> 
 												<div class="col-md-6"> 
 													<div class="form-group">
 														<label class="label" for="observaciones">Observaciones </label>
-														<input type="text" class="form-control" name="observaciones" id="observaciones" placeholder="Observaciones">
+														<input type="text" class="form-control" name="observaciones" id="observaciones" placeholder="Observaciones" value="<?php if (($mascota)) echo $mascota->getObservaciones();?>">
 													</div>
 												</div>
 												<div class="col-md-6"> 
 													<div class="form-group">
 														<label class="label" for="historia">Historia </label>
-														<input type="text" class="form-control" name="historia" id="historia" placeholder="Historia">
+														<input type="text" class="form-control" name="historia" id="historia" placeholder="Historia" value="<?php if (($mascota)) echo $mascota->getHistoria();?>">
 													</div>
 												</div>
 												
-                                                <div class="col-md-12">
+                                                <div class="col-md-6">
 													<div class="form-group">
 														<label class="label" for="file">Foto</label>
 														<input type="file" class="form-control" name="file" id="file" placeholder="Agregar">
 													</div>
 												</div>
 
+												<div class="col-md-6"> 
+														<label class="label" for="estado">Estado </label>
+														<select name="estado" id="estado" class="form-control">
+                 											<option value="disponible" <?php if ($mascota->getEstado() == 'disponible') echo "selected"?>>Disponible</option>
+                  											<option value="adoptado" <?php if ($mascota->getEstado() == 'adoptado') echo "selected"?>>Adoptado</option>
+                										</select>
+												</div> 	
+												
 												<input type="hidden" name="mascotaId" value="<?php echo $idMascota ?>">
+												<input type="hidden" name="rutaAnt" value="<?php echo $mascota->getFoto();?>">
 
-												<div class="col-md-12">
+
+												<div class="col-md-12 mt-2">
 													<div class="form-group">
 														<input type="submit" value="Guardar información" class="btn btn-primary" name="masc_sent">
 														<div class="submitting"></div>
@@ -251,7 +262,7 @@ if (!isset($error)) {
 									</div>
 								</div>
 								<div class="col-md-5 d-flex align-items-stretch">
-									<div class="info-wrap w-100 p-5 img" style="background-image: url(images/adopt.jpg);">
+									<div class="info-wrap w-100 p-5 img" style="background-image: url(<?php echo $mascota->getFoto(); ?>);">
 				          </div>
 								</div>
 							</div>
