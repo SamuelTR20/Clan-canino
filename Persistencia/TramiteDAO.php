@@ -11,12 +11,12 @@ include_once "Entidades/Usuario.php";
 include_once "Entidades/Refugio.php";
 
 
-include("Conexion.php");
+include_once("Conexion.php");
 $connLocalhost = conexion();
 
 $queryGetTram = sprintf("SELECT  DISTINCTROW tra.id as id_tramite, usu.id as id_us, usu.nombre as nombre_us, 
 usu.correo as correo_usu, inf.telefono as tel_usu, inf.celular as cel_usu, 
-mas.nombre as nombre_mas, mas.especie as especie_mas, mas.sexo as sexo_mas,
+mas.nombre as nombre_mas, mas.especie as especie_mas, mas.sexo as sexo_mas, mas.id as id_mas,
 ref.nombre as nombre_ref, ref.ciudad as ciudad_ref, ref.telefono as telefono_ref,
 tra.estado as estado_tra, tra.fecha_solicitud as fecha_tra
 from emp_tramite as tra join emp_usuarios as usu on tra.id_usuario = usu.id 
@@ -57,6 +57,7 @@ while ($tramData = mysqli_fetch_assoc($resQueryTramites)){
 
 
   $masc = new Mascota();
+  $masc->setId($tramData['id_mas']);
 	$masc->setNombre($tramData['nombre_mas']);
 	$masc->setSexo($tramData['sexo_mas']);
 	$masc->setEspecie($tramData['especie_mas']);
@@ -86,8 +87,7 @@ while ($tramData = mysqli_fetch_assoc($resQueryTramites)){
 
 
 
-function obtenerTramiteId($id)
-{
+function obtenerTramiteId($id){
 include_once "Entidades/Tramite.php";
 include_once "Entidades/Mascota.php";
 include_once "Entidades/UsuarioInfo.php";
@@ -95,7 +95,7 @@ include_once "Entidades/Usuario.php";
 include_once "Entidades/Refugio.php";
 
 
-include("Conexion.php");
+include_once("Conexion.php");
 $connLocalhost = conexion();
 
 $queryTramiteData = sprintf(
@@ -103,7 +103,7 @@ $queryTramiteData = sprintf(
    inf.edad as edad_us, inf.direccion as direccion_us,  inf.numero_mascotas as num_mas, inf.telefono as tel_usu,
    inf.celular as cel_usu, inf.cedula as cedula_usu,
     mas.nombre as nombre_mas, mas.edad as edad_mas, mas.especie as especie_mas, mas.sexo as sexo_mas, mas.foto as foto, 
-    mas.observaciones as observaciones_mas, mas.estado as estado_mas,
+    mas.observaciones as observaciones_mas, mas.estado as estado_mas, mas.id as id_mas,
     ref.nombre as nombre_ref, ref.ciudad as ciudad_ref, ref.telefono as telefono_ref, ref.direccion as direccion_ref, 
     tra.estado as estado_tra, tra.fecha_solicitud as fecha_tra 
     from emp_tramite as tra join emp_usuarios as usu 
@@ -146,6 +146,7 @@ if (mysqli_num_rows($resQueryGetTram)) {
 
   $masc = new Mascota();
 	$masc->setNombre($tramData['nombre_mas']);
+	$masc->setId($tramData['id_mas']);
   $masc->setEdad($tramData['edad_mas']);
 	$masc->setSexo($tramData['sexo_mas']);
   $masc->setFoto($tramData['foto']);
@@ -170,15 +171,9 @@ if (mysqli_num_rows($resQueryGetTram)) {
 
 
 
-
-
-
-
-
-
 function obtenerTramites2()
 {
-  include("Conexion.php");
+  include_once("Conexion.php");
   $connLocalhost = conexion();
 
  $queryTramites = "SELECT id, id_usuario, id_mascota, estado, fecha_solicitud FROM emp_tramite";
@@ -240,9 +235,9 @@ $queryInsertTramite = sprintf(
 }
 
 
-function editarEstado($id, $idMascota, $estado)
+function editarEstado($id, $estado)
 {
-  include("Conexion.php");
+  include_once("Conexion.php");
   $connLocalhost = conexion();
 
   $queryEditTramite = sprintf(
@@ -253,38 +248,39 @@ function editarEstado($id, $idMascota, $estado)
 
     // Ejecutamos el query en la BD
     $resQueryTramite = mysqli_query($connLocalhost, $queryEditTramite) or trigger_error("El query de inserción de usuarios falló");
-
-    $connLocalhost->close();
+    
 
   //Cancelar los otros tramites con la misma mascota
-    if ($resQueryTramite == 1 and trim($estado) == 'aceptado') {
-      $connLocalhost1 = conexion();
-
-      $queryCancelarTodos = sprintf(
-        "UPDATE emp_tramite SET estado = 'cancelado' where id_mascota = %d and estado != 'aceptado'",
-        mysqli_real_escape_string($connLocalhost1, trim($idMascota))
-      );
-      // Ejecutamos el query
-      $resQueryGetTram = mysqli_query($connLocalhost1, $queryCancelarTodos) or trigger_error("El query de inserción de usuarios falló");
-  
-      $connLocalhost1->close();
-      $connLocalhost2 = conexion();
-
-      $queryDisponibilidad = sprintf(
-        "UPDATE emp_mascota SET estado = 'adoptado' where id = %d",
-        mysqli_real_escape_string($connLocalhost2, trim($idMascota))
-      );
-      // Ejecutamos el query
-      $resQueryGetTram = mysqli_query($connLocalhost2, $queryDisponibilidad) or trigger_error("El query de inserción de usuarios falló");
     
-      $connLocalhost2->close();
-    }
-   
+    $connLocalhost->close();
 
+    return $resQueryTramite;
 
 }
 
 
+function cancelarTramites($idMascota){
+  include_once("Conexion.php");
+  $connLocalhost = conexion();
+
+    $queryCancelarTodos = sprintf(
+      "UPDATE emp_tramite SET estado = 'cancelado' where id_mascota = %d and estado != 'aceptado'",
+      mysqli_real_escape_string($connLocalhost, trim($idMascota))
+    );
+    // Ejecutamos el query
+    $resQueryGetTram = mysqli_query($connLocalhost, $queryCancelarTodos) or trigger_error("El query de inserción de usuarios falló");
+
+
+    $queryDisponibilidad = sprintf(
+      "UPDATE emp_mascota SET estado = 'adoptado' where id = %d",
+      mysqli_real_escape_string($connLocalhost, trim($idMascota))
+    );
+    // Ejecutamos el query
+    $resQueryGetTram = mysqli_query($connLocalhost, $queryDisponibilidad) or trigger_error("El query de inserción de usuarios falló");
+  
+    $connLocalhost->close();
+
+}
 
 
 

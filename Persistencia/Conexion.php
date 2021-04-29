@@ -4,7 +4,7 @@
 
 // Creamos la conexión
 function conexion(){
-    $servidor = "localhost"; 
+$servidor = "localhost"; 
 $baseDatos = "clancaninodb";
 $usuarioBd = "admins";
 $passwordBd = "mishis";

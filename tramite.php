@@ -2,6 +2,7 @@
   session_start(); 
 }
 include "Negocio/TramiteNegocio.php";
+
 if(isset($_GET['idTramite'])){
 	$idTram = $_GET['idTramite'];
 
@@ -14,7 +15,7 @@ if(isset($_GET['idTramite'])){
   }
 
 
-
+  
 
 if(isset($_POST['masc_sent'])){
 
@@ -23,7 +24,6 @@ if(isset($_POST['masc_sent'])){
 
 }
 $tramite =  getTramitePorId($idTram);
-
 
 
 ?>
