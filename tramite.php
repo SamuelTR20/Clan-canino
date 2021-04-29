@@ -1,18 +1,29 @@
 <?php if (!isset($_SESSION)) {
   session_start(); 
 }
-if(isset($_GET['idMascota'])){
-	include "Negocio/MascotaNegocio.php";
-	$mascota = getMascota($_GET['idMascota']);
+include "Negocio/TramiteNegocio.php";
+if(isset($_GET['idTramite'])){
+	$idTram = $_GET['idTramite'];
 
-  if (!$mascota){
-	header('Location:index.php');
-
+ 
+  }else if(isset($_POST['idTramite'])){
+    $idTram =$_POST['idTramite'];
+  }
+  else{
+    header('tramites.php');
   }
 
-}else{
-	header('Location:index.php');
+
+
+
+if(isset($_POST['masc_sent'])){
+
+  cambiarEstado($idTram, $_POST['idMascota'], $_POST['estado']);
+
+
 }
+$tramite =  getTramitePorId($idTram);
+
 
 
 ?>
@@ -63,19 +74,19 @@ if(isset($_GET['idMascota'])){
     	<div class="container">
     		<div class="row d-flex no-gutters">
     			<div class="col-md-5 d-flex">
-    				<div class="img img-video d-flex align-self-stretch align-items-center justify-content-center justify-content-md-center mb-4 mb-sm-0" style="background-image:url(<?php echo $mascota->getFoto(); ?>);">
+    				<div class="img img-video d-flex align-self-stretch align-items-center justify-content-center justify-content-md-center mb-4 mb-sm-0" style="background-image:url(<?php echo $tramite->getIdMascota()->getFoto(); ?>);">
     				</div>
     			</div>
     			<div class="col-md-7 pl-md-5 py-md-5">
     				<div class="heading-section pt-md-5">
-	            <h2 class="mb-4"><?php echo $mascota->getNombre() ?></h2>
+	            <h2 class="mb-4"><?php echo $tramite->getId(); ?></h2>
     				</div>
     				<div class="row">
 	    				<div class="col-md-6 services-2 w-100 d-flex">
 	    					<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-stethoscope"></span></div>
 	    					<div class="text pl-3">
-	    						<h4><?php echo $mascota->getEspecie() ?></h4>
-	    						<p><?php echo $mascota->getHistoria() ?></p>
+	    						<h4><?php echo $tramite->getFechaSolicitud(); ?></h4>
+	    						<p><?php echo  $tramite->getIdMascota()->getNombre(); ?></p>
 	    					</div>
 	    				</div>
 	    				<div class="col-md-6 services-2 w-100 d-flex">
@@ -99,11 +110,39 @@ if(isset($_GET['idMascota'])){
 	    						<p>Far far away, behind the word mountains, far from the countries.</p>
 	    					</div>
 
+
+                </div>
+                <form action="tramite.php" method="post" class="form-edit">
+                <div class="col-md-6 services-2 w-100 d-flex">
+	    					<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-veterinarian"></span></div>
+	    					<div class="text pl-3">
+                <label class="label" for="estado">Estado </label>
+
+                <select name="estado" id="estado" class="form-control" >
+                     <option value="aceptado" >Aceptado</option>
+                     <option value="procesando" >Procesando</option>
+                     <option value="cancelado" >Cancelado</option>
+                     </select>
+	    				</div>
+	    					</div>
+                <div class="col-md-6 services-2 w-100 d-flex pl-20" >
+	    					<div class="text pl-3 pt-5 pl-5">
+
+                
+                <input type="hidden" value="<?php echo $tramite->getIdMascota()->getId(); ?>" class="btn btn-primary" name="idMascota">
+                <input type="hidden" value="<?php echo 	$idTram; ?>" class="btn btn-primary" name="idTramite">
+                <input type="submit" value="Guardar" class="btn btn-primary" name="masc_sent">
+                
+                
                
 	    				</div>
-              
-              <a href="formulario.php?idMascota=<?php echo $mascota->getId() ?>" class="btn btn-primary"> Adoptar </a>
-	    			</div>
+	    					</div>
+                </form>
+
+                
+	    				</div>
+             
+	    		
 	        </div>
         </div>
     	</div>

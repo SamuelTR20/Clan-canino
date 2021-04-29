@@ -8,6 +8,14 @@ function getTramites($busqueda){
 	return $tramites;
 	}
 
+function getTramitePorId($id){
+
+		include_once "Persistencia/TramiteDAO.php";
+		
+		$tramite = obtenerTramiteId($id);
+		
+		return $tramite;
+		}
 
 function addTramite($idUsuario, $idMascota, $estado){
 
@@ -35,7 +43,11 @@ function editTramite($id, $idUsuario, $idMascota, $estado){
 }
 
 
+function cambiarEstado($id, $idMascota, $estado){
 
+	include_once "Persistencia/TramiteDAO.php";
+	editarEstado($id, $idMascota, $estado);
+}
 
 
 

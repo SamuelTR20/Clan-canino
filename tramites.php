@@ -68,7 +68,8 @@ $tramites = getTramites("");
           foreach($tramites as $indice => $tramite ){ 
            ?>
           
-          <div class="col-md-4 d-flex align-self-stretch px-4 ftco-animate pb-5 pt-5 ">
+          <div class="col-md-4 d-flex align-self-stretch px-4 ftco-animate pb-5 pt-5 "  >
+          
             <div class="d-block services text-center">
               <div class="icon d-flex align-items-center justify-content-center">
             		<span class="flaticon-blind"></span>
@@ -76,12 +77,12 @@ $tramites = getTramites("");
               <div class="media-body p-4">
                 <h3 class="heading"><?php echo $tramite->getId() ?></h3>
                 <p>Mascota:<?php echo $tramite->getIdMascota()->getNombre(); ?> Usuario: <?php echo $tramite->getIdUsuario()->getNombre(); ?></p>
-                <a href="#" class="btn-custom d-flex align-items-center justify-content-center"><span class="fa fa-chevron-right"></span><i class="sr-only">Read more</i></a>
+                <a href="<?php echo "tramite.php?idTramite=".$tramite->getId(); ?>" class="btn-custom d-flex align-items-center justify-content-center"><span class="fa fa-chevron-right"></span><i class="sr-only">Read more</i></a>
               </div>
             </div>   
-           
+            
           </div>
-          
+         
           <?php }?>  
           
 
