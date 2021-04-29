@@ -85,6 +85,7 @@ if (!isset($error)) {
       </div>
     </section>
 
+
     <section class="ftco-section bg-light">
 			<div class="container">
 				<div class="row justify-content-center">
@@ -102,7 +103,7 @@ if (!isset($error)) {
 				        			<span class="fa fa-map-marker"></span>
 				        		</div>
 				        		<div class="text">
-					            <p><span>Ubicación:</span> dirección aqui próximamente</p>
+					            <p><span>Ubicación:</span><?php echo $_SESSION['refugioDireccion']?></p>
 					          </div>
 				          </div>
 								</div>
@@ -112,7 +113,7 @@ if (!isset($error)) {
 				        			<span class="fa fa-phone"></span>
 				        		</div>
 				        		<div class="text">
-					            <p><span>Teléfono:</span> <a href="tel://1234567920">622 123 1111</a></p>
+					            <p><span>Teléfono:</span> <a href="tel://1234567920"> <?php echo $_SESSION['refugioTelefono']?></a></p>
 					          </div>
 				          </div>
 								</div>
@@ -137,6 +138,10 @@ if (!isset($error)) {
 				          </div>
 								</div>
 							</div>
+							
+							<?php	echo $_SESSION['userNombre']. "  es ".$_SESSION['userRol'] ;
+	 								if($_SESSION['userRol'] == 'admin'){
+									?>
 							<div class="row no-gutters">
 								<div class="col-md-7">
 									<div class="contact-wrap w-100 p-md-5 p-4">
@@ -189,6 +194,7 @@ if (!isset($error)) {
 								<div class="col-md-5 d-flex align-items-stretch">
 									<div class="info-wrap w-100 p-5 img" style="background-image: url(images/adopt.jpg);">
 				          </div>
+						  <?php } ?>
 								</div>
 							</div>
 						</div>
@@ -196,8 +202,61 @@ if (!isset($error)) {
 				</div>
 			</div>
 		</section>
-
 	
+
+
+	<section class="ftco-section ftco-no-pt ftco-no-pb">
+			<div class="container">
+				<div class="row d-flex no-gutters">
+					<div class="col-md-5 d-flex">
+						<div class="img img-video d-flex align-self-stretch align-items-center justify-content-center justify-content-md-center mb-4 mb-sm-0" style="background-image:url(images/about-1.jpg);">
+						</div>
+					</div>
+					<div class="col-md-7 pl-md-5 py-md-5">
+						<div class="heading-section pt-md-5">
+					<h2 class="mb-4">Acerca de nosotros</h2>
+						</div>
+						<div class="row">
+							<div class="col-md-6 services-2 w-100 d-flex">
+								<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-stethoscope"></span></div>
+								<div class="text pl-3">
+									<h4>Clan Canino</h4>
+									<p> <?php echo $_SESSION['refugioDescripcion']?></p>
+								</div>
+							</div>
+							<div class="col-md-6 services-2 w-100 d-flex">
+								<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-customer-service"></span></div>
+								<div class="text pl-3">
+									<h4>Historia</h4>
+									<p>aqui puede ir como empezó todo</p>
+								</div>
+							</div>
+							<div class="col-md-6 services-2 w-100 d-flex">
+								<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-emergency-call"></span></div>
+								<div class="text pl-3">
+									<h4>Equipo</h4>
+									<p>Aqui se puede mencionar cuantos son los que ayudan</p>
+								</div>
+							</div>
+							<div class="col-md-6 services-2 w-100 d-flex">
+								<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-veterinarian"></span></div>
+								<div class="text pl-3">
+									<h4>Aqui no se me ocurre que:(</h4>
+									<p>Far far away, behind the word mountains, far from the countries.</p>
+								</div>
+							</div>
+						</div>
+				</div>
+			</div>
+			</div>
+		</section>
+	
+
+
+
+
+
+
 
 		<?php include("includes/footer.php"); ?>
     

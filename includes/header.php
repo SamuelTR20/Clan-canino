@@ -1,3 +1,12 @@
+
+<?php 
+// Lógica de cierre de sesión
+if(isset($_GET['logOff']) && $_GET['logOff'] == "true") {
+    
+    session_destroy();
+    header('Location: login.php?loggedOff=true');
+  }
+?>
 <div class="wrap">
 			<div class="container">
 				<div class="row">
@@ -5,18 +14,21 @@
 						<p class="mb-0 phone pl-md-2">
 							<a href="#" class="mr-2"><span class="fa fa-phone mr-1"></span> 6221542314</a> 
 							<a href="#"><span class="fa fa-paper-plane mr-1"></span> perla.duran12@gmail.com</a>
+							
+
 						</p>
 					</div>
 					<div class="col-md-6 d-flex justify-content-md-end">
 						<div class="social-media">
-			    		<p class="mb-0 d-flex">
-			    			<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook"><i class="sr-only">Facebook</i></span></a>
-			    			<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-twitter"><i class="sr-only">Twitter</i></span></a>
-			    			<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram"><i class="sr-only">Instagram</i></span></a>
-			    			<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-dribbble"><i class="sr-only">Dribbble</i></span></a>
-			    		</p>
-		        </div>
+							<p class="mb-0 d-flex">
+								<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook"><i class="sr-only">Facebook</i></span></a>
+								<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-twitter"><i class="sr-only">Twitter</i></span></a>
+								<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram"><i class="sr-only">Instagram</i></span></a>
+								<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-dribbble"><i class="sr-only">Dribbble</i></span></a>
+							</p>
+		        		</div>
 					</div>
+					
 				</div>
 			</div>
 		</div>
@@ -34,6 +46,7 @@
 	          <li class="nav-item"><a href="tramites.php" class="nav-link">Tramites</a></li>
 	          <li class="nav-item"><a href="editarPerfil.php" class="nav-link">Perfil</a></li>
 			  <li class="nav-item"><a href="refugio.php" class="nav-link">Refugio</a></li>
+			  <li class= "nav-item"><a href="?logOff=true" class="nav-link">Cerrar Sesión</a></li>
 	        </ul>
 	      </div>
 	    </div>
