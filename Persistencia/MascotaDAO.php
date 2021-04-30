@@ -112,6 +112,7 @@ $queryEditMascota = sprintf(
 function eliminarMascota($id){
 
   include_once("Conexion.php");
+ $connLocalhost = conexion();
 	$queryDeleteMascota = sprintf(
     "DELETE from emp_mascota where id = '%d'",
     mysqli_real_escape_string($connLocalhost, trim($id))
@@ -120,6 +121,16 @@ function eliminarMascota($id){
 
   // Ejecutamos el query en la BD
   $resQueryDeleteMascota = mysqli_query($connLocalhost, $queryDeleteMascota) or trigger_error("El query de eliminación de mascotas falló");
+
+  if ($resQueryDeleteMascota) {
+    $connLocalhost->close();
+    return true;
+  } else {
+    $connLocalhost->close();
+    return false;
+  }
+
+
 }
 
 function obtenerMascota($idMascota){

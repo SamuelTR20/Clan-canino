@@ -2,6 +2,7 @@
 
 use BenMajor\ImageResize\Image;
 include 'benmajor/PHP-Image-Resize-master/src/BenMajor/Image.php';
+include "Negocio/MascotaNegocio.php";
 
   // Inicializamos la sesion o la retomamos
 if(!isset($_SESSION)) {
@@ -13,16 +14,13 @@ if(!isset($_SESSION)) {
    // if(!isset($_SESSION['userId'])) header('Location: formulario.php');
 }
 $ruta = "";
-if(isset($_GET['idMascota'])){
-	include "Negocio/MascotaNegocio.php";
-	$mascota = getMascota($_GET['idMascota']);
-	
-  if (!$mascota){
-	header('Location:index.php');
 
-  }
 
+
+if(!isset($_GET['idMascota']) and !isset($_POST['idMascota'])){
+	header("index.php");
 }
+
 
 if (isset($_GET['idMascota'])) {
 	$idMascota = $_GET['idMascota'];
@@ -31,6 +29,18 @@ if (isset($_GET['idMascota'])) {
 	$idMascota = $_POST['mascotaId'];
 	$ruta = $_POST['rutaAnt'];
   }
+
+
+
+//ELIMINAR
+if(isset($_POST['Eliminar'])){
+	
+	$eliminado= deleteMascota($idMascota);
+	if($eliminado){header('Location:index.php');}
+
+}
+
+
 
 if (isset($_POST['masc_sent'])){
     foreach ($_POST as $inputs => $vars) {
@@ -41,7 +51,7 @@ if(trim($vars) == "" and $inputs =! "file" ) $error[] = "La caja $inputs es obli
 
 
 }
-include 'Negocio/MascotaNegocio.php';
+
 $permitido = false;
 if (!isset($error)) {
 
@@ -87,8 +97,18 @@ if (!isset($error)) {
 
 	}
 
-    
-    
+	  
+}
+if(isset($idMascota)){
+	
+	$mascota = getMascota($idMascota);
+	
+  if (!$mascota){
+	header('Location:index.php');
+
+  }
+
+
 }
 ?>
 
@@ -252,6 +272,7 @@ if (!isset($error)) {
 
 												<div class="col-md-12 mt-2">
 													<div class="form-group">
+
 														<input type="submit" value="Guardar información" class="btn btn-primary" name="masc_sent">
 														<div class="submitting"></div>
 													</div>
@@ -259,6 +280,23 @@ if (!isset($error)) {
 												
 											</div>
 										</form>
+										<div class="col-md-12 mt-2">
+										<form action="editarMascota.php" method="POST">
+													<div class="form-group">
+													<input type="hidden" name="rutaAnt" value="<?php echo $mascota->getFoto();?>">
+													<input type="hidden" name="mascotaId" value="<?php echo $idMascota ?>">
+													<input type="submit" value="Eliminar" class="btn btn-primary" name="Eliminar" onClick="return confirm('¿Seguro desea eliminar esta mascota? \nSi eliminas una mascota, se eliminaran todos los tramites que esten vinculados a esta mascota.')">
+														<div class="submitting"></div>
+													</div>
+												</div>
+
+												</form>
+
+
+
+
+										
+
 									</div>
 								</div>
 								<div class="col-md-5 d-flex align-items-stretch">

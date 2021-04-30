@@ -47,7 +47,7 @@ function editMascota($id, $idRefugio, $nombre, $especie, $edad, $sexo, $observac
 }
 
 
-function deleteMascota ($id){
+function deleteMascota($id){
 
 	//Validamos si las variables  vienen vacias
 	if($id=="" ){
@@ -57,7 +57,8 @@ function deleteMascota ($id){
 	}else{
 			//Se manda a llamar el metodo de la persistencia para eliminar al usuario a la BD
 			include_once "Persistencia/MascotaDAO.php";
-			eliminarMascota($id);
+			$eliminar = eliminarMascota($id);
+			return $eliminar;
 	}
 }
 

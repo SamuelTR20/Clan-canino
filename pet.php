@@ -98,11 +98,21 @@ if(isset($_GET['idMascota'])){
 	    						<h4>Veterinary Help</h4>
 	    						<p>Far far away, behind the word mountains, far from the countries.</p>
 	    					</div>
-
-               
 	    				</div>
-              
-              <a href="formulario.php?idMascota=<?php echo $mascota->getId() ?>" class="btn btn-primary"> Adoptar </a>
+
+              <div class="col-md-6 services-2 w-100 d-flex">
+	    				
+	    					<div class="text pl-3">
+               
+                <a href="editarMascota.php?idMascota=<?php echo $mascota->getId() ?>" class="btn btn-primary"> Editar </a>
+                </div>               
+	    				</div>
+              <div class="col-md-6 services-2 w-100 d-flex">
+	    				
+	    					<div class="text pl-3">
+                  <a href="formulario.php?idMascota=<?php echo $mascota->getId() ?>" class="btn btn-primary"> Adoptar </a>
+	    					</div>
+	    				</div>
 	    			</div>
 	        </div>
         </div>
