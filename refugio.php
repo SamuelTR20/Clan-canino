@@ -22,6 +22,9 @@ if (isset($_POST['refu_sent'])){
 if(trim($vars) == "") $error[] = "La caja $inputs es obligatoria";
 	
 }
+if($_SESSION['userRol']!="admin"){
+	$error[]= "No tiene autorización para efectuar cambios";
+}
 
 
 
@@ -139,7 +142,7 @@ if (!isset($error)) {
 								</div>
 							</div>
 							
-							<?php	echo $_SESSION['userNombre']. "  es ".$_SESSION['userRol'] ;
+							<?php	//echo $_SESSION['userNombre']. "  es ".$_SESSION['userRol'] ;
 	 								if($_SESSION['userRol'] == 'admin'){
 									?>
 							<div class="row no-gutters">
@@ -248,10 +251,14 @@ if (!isset($error)) {
 						</div>
 				</div>
 			</div>
+			<div class="row justify-content-center">
+						<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4505.588288609406!2d-110.925029758233!3d27.93823051373606!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86c97ac0a897ae87%3A0xa7cb3d47793ea8f0!2sWalmart%20Guaymas!5e0!3m2!1ses!2smx!4v1619756641543!5m2!1ses!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
 			</div>
+
+			</div>
+			
 		</section>
 	
-
 
 
 

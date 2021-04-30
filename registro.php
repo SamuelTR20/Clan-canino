@@ -20,6 +20,7 @@ include 'Negocio/UsuarioNegocio.php';
 $permitido = false;
 if (!isset($error)) {
     $permitido = addUsuario($_POST['nombre'], $_POST['email'], $_POST['contrasena'], $_POST['contrasena2'] );
+    
     }
 
     if(!$permitido){
@@ -28,7 +29,8 @@ if (!isset($error)) {
 
     
     if (!isset($error)) {
-        header('Location:login.php');
+        login($_POST['email'],$_POST['contrasena']);
+        header('Location:index.php');
         }else{
 
         }
