@@ -47,7 +47,6 @@ function cambiarEstado($id, $idMascota, $estado){
 
 	include_once "Persistencia/TramiteDAO.php";
 	 
-	echo $idMascota;
 	$correcto = editarEstado($id, $estado);
 	if($correcto == 1 and $estado == 'aceptado'){
 		cancelarTramites($idMascota);

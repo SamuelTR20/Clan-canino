@@ -4,7 +4,7 @@
 
 function obtenerInfoUsuarios(){
 include_once "Entidades/UsuarioInfo.php";
-include("Conexion.php");
+include_once("Conexion.php");
 $connLocalhost = conexion();
 
  $queryUsuarioInfo = "SELECT id, edad, direccion, numero_mascotas, telefono, id_usuario, cedula, celular FROM emp_usuario_info";
@@ -40,7 +40,7 @@ $connLocalhost->close();
 
 function obtenerInfoUsuariosPorId($idUsuario){
   include_once "Entidades/UsuarioInfo.php";
-  include("Conexion.php");
+  include_once("Conexion.php");
   $connLocalhost = conexion();
 
    $queryUsuarioInfo = sprintf(
@@ -77,7 +77,56 @@ function obtenerInfoUsuariosPorId($idUsuario){
   
   
   }
-function agregarInfoUsuario(  $edad, $direccion, $numeroMascotas, $telefono, $idUsuario, $cedula, $celular){
+
+  function obtenerInfoCompletaUsuario($idUsuario){
+    include_once "Entidades/UsuarioInfo.php";
+    include_once "Entidades/Usuario.php";
+    include_once("Conexion.php");
+    $connLocalhost = conexion();
+  
+     $queryUsuarioInfo = sprintf(
+     "SELECT  DISTINCTROW inf.edad as edad_inf, inf.direccion as direccion_inf, inf.numero_mascotas as num_masInf, 
+     inf.telefono as telefono_ing, inf.id_usuario as id_user_inf, inf.cedula as cedula_inf, inf.celular as celular_inf, 
+     usu.nombre as nombre_us, usu.correo as correo_us, usu.rol as rol_usu
+     FROM emp_usuario_info as inf join emp_usuarios as usu on inf.id_usuario = usu.id
+     WHERE inf.id_usuario = %d",
+     mysqli_real_escape_string($connLocalhost, trim($idUsuario))
+    );
+    
+      // Ejecutamos el query
+      $resQueryUsuarioInfo = mysqli_query($connLocalhost, $queryUsuarioInfo) or trigger_error("El query de login de usuario falló");
+    
+    $correcto = false;
+    
+    $usu = new Usuario();
+    if (mysqli_num_rows($resQueryUsuarioInfo)) { 
+      $infoData = mysqli_fetch_assoc($resQueryUsuarioInfo);
+  
+
+      $info = new UsuarioInfo();
+      $info->setEdad($infoData['edad_inf']);
+      $info->setDireccion($infoData['direccion_inf']);
+      $info->setNumeroMascotas($infoData['num_masInf']);
+      $info->setTelefono($infoData['telefono_ing']);
+      $info->setIdUsuario($infoData['id_user_inf']);
+      $info->setCedula($infoData['cedula_inf']);
+      $info->setCelular($infoData['celular_inf']);
+
+     
+      $usu->setNombre($infoData['nombre_us']);
+      $usu->setCorreo($infoData['correo_us']);
+      $usu->setCorreo($infoData['rol_usu']);
+      $usu->setInfo($info);
+      $connLocalhost->close();
+      return $usu;
+ 
+    }
+    return $usu;
+    
+    
+}
+
+function agregarInfoUsuario($edad, $direccion, $numeroMascotas, $telefono, $idUsuario, $cedula, $celular){
 
 include_once("Conexion.php");
   $connLocalhost = conexion();

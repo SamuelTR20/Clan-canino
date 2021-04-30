@@ -36,6 +36,7 @@ function obtenerUsuarios(){
   return $usuarios;
 }
 
+
 function agregarUsuario($nombre, $email, $contrasenia){
   include_once("Conexion.php");
   $connLocalhost = conexion();

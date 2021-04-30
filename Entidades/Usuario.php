@@ -9,7 +9,7 @@ class Usuario
 	private $info;
 
 	public function getInfo(){
-		return $this->id;
+		return $this->info;
 	}
 
 	public function setInfo($info){
