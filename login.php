@@ -46,8 +46,8 @@
     <link rel="stylesheet" href="css/Normalize.css">
 </head>
 <body>
-    <div>
-    <form class="center" action="login.php" method="post">
+    <div class="center">
+    <form  action="login.php" method="post">
         <h1>Inicio de sesión</h1>
 
             <div class="txt_field">

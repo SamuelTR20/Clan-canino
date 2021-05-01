@@ -6,16 +6,14 @@ body{
     background: linear-gradient(112deg, #b6ec57, #2c66d8);
     height: 100vh;
     overflow: hidden;
+    text-align: center;
+    
 }
 
 .center{
 
-    position: absolute;
-    margin: auto;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0; 
+    display: inline-block;
+    margin-top:7%;
     height: fit-content;
     /* transform: translate(-50%, -50%);*/
     width: fit-content;
@@ -124,8 +122,9 @@ form .ssingup [type="submit"]:hover{
 
 @media screen and (max-width: 600px){
     .center{
+        margin-bottom:5%;
         width: 75%;
-        margin-top: auto;
+        margin-top: 8%;
         margin-right: 3%;
         margin-left: 3%;
 
@@ -134,7 +133,9 @@ form .ssingup [type="submit"]:hover{
     .txt_field input{
         width: 100%;
         padding: 0 5px;
-        height: 60%;
+    }
+    .center form{
+        padding: 0 ;
     }
 }
 
