@@ -290,7 +290,7 @@ if(isset($idMascota)){
 													</div>
 												</div>
 
-												</form>
+										</form>
 
 
 

@@ -46,7 +46,7 @@
     <link rel="stylesheet" href="css/Normalize.css">
 </head>
 <body>
-    
+    <div>
     <form class="center" action="login.php" method="post">
         <h1>Inicio de sesión</h1>
 
@@ -70,10 +70,10 @@
 
             <div class="ssingup">
             <a href="registro.php"><input type="submit" value="Registro" name="register"></a>
-            
+            </div>
             </form> 
-            
-        </div>
+            </div>     
+       
     
 </body>
 </html>

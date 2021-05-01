@@ -46,4 +46,11 @@ function obtenerInfoCompleta($idUsuario){
 	return $info;
 }
 
+
+
+function obtenerInfoCompletaTodos(){
+	include_once "Persistencia/UsuarioInfoDAO.php";
+	$info = obtenerInfoCompletaTodosUsuarios();
+	return $info;
+}
 ?>
