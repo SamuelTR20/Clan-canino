@@ -25,10 +25,16 @@ function addUsuario($nombre, $email, $contrasenia, $contrasenia2){
 }
 
 
+function editarUsuarioRol($id, $rol){
+	include_once "Persistencia/UsuarioDAO.php";
+	return editarRolUsuario($id, $rol);
+
+}
+
+
+
+
 function editUsuario ($id, $nombre, $correo, $contrasenia, $rol){
-
-
-
 	//Validamos si las variables  vienen vacias
 	if($id=="" || $nombre =="" || $correo=="" || $contrasenia=="" || $rol=="" ){
 		echo 'Falta(n) completar campo(s)';

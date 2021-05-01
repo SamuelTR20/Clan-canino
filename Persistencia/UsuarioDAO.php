@@ -195,5 +195,40 @@ function verificarEmail($correo){
   }
 }
 
+function editarRolUsuario($id, $rol){
+  include_once("Conexion.php");
+  $connLocalhost = conexion();
+
+  include_once "Entidades/Usuario.php";
+
+  $queryEditUsuario = sprintf(
+    "UPDATE  emp_usuarios SET rol = '%s' WHERE id = '%d' ",
+    mysqli_real_escape_string($connLocalhost, trim($rol)),
+    mysqli_real_escape_string($connLocalhost, trim($id))
+
+  );
+
+
+  // Ejecutamos el query en la BD
+  $resQueryUsuario = mysqli_query($connLocalhost, $queryEditUsuario) or trigger_error("El query de inserción de usuarios falló");
+
+
+  if ($resQueryUsuario) {
+    $connLocalhost->close();
+
+    if (!isset($_SESSION)) {
+      session_start();
+    }
+    // Definimos variables de sesion en $_SESSION
+    $_SESSION['userRol'] = $rol;
+
+    return true;
+  } else {
+    $connLocalhost->close();
+    return false;
+  }
+
+}
+
 
 ?>

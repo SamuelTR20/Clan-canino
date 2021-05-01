@@ -1,9 +1,33 @@
 <?php if (!isset($_SESSION)) {
   session_start(); 
 }
+include "Negocio/UsuarioInfoNegocio.php";
+include "Negocio/UsuarioNegocio.php";
+
 if(isset($_GET['idUsuario'])){
-	include "Negocio/UsuarioInfoNegocio.php";
-	$usuario = obtenerInfoCompleta($_GET['idUsuario']);
+  $idCliente = $_GET['idUsuario'];
+}else if(isset($_POST['idUsuario'])){
+  $idCliente = $_POST['idUsuario'];
+}
+
+
+if(isset($idCliente)){
+
+  
+if(isset($_POST['edit_submit'])){
+  //editar rol de usuario
+  $editado = editarUsuarioRol($idCliente, $_POST['rol']);
+  if(!$editado){
+    $error[] = "Error al editar rol de usuairo";
+  }
+
+}
+
+
+
+
+	
+	$usuario = obtenerInfoCompleta($idCliente);
     
   if (!$usuario){
 	header('Location:index.php');
@@ -97,10 +121,26 @@ if(isset($_GET['idUsuario'])){
 	    						<h4>Veterinary Help</h4>
 	    						<p>Far far away, behind the word mountains, far from the countries.</p>
 	    					</div>
-
-               
 	    				</div>
-              
+              <form class= "col-md-12 services-2 w-100 d-flex" method="POST" action="cliente.php">
+              <div class="col-md-6 services-2 w-100 d-flex">
+	    					
+	    					<div class="text pl-3">
+                
+	    						<select name="rol" class="form-control">
+                  <option value ="admin"  <?php if($usuario->getRol() == "admin"){echo "selected";} ?>>Administrador</option>
+                  <option value="cliente" <?php if($usuario->getRol() == "cliente"){echo "selected";} ?>>Cliente</option>
+                   </select>
+                   <input type="hidden" name="idUsuario" value="<?php echo $idCliente; ?>">
+	    					</div>
+	    				</div>
+	    				<div class="col-md-6 services-2 w-100 d-flex">
+	    				
+	    					<div class="text pl-3">
+	    						<input type="submit" value="Guardar rol" name="edit_submit" class="btn btn-primary" onclick="return confirm('¿Seguro desea editar al usuario? \nSi editas el rol de un usuario este tendrá acceso a diferentes funciones en la plataforma')">
+	    					</div>
+	    				</div>
+              </form>
 	    			</div>
 	        </div>
         </div>
