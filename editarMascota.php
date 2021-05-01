@@ -209,10 +209,11 @@ if(isset($idMascota)){
 							<div class="row no-gutters">
 								<div class="col-md-7">
 									<div class="contact-wrap w-100 p-md-5 p-4">
-									<h3 class="mb-4">Registrar Mascota</h3>
-									<?php if(isset($error))?>
-									<div class="alert alert-danger" role="alert">This is a secondary alert—check it out!</div>
-										
+									<?php if(isset($error)){
+										foreach($error as $err){ ?>
+									<div class="alert alert-danger" role="alert"><?php echo $err?></div>
+									<?php } } ?>
+										<h3 class="mb-4">Registrar Mascota</h3>
 										<form method="POST" id="contactForm" name="contactForm" class="contactForm" action="editarMascota.php" enctype="multipart/form-data">
 											<div class="row">
 												<div class="col-md-6">

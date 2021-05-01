@@ -165,6 +165,10 @@ if (!isset($error)) {
 								<div class="col-md-7">
 									<div class="contact-wrap w-100 p-md-5 p-4">
 										<h3 class="mb-4">Registrar para adopción</h3>
+										<?php if(isset($error)){
+	                               		foreach($error as $err){ ?>
+	                             		<div class="alert alert-danger" role="alert"><?php echo $err?></div>
+	                             		<?php } } ?>
 										<form method="POST" id="contactForm" name="contactForm" class="contactForm" action="formulario.php">
 											<div class="row">
 												<div class="col-md-6">

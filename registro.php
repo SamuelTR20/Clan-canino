@@ -48,6 +48,11 @@ if (!isset($error)) {
 
     <form class="center" action="registro.php" method="post">
         <h1>Registro de usuario</h1>
+        <?php if(isset($error)){
+			foreach($error as $err){ ?>
+			<div class="alert alert-danger" role="alert"><?php echo $err?></div>
+			<?php } } ?>
+            
             <div class="txt_field">
                 <label>Nombre</label><br>
                 <input type="text" name="nombre" placeholder="Nombre">

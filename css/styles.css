@@ -138,4 +138,19 @@ form .ssingup [type="submit"]:hover{
         padding: 0 ;
     }
 }
+.alert {
+    position: relative;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem; }
+    
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb; }
+    .alert-danger hr {
+      border-top-color: #f1b0b7; }
+    .alert-danger .alert-link {
+      color: #491217; }
 

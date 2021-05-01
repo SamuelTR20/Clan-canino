@@ -49,7 +49,10 @@
     <div class="center">
     <form  action="login.php" method="post">
         <h1>Inicio de sesión</h1>
-
+        <?php if(isset($error)){
+			foreach($error as $err){ ?>
+			<div class="alert alert-danger" role="alert"><?php echo $err?></div>
+			<?php } } ?>
             <div class="txt_field">
                 <label>Correo Electronico</label><br>
                 <input type="text" name="correo" placeholder="Correo elecontrico">
