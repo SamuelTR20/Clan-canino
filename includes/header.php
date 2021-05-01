@@ -4,6 +4,7 @@
 if(isset($_GET['logOff']) && $_GET['logOff'] == "true") {
     
     session_destroy();
+	header('Cache-Control: no cache');
     header('Location: login.php?loggedOff=true');
   }
 ?>
@@ -46,6 +47,7 @@ if(isset($_GET['logOff']) && $_GET['logOff'] == "true") {
 	          <li class="nav-item"><a href="tramites.php" class="nav-link">Tramites</a></li>
 	          <li class="nav-item"><a href="editarPerfil.php" class="nav-link">Perfil</a></li>
 			  <li class="nav-item"><a href="refugio.php" class="nav-link">Refugio</a></li>
+			 <?php if( isset($_SESSION['userNombre']) and  $_SESSION['userRol'] == 'admin'){ ?><li class="nav-item"><a href="Usuarios.php" class="nav-link">Usuarios</a></li> <?php }?>
 			  <li class= "nav-item"><a href="?logOff=true" class="nav-link">Cerrar Sesión</a></li>
 	        </ul>
 	      </div>
