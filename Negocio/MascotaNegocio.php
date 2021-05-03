@@ -1,12 +1,20 @@
 <?php 
 
-function getMascotas(){
+function getTotalMascotas($busqueda){
 
 	include_once "Persistencia/MascotaDAO.php";
 	
-	$mascotas = obtenerMascotas();
-	return $mascotas;
+	$totalMascotas = obtenerTotalMasscotas($busqueda);
+	
+	return $totalMascotas;
 	}
+
+function getMascotas($busqueda, $mostrar, $maximo){
+	include_once "Persistencia/MascotaDAO.php";
+	
+	$mascotas = obtenerMascotas($busqueda, $mostrar, $maximo);
+	return $mascotas;
+}
 
 	function getMascota($idMascota){
 		//Validamos si las variables  vienen vacias

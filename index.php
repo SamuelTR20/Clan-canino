@@ -4,7 +4,28 @@ if (!isset($_SESSION)) {
   session_start();
 }
 
-$mascotas = getMascotas();
+$busqueda = "";
+
+if (empty($_GET['buscar'])) {
+  $busqueda = "";
+} else {
+  $busqueda = $_GET['buscar'];
+}
+
+if (!isset($_GET['numPag'])) {
+  $_GET['numPag'] = 1;
+}
+
+$totalMascotas = getTotalMascotas($busqueda);
+$maximo = 1;
+
+$mostrar = ceil($totalMascotas / $maximo);
+$pags = $mostrar;
+$mostrar =  ((int)$_GET['numPag'] - 1) * $maximo;
+
+
+$mascotas = getMascotas($busqueda, $mostrar , $maximo);
+
 ?>
 
 <!DOCTYPE html>
@@ -75,12 +96,38 @@ $mascotas = getMascotas();
           <div class="col text-center">
             <div class="block-27">
               <ul>
-                <li><a href="#">&lt;</a></li>
-                <li class="active"><span>1</span></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
+              <li><a href="#">&lt;</a></li>
+              <?php
+                if($pags <= 4){ 
+                    for ($i = 1; $i <= $pags; $i++) {
+                      ?>
+                      <li <?php if ((int)$_GET['numPag'] == $i) echo "class='active'"  ?>><a href="index.php?numPag=<?php echo $i ?>&buscar=<?php echo $busqueda ?>"> <?php echo $i  ?></a></li>
+                <?php
+                }
+              }elseif (((int)$_GET['numPag'] == $pags or (($pags -1) ==  (int)$_GET['numPag'])) and $pags >= 5 ){
+                for ($i = $pags - 5; $i <= $pags; $i++) {
+                  ?>
+                  <li <?php if ((int)$_GET['numPag'] == $i) echo "class='active'"  ?>><a href="index.php?numPag=<?php echo $i ?>&buscar=<?php echo $busqueda ?>"> <?php echo $i  ?></a></li>
+            <?php
+            }
+              
+              }elseif((int)$_GET['numPag'] == 1 or (int)$_GET['numPag'] == 2){
+                for ($i = 1; $i <= 5; $i++) {
+                  ?>
+                  <li <?php if ((int)$_GET['numPag'] == $i) echo "class='active'"  ?>><a href="index.php?numPag=<?php echo $i ?>&buscar=<?php echo $busqueda ?>"> <?php echo $i  ?></a></li>
+            <?php
+                }
+          
+              }else{
+                for ($i = (int)$_GET['numPag'] - 2; $i <= (int)$_GET['numPag'] + 2; $i++) {
+                  ?>
+                  <li <?php if ((int)$_GET['numPag'] == $i) echo "class='active'"  ?>><a href="index.php?numPag=<?php echo $i ?>&buscar=<?php echo $busqueda ?>"> <?php echo $i  ?></a></li>
+            <?php
+                }
+              }
+              ?>
+                  
+                  
                 <li><a href="#">&gt;</a></li>
               </ul>
             </div>

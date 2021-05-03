@@ -1,17 +1,43 @@
 <?php 
 
+function obtenerTotalMasscotas($busqueda){
+  include_once "Entidades/Mascota.php";
+  include_once("Conexion.php");
+  $connLocalhost = conexion();
+  
+  $queryTotalMascotas = sprintf(
+    "SELECT COUNT(*) as filas FROM emp_mascota where (nombre like '%%%s%%' or especie like '%%%s%%') and estado = 'disponible'",
+    mysqli_real_escape_string($connLocalhost, $busqueda),
+    mysqli_real_escape_string($connLocalhost, $busqueda)
+  );
+    // Ejecutamos el query
+    $resTotalMascotas = mysqli_query($connLocalhost, $queryTotalMascotas) or trigger_error("El query de login de usuario falló");
+
+    $total = mysqli_fetch_assoc($resTotalMascotas);
+
+    $totalMascotas = (int)$total['filas'];
 
 
-function obtenerMascotas()
-{
+    return $totalMascotas;
+  }
+
+
+function obtenerMascotas($busqueda, $mostrar, $maximo){
+
 include_once "Entidades/Mascota.php";
 include_once("Conexion.php");
 $connLocalhost = conexion();
 
- $queryMascotas = "SELECT id, id_refugio, nombre, edad, sexo, historia, foto, estado, observaciones,especie FROM emp_mascota";
+$queryObtenerMascotas = sprintf(
+  "SELECT * FROM emp_mascota where (nombre like '%%%s%%' or especie like '%%%s%%') and estado = 'disponible' limit %d OFFSET %d",
+  mysqli_real_escape_string($connLocalhost, $busqueda),
+  mysqli_real_escape_string($connLocalhost, $busqueda),
+  mysqli_real_escape_string($connLocalhost, (int)$maximo),
+  mysqli_real_escape_string($connLocalhost, (int)$mostrar)
 
+);
   // Ejecutamos el query
-  $resQueryMascotas = mysqli_query($connLocalhost, $queryMascotas) or trigger_error("El query de login de usuario falló");
+  $resQueryMascotas = mysqli_query($connLocalhost, $queryObtenerMascotas) or trigger_error("El query de login de usuario falló");
 
   $Mascotas = [];
 
