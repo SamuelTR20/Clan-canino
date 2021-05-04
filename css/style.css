@@ -9807,5 +9807,102 @@ textarea.form-control {
   padding-left: 60px;
 }
 
+ul ul{
+  list-style:none;
+  position: absolute;
+  top: 105px;
+  background-color: #fff ;
+  visibility:hidden;
+  font-size: 14px;
+  font-family: "Montserrat", Arial, sans-serif;
+  opacity: 0;
+  font-weight: 700;
+  padding-left: 0;
+  padding: 5px 10px;
+ 
+  transition: top 0.8s;
+  
+  margin-left: 0;
+  }
+  .submenu li a{
+    display: inline;
+    padding:0;
+    color:rgb(5, 5, 5) ;
+    text-decoration: none;
+  }
+  ul li:hover > ul{
+   border-radius: 10%;
+   top: 110px;
+   visibility: visible;
+   opacity: 1;
+   
+  }
+  
+  
+  .submenu li:hover{
+    border-bottom: 2px solid #00bd56;
+    transition:all 0.3s;
+    color:#00bd56 ;
+  
+  }
+  
+  ul ul li{
+    margin-left:0;
+    padding: 20px 15px;
+    position: relative;
+    width: 200px;
+    float: none;
+    display: list-item;
+    color:#000000;
+    
+  }
+  .submenu li:hover{
+    color:#00bd56;
+  }
+
+  
+  .show-label, .show-input{
+    display: none;
+  }
+  .icono-desplega{
+    padding-left: 7px;
+    font-size: 20px;
+
+  }
+  .iconos-usuarios{
+    font-size: 20px;
+  }
+  
+
+@media all and (max-width: 991px){
+ul ul{
+top:-200px;
+transition: top 0.0s;
+}
+
+ul ul li{
+display:block;
+width: 100%;
+}
+.nav-link:hover{
+color:rgb(0, 0, 0) !important;
+} 
+
+ul li:hover > ul{
+opacity: 1;
+top: 75px;
+position:static;
+}
+
+[id^=btn-show]:checked + ul{
+opacity: 1;
+top: 75px;
+position:static;
+visibility: visible;
+}
+
+
+
+}
 
  

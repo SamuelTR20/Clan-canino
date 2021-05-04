@@ -91,9 +91,9 @@ $usuarios = obtenerInfoCompletaTodos();
               <form action="Usuarios.php" method="POST">
 								
 							
-                <button type="submit" value="" name="Eliminar"  onclick="return confirm('¿Seguro desea eliminar al usuario? \nSi eliminas un usuario, se eliminaran todos los datos que esten vinculados a el.')" class="btn btn-danger btn-sm "> <i class="fas fa-trash-alt"></i></button>
+                <button type="submit" value="" name="Eliminar"  onclick="return confirm('¿Seguro desea eliminar al usuario? \nSi eliminas un usuario, se eliminaran todos los datos que esten vinculados a el.')" class="btn btn-danger btn-sm "> <i class="fa fa-trash iconos-usuarios"></i></button>
                 <input type="hidden" name="usuarioId" value="<?php echo $usuario->getInfo()->getIdUsuario(); ?>">  
-                <a href="cliente.php?idUsuario=<?php echo $usuario->getInfo()->getIdUsuario(); ?>" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span><i class="fas fa-edit"></i></a>
+                <a href="cliente.php?idUsuario=<?php echo $usuario->getInfo()->getIdUsuario(); ?>" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span><i class="fa fa-edit iconos-usuarios"></i></a>
               </form>
 
               </td>
@@ -131,7 +131,7 @@ $usuarios = obtenerInfoCompletaTodos();
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="js/google-map.js"></script>
   <script src="js/main.js"></script>
-  <script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
+ 
 
 
 

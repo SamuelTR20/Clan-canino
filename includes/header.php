@@ -42,12 +42,22 @@ if(isset($_GET['logOff']) && $_GET['logOff'] == "true") {
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
 	        	<li class="nav-item"><a href="index.php" class="nav-link">Inicio</a></li>
-	        	<li class="nav-item"><a href="agregarMascota.php" class="nav-link">Agregar mascota</a></li>
-	          <li class="nav-item"><a href="formulario.php" class="nav-link">Formulario</a></li>
-	          <li class="nav-item"><a href="tramites.php" class="nav-link">Tramites</a></li>
+	        	
 	          <li class="nav-item"><a href="editarPerfil.php" class="nav-link">Perfil</a></li>
 			  <li class="nav-item"><a href="refugio.php" class="nav-link">Refugio</a></li>
-			 <?php if( isset($_SESSION['userNombre']) and  $_SESSION['userRol'] == 'admin'){ ?><li class="nav-item"><a href="Usuarios.php" class="nav-link">Usuarios</a></li> <?php }?>
+			 <?php if( isset($_SESSION['userNombre']) and  $_SESSION['userRol'] == 'admin'){ ?>
+			 <li class="nav-item">
+			 
+			 <label for="btn-show" class="nav-link">Admin<i class="fa fa-angle-down icono-desplega"> </i></label>
+				<input type="checkbox" id="btn-show" class="show-input">
+				<ul class="submenu">
+						<a href="tramites.php" ><li class="nav-item"> Tramites </li></a>
+						<a href= "Usuarios.php"><li class="nav-item">Usuarios</li></a>
+						<a href= "agregarMascota.php"><li class="nav-item">Agregar mascota</li></a> 
+
+					</ul>
+			 
+			 </li> <?php }?>
 			  <li class= "nav-item"><a href="?logOff=true" class="nav-link">Cerrar Sesión</a></li>
 	        </ul>
 	      </div>
