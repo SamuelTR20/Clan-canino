@@ -18,6 +18,7 @@ if (!isset($_GET['numPag'])) {
 
 $totalMascotas = getTotalMascotas($busqueda);
 $maximo = 1;
+$pagina = (int)$_GET['numPag'];
 
 $mostrar = ceil($totalMascotas / $maximo);
 $pags = $mostrar;
@@ -93,51 +94,16 @@ $mascotas = getMascotas($busqueda, $mostrar , $maximo);
           } ?>
          
         </div>
-        <div class="row mt-5">
-          <div class="col text-center">
-            <div class="block-27">
-              <ul>
-              <li><a href="#">&lt;</a></li>
-              <?php
-                if($pags <= 4){ 
-                    for ($i = 1; $i <= $pags; $i++) {
-                      ?>
-                      <li <?php if ((int)$_GET['numPag'] == $i) echo "class='active'"  ?>><a href="index.php?numPag=<?php echo $i ?>&buscar=<?php echo $busqueda ?>"> <?php echo $i  ?></a></li>
-                <?php
-                }
-              }elseif (((int)$_GET['numPag'] == $pags or (($pags -1) ==  (int)$_GET['numPag'])) and $pags >= 5 ){
-                for ($i = $pags - 5; $i <= $pags; $i++) {
+                  <?php
+                    include_once("includes/common_functions.php");
+                    paginacion($pags, $pagina, $busqueda);
                   ?>
-                  <li <?php if ((int)$_GET['numPag'] == $i) echo "class='active'"  ?>><a href="index.php?numPag=<?php echo $i ?>&buscar=<?php echo $busqueda ?>"> <?php echo $i  ?></a></li>
-            <?php
-            }
-              
-              }elseif((int)$_GET['numPag'] == 1 or (int)$_GET['numPag'] == 2){
-                for ($i = 1; $i <= 5; $i++) {
-                  ?>
-                  <li <?php if ((int)$_GET['numPag'] == $i) echo "class='active'"  ?>><a href="index.php?numPag=<?php echo $i ?>&buscar=<?php echo $busqueda ?>"> <?php echo $i  ?></a></li>
-            <?php
-                }
-          
-              }else{
-                for ($i = (int)$_GET['numPag'] - 2; $i <= (int)$_GET['numPag'] + 2; $i++) {
-                  ?>
-                  <li <?php if ((int)$_GET['numPag'] == $i) echo "class='active'"  ?>><a href="index.php?numPag=<?php echo $i ?>&buscar=<?php echo $busqueda ?>"> <?php echo $i  ?></a></li>
-            <?php
-                }
-              }
-              ?>
-                  
-                  
-                <li><a href="#">&gt;</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
 
-    <?php include("includes/footer.php"); ?>
+    <?php include("includes/footer.php");
+    
+    ?>
     
   
 
