@@ -51,6 +51,7 @@ $mascotas = getMascotas($busqueda, $mostrar , $maximo);
 
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/style.css">
+    
   </head>
   <body>
   <?php include("includes/header.php"); ?>
@@ -160,6 +161,7 @@ $mascotas = getMascotas($busqueda, $mostrar , $maximo);
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="js/google-map.js"></script>
   <script src="js/main.js"></script>
+ 
   
 
     

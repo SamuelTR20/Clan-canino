@@ -8,6 +8,7 @@ if(isset($_GET['logOff']) && $_GET['logOff'] == "true") {
     header('Location: login.php?loggedOff=true');
   }
 ?>
+
 <div class="wrap">
 			<div class="container">
 				<div class="row">
@@ -51,9 +52,9 @@ if(isset($_GET['logOff']) && $_GET['logOff'] == "true") {
 			 <label for="btn-show" class="nav-link">Admin<i class="fa fa-angle-down icono-desplega"> </i></label>
 				<input type="checkbox" id="btn-show" class="show-input">
 				<ul class="submenu">
-						<a href="tramites.php" ><li class="nav-item"> Tramites </li></a>
-						<a href= "Usuarios.php"><li class="nav-item">Usuarios</li></a>
-						<a href= "agregarMascota.php"><li class="nav-item">Agregar mascota</li></a> 
+						<a href="tramites.php"  ><li class="nav-item children" > Tramites </li></a>
+						<a href= "Usuarios.php" class="children"><li class="nav-item">Usuarios</li></a>
+						<a href= "agregarMascota.php" class="children"><li class="nav-item">Agregar mascota</li></a> 
 
 					</ul>
 			 

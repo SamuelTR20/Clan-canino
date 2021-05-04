@@ -9901,6 +9901,15 @@ position:static;
 visibility: visible;
 }
 
+#btn-show:checked ~ .submenu{
+opacity: 1;
+top: 75px;
+position:static;
+visibility: visible;
+}
+
+
+
 
 
 }
