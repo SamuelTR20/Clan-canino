@@ -34,8 +34,8 @@ if(isset($_GET['logOff']) && $_GET['logOff'] == "true") {
 				</div>
 			</div>
 		</div>
-		<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-	    <div class="container">
+		<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light " id="ftco-navbar">
+	    <div class="container ">
 	    	<a class="navbar-brand" href="index.php"><span class="flaticon-pawprint-1 mr-2"></span>Clan canino</a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="fa fa-bars"></span> Menu
@@ -49,7 +49,7 @@ if(isset($_GET['logOff']) && $_GET['logOff'] == "true") {
 			 <?php if( isset($_SESSION['userNombre']) and  $_SESSION['userRol'] == 'admin'){ ?>
 			 <li class="nav-item">
 			 
-			 <label for="btn-show" class="nav-link">Admin<i class="fa fa-angle-down icono-desplega"> </i></label>
+			 <label for="btn-show" class="nav-link" id="labelSubmenu">Admin<i class="fa fa-angle-down icono-desplega"> </i></label>
 				<input type="checkbox" id="btn-show" class="show-input">
 				<ul class="submenu">
 						<a href="tramites.php"  ><li class="nav-item children" > Tramites </li></a>

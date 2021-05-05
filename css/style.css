@@ -13332,7 +13332,7 @@ ul ul {
     text-decoration: none;
 }
 
-ul li:hover>ul {
+/* ul li:hover>ul {
     border-radius: 10%;
     top: 110px;
     visibility: visible;
@@ -13343,7 +13343,7 @@ ul li:hover>ul {
     border-bottom: 2px solid #00bd56;
     transition: all 0.3s;
     color: #00bd56;
-}
+} */
 
 ul ul li {
     margin-left: 0;
@@ -13355,10 +13355,7 @@ ul ul li {
     color: #000000;
 }
 
-.submenu li:hover {
-    color: #00bd56;
-}
-
+ 
 .show-label,
 .show-input {
     display: none;
@@ -13372,37 +13369,53 @@ ul ul li {
 .iconos-usuarios {
     font-size: 20px;
 }
+@media all and (min-width: 992px) {
+    ul li:hover>ul {
+        border-radius: 10%;
+        top: 110px;
+        visibility: visible;
+        opacity: 1;
+    }
+    
+    .submenu li:hover {
+        border-bottom: 2px solid #00bd56;
+        transition: all 0.3s;
+        color: #00bd56;
+    }
+    .submenu li:hover {
+        color: #00bd56;
+    }
+  
+
+}
 
 @media all and (max-width: 991px) {
     ul ul {
         top: -200px;
         transition: top 0.0s;
+        
     }
     ul ul li {
         display: block;
         width: 100%;
     }
-    .nav-link:hover {
-        color: rgb(0, 0, 0) !important;
+
+    #labelSubmenu:hover{
+        color: #000000 !important;
+       
+      
     }
-    ul li:hover>ul {
-        opacity: 1;
-        top: 75px;
-        position: static;
-    }
-    [id^=btn-show]:checked+ul {
-        opacity: 1;
-        top: 75px;
-        position: static;
-        visibility: visible;
-    }
+   
     #btn-show:checked~.submenu {
         opacity: 1;
         top: 75px;
         position: static;
         visibility: visible;
+      
+        
     }
 }
+
 
 .s010 form .inner-form .input-field {
     position: relative
