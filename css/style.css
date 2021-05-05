@@ -13332,6 +13332,7 @@ ul ul {
     text-decoration: none;
 }
 
+
 /* ul li:hover>ul {
     border-radius: 10%;
     top: 110px;
@@ -13355,7 +13356,6 @@ ul ul li {
     color: #000000;
 }
 
- 
 .show-label,
 .show-input {
     display: none;
@@ -13369,6 +13369,7 @@ ul ul li {
 .iconos-usuarios {
     font-size: 20px;
 }
+
 @media all and (min-width: 992px) {
     ul li:hover>ul {
         border-radius: 10%;
@@ -13376,7 +13377,6 @@ ul ul li {
         visibility: visible;
         opacity: 1;
     }
-    
     .submenu li:hover {
         border-bottom: 2px solid #00bd56;
         transition: all 0.3s;
@@ -13385,37 +13385,27 @@ ul ul li {
     .submenu li:hover {
         color: #00bd56;
     }
-  
-
 }
 
 @media all and (max-width: 991px) {
     ul ul {
         top: -200px;
         transition: top 0.0s;
-        
     }
     ul ul li {
         display: block;
         width: 100%;
     }
-
-    #labelSubmenu:hover{
+    #labelSubmenu:hover {
         color: #000000 !important;
-       
-      
     }
-   
     #btn-show:checked~.submenu {
         opacity: 1;
         top: 75px;
         position: static;
         visibility: visible;
-      
-        
     }
 }
-
 
 .s010 form .inner-form .input-field {
     position: relative
@@ -13553,4 +13543,9 @@ ul ul li {
     width: 34px;
     height: 34px;
     fill: #fff
+}
+
+.ganbate {
+    background-color: transparent;
+    border-color: transparent;
 }
