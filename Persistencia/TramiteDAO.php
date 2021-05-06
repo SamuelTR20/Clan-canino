@@ -1,8 +1,42 @@
 <?php 
 
+function obtenerTotalTram($busqueda){
+  include_once "Entidades/Tramite.php";
+  include_once "Entidades/Mascota.php";
+  include_once "Entidades/UsuarioInfo.php";
+  include_once "Entidades/Usuario.php";
+  include_once "Entidades/Refugio.php";
+  include_once("Conexion.php");
+  $connLocalhost = conexion();
+  
+  $queryTotalUsuarios = sprintf(
+   
+    "SELECT  DISTINCTROW COUNT(*) as filas
+   from emp_tramite as tra join emp_usuarios as usu on tra.id_usuario = usu.id 
+join emp_mascota as mas on tra.id_mascota=mas.id join emp_refugio as ref on mas.id_refugio = ref.id 
+join emp_usuario_info as inf on usu.id=inf.id_usuario where tra.estado like '%%%s%%' or usu.nombre like '%%%s%%' or mas.nombre like '%%%s%%'",
+   
+   mysqli_real_escape_string($connLocalhost, $busqueda),
+mysqli_real_escape_string($connLocalhost, $busqueda),
+mysqli_real_escape_string($connLocalhost, $busqueda)
+  );
+    // Ejecutamos el query
+    $resTotalUsuarios = mysqli_query($connLocalhost, $queryTotalUsuarios) or trigger_error("El query de info de usuario falló");
+
+    $total = mysqli_fetch_assoc($resTotalUsuarios);
+
+    $totalUsuarios = (int)$total['filas'];
 
 
-function obtenerTramites($busqueda)
+    return $totalUsuarios;
+  }
+
+
+
+
+
+
+function obtenerTramites($busqueda, $maximo, $mostrar)
 {
 include_once "Entidades/Tramite.php";
 include_once "Entidades/Mascota.php";
@@ -21,10 +55,12 @@ ref.nombre as nombre_ref, ref.ciudad as ciudad_ref, ref.telefono as telefono_ref
 tra.estado as estado_tra, tra.fecha_solicitud as fecha_tra
 from emp_tramite as tra join emp_usuarios as usu on tra.id_usuario = usu.id 
 join emp_mascota as mas on tra.id_mascota=mas.id join emp_refugio as ref on mas.id_refugio = ref.id 
-join emp_usuario_info as inf on usu.id=inf.id_usuario where tra.estado like '%%%s%%' or usu.nombre like '%%%s%%' or mas.nombre like '%%%s%%'",
+join emp_usuario_info as inf on usu.id=inf.id_usuario where tra.estado like '%%%s%%' or usu.nombre like '%%%s%%' or mas.nombre like '%%%s%%' limit %d OFFSET %d",
 mysqli_real_escape_string($connLocalhost, $busqueda),
 mysqli_real_escape_string($connLocalhost, $busqueda),
-mysqli_real_escape_string($connLocalhost, $busqueda));
+mysqli_real_escape_string($connLocalhost, $busqueda),
+mysqli_real_escape_string($connLocalhost, (int)$maximo),
+mysqli_real_escape_string($connLocalhost, (int)$mostrar));
 
 
   // Ejecutamos el query

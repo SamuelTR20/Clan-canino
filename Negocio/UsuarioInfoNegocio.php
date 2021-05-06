@@ -48,9 +48,20 @@ function obtenerInfoCompleta($idUsuario){
 
 
 
-function obtenerInfoCompletaTodos(){
+function obtenerInfoCompletaTodos($busqueda,  $maximo, $mostrar){
 	include_once "Persistencia/UsuarioInfoDAO.php";
-	$info = obtenerInfoCompletaTodosUsuarios();
+	$info = obtenerInfoCompletaTodosUsuarios($busqueda,  $maximo, $mostrar);
 	return $info;
 }
+
+
+function getTotalUsuariosInfo($busqueda){
+
+	include_once "Persistencia/UsuarioInfoDAO.php";
+	
+	$totalUsuarios = obtenerTotalInfo($busqueda);
+	
+	return $totalUsuarios;
+	}
+
 ?>

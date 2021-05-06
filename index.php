@@ -119,7 +119,7 @@ $mascotas = getMascotas($busqueda, $mostrar , $maximo);
         </div>
                   <?php
                     include_once("includes/common_functions.php");
-                    paginacion($pags, $pagina, $busqueda);
+                    paginacion($pags, $pagina, $busqueda, "index.php?");
                   ?>
       </div>
     </section>

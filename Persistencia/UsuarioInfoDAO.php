@@ -78,7 +78,37 @@ function obtenerInfoUsuariosPorId($idUsuario){
   
   }
 
-  function obtenerInfoCompletaTodosUsuarios(){
+
+  function obtenerTotalInfo($busqueda){
+    include_once "Entidades/UsuarioInfo.php";
+    include_once "Entidades/Usuario.php";
+    include_once("Conexion.php");
+    $connLocalhost = conexion();
+    
+    $queryTotalUsuarios = sprintf(
+     
+      "SELECT  DISTINCTROW COUNT(*) as filas
+      FROM emp_usuario_info as inf join emp_usuarios as usu on inf.id_usuario = usu.id
+      WHERE  usu.nombre like '%%%s%%' or usu.correo like '%%%s%%' ",
+     
+     
+     
+      mysqli_real_escape_string($connLocalhost, $busqueda),
+      mysqli_real_escape_string($connLocalhost, $busqueda)
+    );
+      // Ejecutamos el query
+      $resTotalUsuarios = mysqli_query($connLocalhost, $queryTotalUsuarios) or trigger_error("El query de info de usuario falló");
+  
+      $total = mysqli_fetch_assoc($resTotalUsuarios);
+  
+      $totalUsuarios = (int)$total['filas'];
+  
+  
+      return $totalUsuarios;
+    }
+  
+
+  function obtenerInfoCompletaTodosUsuarios($busqueda, $maximo, $mostrar){
     include_once "Entidades/UsuarioInfo.php";
     include_once "Entidades/Usuario.php";
     include_once("Conexion.php");
@@ -88,7 +118,13 @@ function obtenerInfoUsuariosPorId($idUsuario){
      "SELECT  DISTINCTROW inf.edad as edad_inf, inf.direccion as direccion_inf, inf.numero_mascotas as num_masInf, 
      inf.telefono as telefono_ing, inf.id_usuario as id_user_inf, inf.cedula as cedula_inf, inf.celular as celular_inf, 
      usu.nombre as nombre_us, usu.correo as correo_us, usu.rol as rol_usu
-     FROM emp_usuario_info as inf join emp_usuarios as usu on inf.id_usuario = usu.id");
+     FROM emp_usuario_info as inf join emp_usuarios as usu on inf.id_usuario = usu.id
+     WHERE  usu.nombre like '%%%s%%' or usu.correo like '%%%s%%'  limit %d OFFSET %d",
+     mysqli_real_escape_string($connLocalhost, trim($busqueda)),
+     mysqli_real_escape_string($connLocalhost, trim($busqueda)),
+     mysqli_real_escape_string($connLocalhost, (int)$maximo),
+     mysqli_real_escape_string($connLocalhost, (int)$mostrar)
+    );
     
       // Ejecutamos el query
       $resQueryUsuarioInfo = mysqli_query($connLocalhost, $queryUsuarioInfo) or trigger_error("El query de login de usuario falló");
@@ -135,7 +171,7 @@ function obtenerInfoUsuariosPorId($idUsuario){
      inf.telefono as telefono_ing, inf.id_usuario as id_user_inf, inf.cedula as cedula_inf, inf.celular as celular_inf, 
      usu.nombre as nombre_us, usu.correo as correo_us, usu.rol as rol_usu
      FROM emp_usuario_info as inf join emp_usuarios as usu on inf.id_usuario = usu.id
-     WHERE inf.id_usuario = %d",
+     WHERE inf.id_usuario = %d  ",
      mysqli_real_escape_string($connLocalhost, trim($idUsuario))
     );
     

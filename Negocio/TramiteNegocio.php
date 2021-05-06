@@ -1,9 +1,9 @@
 <?php
 
-function getTramites($busqueda){
+function getTramites($busqueda, $maximo, $mostrar){
 
 	include_once "Persistencia/TramiteDAO.php";
-	$tramites = obtenerTramites($busqueda);
+	$tramites = obtenerTramites($busqueda, $maximo, $mostrar);
 
 	return $tramites;
 	}
@@ -69,4 +69,16 @@ function deleteTramite ($id){
 			eliminarTramite($id);
 	}
 }
+
+
+function obtenerTotalTramite($busqueda){
+
+	include_once "Persistencia/TramiteDAO.php";
+	
+	$totalTramites = obtenerTotalTram($busqueda);
+	
+	return $totalTramites;
+	}
+
+
 ?>

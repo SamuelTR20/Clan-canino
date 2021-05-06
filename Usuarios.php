@@ -14,8 +14,26 @@ if(isset($_POST['Eliminar'])){
 
 }
 
+$busqueda = "";
+if (empty($_GET['buscar'])) {
+  $busqueda = "";
+} else {
+  $busqueda = $_GET['buscar'];
+}
+if (!isset($_GET['numPag'])) {
+  $_GET['numPag'] = 1;
+}
 
-$usuarios = obtenerInfoCompletaTodos();
+$totalUsuarios = getTotalUsuariosInfo($busqueda);
+$maximo = 10;
+$pagina = (int)$_GET['numPag'];
+
+$mostrar = ceil($totalUsuarios / $maximo);
+$pags = $mostrar;
+$mostrar =  ((int)$_GET['numPag'] - 1) * $maximo;
+
+
+$usuarios = obtenerInfoCompletaTodos($busqueda, $maximo, $mostrar);
 
 
 
@@ -59,6 +77,30 @@ $usuarios = obtenerInfoCompletaTodos();
         </div>
       </div>
     </section>
+
+    <div class="s010  d-flex justify-content-center bg-light">
+<form action="Usuarios.php" method="GET">
+<div class="inner-form  ">
+<div class="basic-search ">
+<div class="input-field">
+<input id="search" type="text" placeholder="Buscar usuario" name='buscar'>
+<input type="text" hidden name = "numPag" value="1">
+
+<div class="icon-wrap">
+<button type="submit" value="numPag"  class="transparency-glass" >
+<svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24">
+<path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+</svg>
+</div>
+
+</div>
+</div>
+</form>
+</div>
+</div>
+
+
+
 
     <nav class="navbar navbar-default navbar-fixed-top">
 	</nav>
@@ -104,6 +146,12 @@ $usuarios = obtenerInfoCompletaTodos();
 			</div>
 		</div>
 	</div>
+  </div>
+                  <?php
+                    include_once("includes/common_functions.php");
+                    paginacion($pags, $pagina, $busqueda, "Usuarios.php?");
+                  ?>
+      </div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 
