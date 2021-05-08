@@ -1,4 +1,13 @@
 <?php
+function getTramitesCliente($busqueda, $maximo, $mostrar, $id){
+
+	include_once "Persistencia/TramiteDAO.php";
+	$tramites = obtenerTramitesCliente($busqueda, $maximo, $mostrar, $id);
+
+	return $tramites;
+	}
+
+
 
 function getTramites($busqueda, $maximo, $mostrar){
 
@@ -79,6 +88,16 @@ function obtenerTotalTramite($busqueda){
 	
 	return $totalTramites;
 	}
+
+	function obtenerTotalTramiteCliente($busqueda, $id){
+
+		include_once "Persistencia/TramiteDAO.php";
+		
+		$totalTramites = obtenerTotalTramCliente($busqueda, $id);
+		
+		return $totalTramites;
+		}
+	
 
 
 ?>

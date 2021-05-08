@@ -43,7 +43,9 @@ if(isset($_GET['logOff']) && $_GET['logOff'] == "true") {
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
 	        	<li class="nav-item"><a href="index.php" class="nav-link">Inicio</a></li>
-	        	
+	        	<?php if($_SESSION['userRol'] == "cliente"){ ?>
+					<li class="nav-item"><a href="tramites.php" class="nav-link">Mis tramites</a></li>
+				 <?php }?>
 	          <li class="nav-item"><a href="editarPerfil.php" class="nav-link">Perfil</a></li>
 			  <li class="nav-item"><a href="refugio.php" class="nav-link">Refugio</a></li>
 			 <?php if( isset($_SESSION['userNombre']) and  $_SESSION['userRol'] == 'admin'){ ?>

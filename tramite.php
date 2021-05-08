@@ -11,8 +11,10 @@ if(isset($_GET['idTramite'])){
     $idTram =$_POST['idTramite'];
   }
   else{
-    header('tramites.php');
+    header('Location:tramites.php');
   }
+
+  
 
 
   
@@ -24,6 +26,12 @@ if(isset($_POST['masc_sent'])){
 
 }
 $tramite =  getTramitePorId($idTram);
+
+
+if($_SESSION['userRol'] == 'cliente' and $tramite->getIdUsuario()->getId() != $_SESSION['userId']){
+  
+  header("Location:tramites.php");
+}
 
 
 ?>

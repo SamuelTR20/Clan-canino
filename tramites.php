@@ -13,7 +13,13 @@ if (!isset($_GET['numPag'])) {
   $_GET['numPag'] = 1;
 }
 
+$totalTramites = 0;
+if($_SESSION['userRol'] == "admin"){
 $totalTramites = obtenerTotalTramite($busqueda);
+}else if($_SESSION['userRol'] == "cliente"){
+  $totalTramites = obtenerTotalTramiteCliente($busqueda,$_SESSION['userId']);
+ 
+}
 $maximo = 10;
 $pagina = (int)$_GET['numPag'];
 
@@ -23,11 +29,11 @@ $mostrar =  ((int)$_GET['numPag'] - 1) * $maximo;
 
 
 
-
-
-
-
+if($_SESSION['userRol'] == "admin"){
 $tramites = getTramites($busqueda, $maximo, $mostrar);
+}else if($_SESSION['userRol'] == "cliente"){
+  $tramites = getTramitesCliente($busqueda, $maximo, $mostrar, $_SESSION['userId']);
+}
 ?>
 
 
