@@ -13,8 +13,8 @@ if(!isset($_SESSION)) {
    // if(!isset($_SESSION['userId'])) header('Location: formulario.php');
 }
 
-include "Negocio/RefugioNegocio.php";
-getRefugio();
+//include "Negocio/RefugioNegocio.php";
+//getRefugio();
 
 if (isset($_POST['refu_sent'])){
 
@@ -244,8 +244,8 @@ if (!isset($error)) {
 							<div class="col-md-6 services-2 w-100 d-flex">
 								<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-veterinarian"></span></div>
 								<div class="text pl-3">
-									<h4>Aqui no se me ocurre que:(</h4>
-									<p>Far far away, behind the word mountains, far from the countries.</p>
+									<h4>Objetivo</h4>
+									<p>Nuestro propósito es ayudar a los perritos sin hogar.</p>
 								</div>
 							</div>
 						</div>

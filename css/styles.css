@@ -155,3 +155,6 @@ form .ssingup [type="submit"]:hover {
 .alert-danger .alert-link {
     color: #491217;
 }
+.alert-success {
+    color: #fff;
+    background-color: rgb(30, 207, 69);; }

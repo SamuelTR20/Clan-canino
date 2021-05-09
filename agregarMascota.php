@@ -106,7 +106,7 @@ if (!isset($error)) {
       <div class="container">
         <div class="row no-gutters slider-text align-items-end">
           <div class="col-md-9 ftco-animate pb-5">
-          	<p class="breadcrumbs mb-2"><span class="mr-2"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Agregar Mascota <i class="ion-ios-arrow-forward"></i></span></p>
+          	<p class="breadcrumbs mb-2"><span class="mr-2"><a href="index.php">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Agregar Mascota <i class="ion-ios-arrow-forward"></i></span></p>
             <h1 class="mb-0 bread">Agregar Mascota</h1>
           </div>
         </div>
@@ -130,7 +130,7 @@ if (!isset($error)) {
 				        			<span class="fa fa-map-marker"></span>
 				        		</div>
 				        		<div class="text">
-					            <p><span>Ubicación:</span> dirección aqui próximamente</p>
+					            <p><span>Ubicación:</span><?php echo $_SESSION['refugioDireccion']?></p>
 					          </div>
 				          </div>
 								</div>
@@ -140,7 +140,7 @@ if (!isset($error)) {
 				        			<span class="fa fa-phone"></span>
 				        		</div>
 				        		<div class="text">
-					            <p><span>Teléfono:</span> <a href="tel://1234567920">622 123 1111</a></p>
+					            <p><span>Teléfono:</span> <a href="tel://1234567920"> <?php echo $_SESSION['refugioTelefono']?></a></p>
 					          </div>
 				          </div>
 								</div>

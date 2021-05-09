@@ -49,7 +49,11 @@
     <div class="center">
     <form  action="login.php" method="post">
         <h1>Inicio de sesión</h1>
-        <?php if(isset($error)){
+        <?php if(isset($_GET['loggedOff']) ){
+            ?>
+            <div class=" alert alert-success" role="alert"><?php echo 'Has cerrado sesión, ¡vuelve pronto!';?></div>
+        <?php }
+        if(isset($error)){
 			foreach($error as $err){ ?>
 			<div class="alert alert-danger" role="alert"><?php echo $err?></div>
 			<?php } } ?>

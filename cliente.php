@@ -28,6 +28,7 @@ if(isset($_POST['edit_submit'])){
 
 	
 	$usuario = obtenerInfoCompleta($idCliente);
+
     
   if (!$usuario){
 	header('Location:index.php');
@@ -45,7 +46,7 @@ if(isset($_POST['edit_submit'])){
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Pet Sitting - Free Bootstrap 4 Template by Colorlib</title>
+    <title>Clan canino</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -76,8 +77,8 @@ if(isset($_POST['edit_submit'])){
       <div class="container">
         <div class="row no-gutters slider-text align-items-end">
           <div class="col-md-9 ftco-animate pb-5">
-          	<p class="breadcrumbs mb-2"><span class="mr-2"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>About us <i class="ion-ios-arrow-forward"></i></span></p>
-            <h1 class="mb-0 bread">About Us</h1>
+          	<p class="breadcrumbs mb-2"><span class="mr-2"><a href="index.php">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Usuario <i class="ion-ios-arrow-forward"></i></span></p>
+            <h1 class="mb-0 bread">Datos del Usuario</h1>
           </div>
         </div>
       </div>
@@ -97,31 +98,58 @@ if(isset($_POST['edit_submit'])){
 	    				<div class="col-md-6 services-2 w-100 d-flex">
 	    					<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-stethoscope"></span></div>
 	    					<div class="text pl-3">
-	    						<h4>asdas</h4>
-	    						<p>sfsd</p>
+	    						<h4>Correo Electronico</h4>
+	    						<p><?php echo $usuario->getCorreo(); ?></p>
 	    					</div>
 	    				</div>
 	    				<div class="col-md-6 services-2 w-100 d-flex">
 	    					<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-customer-service"></span></div>
 	    					<div class="text pl-3">
-	    						<h4>Customer Supports</h4>
-	    						<p>Far far away, behind the word mountains, far from the countries.</p>
+	    						<h4>Edad</h4>
+	    						<p><?php echo $usuario->getInfo()->getEdad(); ?></p>
 	    					</div>
 	    				</div>
 	    				<div class="col-md-6 services-2 w-100 d-flex">
-	    					<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-emergency-call"></span></div>
+	    					<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-map-marker"></span></div>
 	    					<div class="text pl-3">
-	    						<h4>Emergency Services</h4>
-	    						<p>Far far away, behind the word mountains, far from the countries.</p>
+	    						<h4>Direccion</h4>
+	    						<p><?php echo $usuario->getInfo()->getDireccion(); ?></p>
 	    					</div>
 	    				</div>
 	    				<div class="col-md-6 services-2 w-100 d-flex">
 	    					<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-veterinarian"></span></div>
 	    					<div class="text pl-3">
-	    						<h4>Veterinary Help</h4>
-	    						<p>Far far away, behind the word mountains, far from the countries.</p>
+	    						<h4># Mascotas</h4>
+	    						<p><?php echo $usuario->getInfo()->getNumeroMascotas(); ?></p>
 	    					</div>
 	    				</div>
+              
+              <div class="col-md-6 services-2 w-100 d-flex">
+	    					<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-emergency-call"></span></div>
+	    					<div class="text pl-3">
+	    						<h4>Telefono</h4>
+	    						<p><?php echo $usuario->getInfo()->getTelefono(); ?></p>
+	    					</div>
+	    				</div>
+	    				<div class="col-md-6 services-2 w-100 d-flex">
+	    					<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-customer-service"></span></div>
+	    					<div class="text pl-3">
+	    						<h4>Cedula</h4>
+	    						<p><?php echo $usuario->getInfo()->getCedula(); ?></p>
+	    					</div>
+	    				</div>
+	    				<div class="col-md-6 services-2 w-100 d-flex">
+	    					<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-emergency-call"></span></div>
+	    					<div class="text pl-3">
+	    						<h4>Celular</h4>
+	    						<p><?php echo $usuario->getInfo()->getCelular(); ?></p>
+	    					</div>
+	    				</div>
+	    				
+
+              
+
+
               <?php if ($_SESSION['userRol']=='admin'){ ?>
               <form class= "col-md-12 services-2 w-100 d-flex" method="POST" action="cliente.php">
               

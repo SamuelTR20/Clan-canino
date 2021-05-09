@@ -7,6 +7,10 @@ if(isset($_GET['logOff']) && $_GET['logOff'] == "true") {
 	header('Cache-Control: no cache');
     header('Location: login.php?loggedOff=true');
   }
+
+  //Lógica para obtención de datos del refugio para apartados generales
+  include "Negocio/RefugioNegocio.php";
+	getRefugio();
 ?>
 
 <div class="wrap">
@@ -14,8 +18,8 @@ if(isset($_GET['logOff']) && $_GET['logOff'] == "true") {
 				<div class="row">
 					<div class="col-md-6 d-flex align-items-center">
 						<p class="mb-0 phone pl-md-2">
-							<a href="#" class="mr-2"><span class="fa fa-phone mr-1"></span> 6221542314</a> 
-							<a href="#"><span class="fa fa-paper-plane mr-1"></span> perla.duran12@gmail.com</a>
+							<a href="#" class="mr-2"><span class="fa fa-phone mr-1"></span> 6221823289</a> 
+							<a href="#"><span class="fa fa-paper-plane mr-1"></span> correocaninopordefinir@gmail.com</a>
 							
 
 						</p>
@@ -23,10 +27,8 @@ if(isset($_GET['logOff']) && $_GET['logOff'] == "true") {
 					<div class="col-md-6 d-flex justify-content-md-end">
 						<div class="social-media">
 							<p class="mb-0 d-flex">
-								<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook"><i class="sr-only">Facebook</i></span></a>
-								<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-twitter"><i class="sr-only">Twitter</i></span></a>
-								<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram"><i class="sr-only">Instagram</i></span></a>
-								<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-dribbble"><i class="sr-only">Dribbble</i></span></a>
+								<a href="https://www.facebook.com/clanclaninoguaymas" target=" _blank" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook"><i class="sr-only">Facebook</i></span></a>
+								<a href="https://www.instagram.com/clancanino/?hl=es-la&fbclid=IwAR1r7VNWZeZXoiVNfvFQUSKm-485eqt2ulckprqaPvrChkFhevzWKQ9dSqQ" target=" _blank" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram"><i class="sr-only">Instagram</i></span></a>
 							</p>
 		        		</div>
 					</div>

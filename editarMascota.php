@@ -171,7 +171,7 @@ if(isset($idMascota)){
 				        			<span class="fa fa-map-marker"></span>
 				        		</div>
 				        		<div class="text">
-					            <p><span>Ubicación:</span> dirección aqui próximamente</p>
+					            <p><span>Ubicación:</span><?php echo $_SESSION['refugioDireccion']?></p>
 					          </div>
 				          </div>
 								</div>
@@ -181,7 +181,7 @@ if(isset($idMascota)){
 				        			<span class="fa fa-phone"></span>
 				        		</div>
 				        		<div class="text">
-					            <p><span>Teléfono:</span> <a href="tel://1234567920">622 123 1111</a></p>
+					            <p><span>Teléfono:</span> <a href="tel://1234567920"> <?php echo $_SESSION['refugioTelefono']?></a></p>
 					          </div>
 				          </div>
 								</div>
