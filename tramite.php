@@ -22,7 +22,7 @@ if(isset($_GET['idTramite'])){
 if(isset($_POST['masc_sent'])){
 
   cambiarEstado($idTram, $_POST['idMascota'], $_POST['estado']);
-
+  header("Location:tramites.php");
 
 }
 $tramite =  getTramitePorId($idTram);
@@ -87,14 +87,14 @@ if($_SESSION['userRol'] == 'cliente' and $tramite->getIdUsuario()->getId() != $_
     			</div>
     			<div class="col-md-7 pl-md-5 py-md-5">
     				<div class="heading-section pt-md-5">
-	            <h2 class="mb-4"><?php echo $tramite->getId(); ?></h2>
+	            <h2 class="mb-4">ID de trámite: <?php echo $tramite->getId(); ?></h2>
     				</div>
     				<div class="row">
 	    				<div class="col-md-6 services-2 w-100 d-flex">
 	    					<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-stethoscope"></span></div>
 	    					<div class="text pl-3">
-	    						<h4><?php echo $tramite->getFechaSolicitud(); ?></h4>
-	    						<p><?php echo  $tramite->getIdMascota()->getNombre(); ?></p>
+	    						<h4>Fecha de solicitud</h4>
+	    						<p><?php echo $tramite->getFechaSolicitud(); ?></p>
 	    					</div>
 	    				</div>
               <a href="cliente.php?idUsuario=<?php echo $tramite->getIdUsuario()->getId();?>">
@@ -109,19 +109,11 @@ if($_SESSION['userRol'] == 'cliente' and $tramite->getIdUsuario()->getId() != $_
               <div class="col-md-6 services-2 w-100 d-flex">
 	    					<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-emergency-call"></span></div>
 	    					<div class="text pl-3">
-	    						<h4>Emergency Services</h4>
-	    						<p>Far far away, behind the word mountains, far from the countries.</p>
+	    						<h4>Mascota a adoptar</h4>
+	    						<p><?php echo  $tramite->getIdMascota()->getNombre(); ?></p>
 	    					</div>
 	    				</div>
-	    				<div class="col-md-6 services-2 w-100 d-flex">
-	    					<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-veterinarian"></span></div>
-	    					<div class="text pl-3">
-	    						<h4>Veterinary Help</h4>
-	    						<p>Far far away, behind the word mountains, far from the countries.</p>
-	    					</div>
-
-
-                </div>
+	    				
                 <form action="tramite.php" method="post" class="form-edit">
                 <div class="col-md-6 services-2 w-100 d-flex">
 	    					<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-veterinarian"></span></div>

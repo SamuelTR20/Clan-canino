@@ -74,32 +74,32 @@ if(isset($_GET['idMascota'])){
 	    				<div class="col-md-6 services-2 w-100 d-flex">
 	    					<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-stethoscope"></span></div>
 	    					<div class="text pl-3">
-	    						<h4><?php echo $mascota->getEspecie() ?></h4>
-	    						<p><?php echo $mascota->getHistoria() ?></p>
+	    						<h4>Especie & sexo</h4>
+	    						<p><?php echo $mascota->getEspecie(). ' / '. $mascota->getSexo() ?></p>
 	    					</div>
 	    				</div>
 	    				<div class="col-md-6 services-2 w-100 d-flex">
 	    					<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-customer-service"></span></div>
 	    					<div class="text pl-3">
-	    						<h4>Customer Supports</h4>
-	    						<p>Far far away, behind the word mountains, far from the countries.</p>
+	    						<h4>Historia</h4>
+	    						<p><?php echo $mascota->getHistoria() ?></p>
 	    					</div>
 	    				</div>
 	    				<div class="col-md-6 services-2 w-100 d-flex">
 	    					<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-emergency-call"></span></div>
 	    					<div class="text pl-3">
-	    						<h4>Emergency Services</h4>
-	    						<p>Far far away, behind the word mountains, far from the countries.</p>
+	    						<h4>Edad</h4>
+	    						<p><?php echo $mascota->getEdad() ?> año(s)</p>
 	    					</div>
 	    				</div>
 	    				<div class="col-md-6 services-2 w-100 d-flex">
 	    					<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-veterinarian"></span></div>
 	    					<div class="text pl-3">
-	    						<h4>Veterinary Help</h4>
-	    						<p>Far far away, behind the word mountains, far from the countries.</p>
+	    						<h4>Observaciones</h4>
+	    						<p><?php echo $mascota->getObservaciones() ?></p>
 	    					</div>
 	    				</div>
-
+              <?php if ($_SESSION['userRol']=='admin'){ ?>
               <div class="col-md-6 services-2 w-100 d-flex">
 	    				
 	    					<div class="text pl-3">
@@ -107,6 +107,7 @@ if(isset($_GET['idMascota'])){
                 <a href="editarMascota.php?idMascota=<?php echo $mascota->getId() ?>" class="btn btn-primary"> Editar </a>
                 </div>               
 	    				</div>
+              <?php }?>
               <div class="col-md-6 services-2 w-100 d-flex">
 	    				
 	    					<div class="text pl-3">

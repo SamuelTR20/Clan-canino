@@ -117,7 +117,11 @@ $tramites = getTramites($busqueda, $maximo, $mostrar);
           <th>Mascota</th>
           <th>Especie</th>
           <th>Estado</th>
+          
+          <?php if ($_SESSION['userRol']=='admin'){ ?>
           <th>Acciones</th>
+          <?php }?>
+
         </tr>
         <?php
           foreach($tramites as $tramite ){ ?>
@@ -131,7 +135,7 @@ $tramites = getTramites($busqueda, $maximo, $mostrar);
               <td><?php echo $tramite->getIdMascota()->getEspecie();  ?></td>
               <td><?php echo $tramite->getEstado();  ?></td>
 							
-
+              <?php if ($_SESSION['userRol']=='admin'){ ?>
 							<td>
               <form action="Tramite.php" method="POST">
 								
@@ -139,6 +143,7 @@ $tramites = getTramites($busqueda, $maximo, $mostrar);
               </form>
 
               </td>
+              <?php }?>
 						</tr>
             <?php
           } ?>

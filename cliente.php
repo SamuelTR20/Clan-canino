@@ -122,7 +122,9 @@ if(isset($_POST['edit_submit'])){
 	    						<p>Far far away, behind the word mountains, far from the countries.</p>
 	    					</div>
 	    				</div>
+              <?php if ($_SESSION['userRol']=='admin'){ ?>
               <form class= "col-md-12 services-2 w-100 d-flex" method="POST" action="cliente.php">
+              
               <div class="col-md-6 services-2 w-100 d-flex">
 	    					
 	    					<div class="text pl-3">
@@ -140,7 +142,9 @@ if(isset($_POST['edit_submit'])){
 	    						<input type="submit" value="Guardar rol" name="edit_submit" class="btn btn-primary" onclick="return confirm('¿Seguro desea editar al usuario? \nSi editas el rol de un usuario este tendrá acceso a diferentes funciones en la plataforma')">
 	    					</div>
 	    				</div>
+
               </form>
+              <?php }?>
 	    			</div>
 	        </div>
         </div>
