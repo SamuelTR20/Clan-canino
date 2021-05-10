@@ -129,7 +129,6 @@ $queryEditMascota = sprintf(
       $connLocalhost->close();
       return true;
     } else {
-      echo "chinga tu madre jaja";
 
       $connLocalhost->close();
       return false;
