@@ -99,7 +99,7 @@ if(isset($_GET['idMascota'])){
 	    						<p><?php echo $mascota->getObservaciones() ?></p>
 	    					</div>
 	    				</div>
-              <?php if ($_SESSION['userRol']=='admin'){ ?>
+              <?php if (isset($_SESSION['userNombre']) and $_SESSION['userRol']=='admin'){ ?>
               <div class="col-md-6 services-2 w-100 d-flex">
 	    				
 	    					<div class="text pl-3">
