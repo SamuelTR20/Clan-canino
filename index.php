@@ -71,7 +71,7 @@ $mascotas = getMascotas($busqueda, $mostrar , $maximo);
       </div>
     </section>
 
-    <div class="s010  d-flex justify-content-center bg-light">
+    <div class="s010  d-flex justify-content-center bg-light py-4">
 <form action="index.php" method="GET">
 <div class="inner-form  ">
 <div class="basic-search ">
@@ -96,6 +96,7 @@ $mascotas = getMascotas($busqueda, $mostrar , $maximo);
       <div class="container">
         <div class="row d-flex">
         <?php
+        
           foreach($mascotas as $mascota ){ ?>
           <div class="col-md-4 d-flex ftco-animate">
             <div class="blog-entry align-self-stretch">

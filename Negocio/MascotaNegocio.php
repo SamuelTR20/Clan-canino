@@ -50,7 +50,9 @@ function editMascota($id, $idRefugio, $nombre, $especie, $edad, $sexo, $observac
 
 		//Se manda a llamar el metodo de la persistencia para agregar la mascota a la BD
 	include_once "Persistencia/MascotaDAO.php";
-			editarMascota($id, $idRefugio, $nombre, $especie, $edad, $sexo, $observaciones, $estado, $historia, $foto);
+		$permitido	= editarMascota($id, $idRefugio, $nombre, $especie, $edad, $sexo, $observaciones, $estado, $historia, $foto);
+
+		return $permitido;
 	}
 }
 

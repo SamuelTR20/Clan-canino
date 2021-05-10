@@ -1,12 +1,9 @@
 <?php
 
-use BenMajor\ImageResize\Image;
-include 'benmajor\PHP-Image-Resize-master\src\BenMajor\Image.php';
+
 
   // Inicializamos la sesion o la retomamos
 if(!isset($_SESSION)) {
-    header('Cache-Control: no cache'); //no cache
-    session_cache_limiter('private_no_expire');
     session_start();
     // Protegemos el documento para que solamente sea visible cuando NO HAS INICIADO sesión
    // if(isset($_SESSION['userId'])) header('Location: index.php');

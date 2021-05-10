@@ -78,7 +78,7 @@ $usuarios = obtenerInfoCompletaTodos($busqueda, $maximo, $mostrar);
       </div>
     </section>
 
-    <div class="s010  d-flex justify-content-center bg-light">
+    <div class="s010  d-flex justify-content-center py-4">
 <form action="Usuarios.php" method="GET">
 <div class="inner-form  ">
 <div class="basic-search ">

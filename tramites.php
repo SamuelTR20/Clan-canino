@@ -76,7 +76,7 @@ $tramites = getTramites($busqueda, $maximo, $mostrar);
       </div>
     </section>
 
-    <div class="s010  d-flex justify-content-center bg-light">
+    <div class="s010  d-flex justify-content-center  py-4">
 <form action="tramites.php" method="GET">
 <div class="inner-form  ">
 <div class="basic-search ">
@@ -131,7 +131,7 @@ $tramites = getTramites($busqueda, $maximo, $mostrar);
 							<td><?php echo $tramite->getIdUsuario()->getCorreo(); ?></td>
 							<td><?php echo $tramite->getIdUsuario()->getInfo()->getCelular(); ?></td>
               <td><?php echo$tramite->getIdUsuario()->getInfo()->getTelefono(); ?></td>
-              <td><?php echo $tramite->getIdMascota()->getNombre();  ?></td>
+              <td><a href="pet.php?idMascota=<?php echo $tramite->getIdMascota()->getId() ?>"><?php echo $tramite->getIdMascota()->getNombre();  ?></a></td>
               <td><?php echo $tramite->getIdMascota()->getEspecie();  ?></td>
               <td><?php echo $tramite->getEstado();  ?></td>
 							

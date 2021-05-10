@@ -6,8 +6,6 @@ include "Negocio/MascotaNegocio.php";
 
   // Inicializamos la sesion o la retomamos
 if(!isset($_SESSION)) {
-    header('Cache-Control: no cache'); //no cache
-    session_cache_limiter('private_no_expire');
     session_start();
     // Protegemos el documento para que solamente sea visible cuando NO HAS INICIADO sesión
    // if(isset($_SESSION['userId'])) header('Location: index.php');
@@ -43,8 +41,10 @@ if(isset($_POST['Eliminar'])){
 
 
 if (isset($_POST['masc_sent'])){
+	$permitido = false;
     foreach ($_POST as $inputs => $vars) {
-if(trim($vars) == "" and $inputs =! "file" ) $error[] = "La caja $inputs es obligatoria";
+		
+if(trim($vars) == "" and $inputs =! "ruta" ) $error[] = "La caja $inputs es obligatoria";
 	
 
 
@@ -52,8 +52,9 @@ if(trim($vars) == "" and $inputs =! "file" ) $error[] = "La caja $inputs es obli
 
 }
 
-$permitido = false;
+
 if (!isset($error)) {
+	
 
 	if(!$_FILES['file']['type'] == ''){
 	$mimeType = $_FILES['file']['type'];
@@ -85,7 +86,7 @@ if (!isset($error)) {
 
     $permitido = editMascota($idMascota, 16, $_POST['nombre'], $_POST['especie'], $_POST['edad'], $_POST['sexo'], $_POST['observaciones'],$_POST['estado'], $_POST['historia'],$ruta );
 
-	
+	echo $permitido;
     }
 
     if(!$permitido){
@@ -273,28 +274,28 @@ if(isset($idMascota)){
 												<input type="hidden" name="mascotaId" value="<?php echo $idMascota ?>">
 												<input type="hidden" name="rutaAnt" value="<?php echo $mascota->getFoto();?>">
 
+												<form action="editarMascota.php" method="POST">
+													<div class="form-group">
+													<input type="hidden" name="rutaAnt" value="<?php echo $mascota->getFoto();?>">
+													<input type="hidden" name="mascotaId" value="<?php echo $idMascota ?>">
+													<input type="submit" value="Eliminar" class="ml-3 btn btn-danger" name="Eliminar" onClick="return confirm('¿Seguro desea eliminar esta mascota? \nSi eliminas una mascota, se eliminaran todos los tramites que esten vinculados a esta mascota.')">
+														<div class="submitting"></div>
+													</div>
+												
 
-												<div class="col-md-12 mt-2">
+										</form>
+												<div class="col-md-6 ">
 													<div class="form-group">
 
 														<input type="submit" value="Guardar información" class="btn btn-primary" name="masc_sent">
 														<div class="submitting"></div>
 													</div>
 												</div>
-												
+												</div>
 											</div>
 										</form>
-										<div class="col-md-12 mt-2">
-										<form action="editarMascota.php" method="POST">
-													<div class="form-group">
-													<input type="hidden" name="rutaAnt" value="<?php echo $mascota->getFoto();?>">
-													<input type="hidden" name="mascotaId" value="<?php echo $idMascota ?>">
-													<input type="submit" value="Eliminar" class="btn btn-primary" name="Eliminar" onClick="return confirm('¿Seguro desea eliminar esta mascota? \nSi eliminas una mascota, se eliminaran todos los tramites que esten vinculados a esta mascota.')">
-														<div class="submitting"></div>
-													</div>
-												</div>
-
-										</form>
+										<div class=" mt-2">
+										
 
 
 

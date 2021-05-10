@@ -145,6 +145,7 @@ function iniciarSesion($correo, $contrasenia){
     $_SESSION['userContrasenia'] = $userData['contrasenia'];
     $_SESSION['userRol'] = $userData['rol'];
 
+    
     $permitido = true;
 
     $connLocalhost->close();

@@ -104,14 +104,17 @@ if(isset($_GET['idMascota'])){
 	    				
 	    					<div class="text pl-3">
                
-                <a href="editarMascota.php?idMascota=<?php echo $mascota->getId() ?>" class="btn btn-primary"> Editar </a>
+                <a href="editarMascota.php?idMascota=<?php echo $mascota->getId() ?>" class="btn btn-dark"> Editar </a>
                 </div>               
 	    				</div>
-              <?php }?>
-              <div class="col-md-6 services-2 w-100 d-flex">
+              <?php }else{ ?>
+              <div class="col-md-6 services-2 w-100 d-flex"></div>
+              <?php } ?>
+              
+              <div class="col-md-6 services-2 w-100 d-flex justify-content-start">
 	    				
 	    					<div class="text pl-3">
-                  <a href="formulario.php?idMascota=<?php echo $mascota->getId() ?>" class="btn btn-primary"> Adoptar </a>
+                  <a href="formulario.php?idMascota=<?php echo $mascota->getId() ?>" class="btn btn-dark"> Adoptar </a>
 	    					</div>
 	    				</div>
 	    			</div>

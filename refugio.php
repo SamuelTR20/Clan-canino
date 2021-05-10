@@ -143,7 +143,7 @@ if (!isset($error)) {
 							</div>
 							
 							<?php	//echo $_SESSION['userNombre']. "  es ".$_SESSION['userRol'] ;
-	 								if($_SESSION['userRol'] == 'admin'){
+	 								if(isset($_SESSION['userRol']) and $_SESSION['userRol'] == 'admin'){
 									?>
 							<div class="row no-gutters">
 								<div class="col-md-7">
