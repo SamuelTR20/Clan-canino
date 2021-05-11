@@ -11,7 +11,7 @@ function obtenerUsuarios(){
 
   include_once "Entidades/Usuario.php";
 
-  $queryUsuarios = "SELECT id, nombre, correo, contrasenia, rol FROM emp_usuarios";
+  $queryUsuarios = "SELECT id, nombre, correo, aes_decrypt(contrasenia, 'key'), rol FROM emp_usuarios";
 
   // Ejecutamos el query
   $resQueryUsuarios = mysqli_query($connLocalhost, $queryUsuarios) or trigger_error("El query de login de usuario falló");
@@ -44,7 +44,7 @@ function agregarUsuario($nombre, $email, $contrasenia){
   include_once "Entidades/Usuario.php";
 
   $queryInsertUsuario = sprintf(
-    "INSERT INTO emp_usuarios (nombre, correo, contrasenia, rol) VALUES ( '%s', '%s', '%s', '%s')",
+    "INSERT INTO emp_usuarios (nombre, correo, contrasenia, rol) VALUES ( '%s', '%s',  aes_encrypt('%s', 'key'), '%s')",
     mysqli_real_escape_string($connLocalhost, trim($nombre)),
     mysqli_real_escape_string($connLocalhost, trim($email)),
     mysqli_real_escape_string($connLocalhost, trim($contrasenia)),
@@ -73,7 +73,7 @@ function editarUsuario($id, $nombre, $correo, $contrasenia, $rol){
   include_once "Entidades/Usuario.php";
 
   $queryEditUsuario = sprintf(
-    "UPDATE  emp_usuarios SET nombre = '%s', correo = '%s', contrasenia = '%s', rol = '%s' WHERE id = '%d' ",
+    "UPDATE  emp_usuarios SET nombre = '%s', correo = '%s', contrasenia = aes_encrypt('%s', 'key'), rol = '%s' WHERE id = '%d' ",
     mysqli_real_escape_string($connLocalhost, trim($nombre)),
     mysqli_real_escape_string($connLocalhost, trim($correo)),
     mysqli_real_escape_string($connLocalhost, trim($contrasenia)),
@@ -122,7 +122,7 @@ function iniciarSesion($correo, $contrasenia){
   include_once("Entidades/Usuario.php");
   // Armamos el query para verificar el correo y contraseña en la base de datos
   $queryLogin = sprintf(
-    "SELECT id, nombre, correo, contrasenia, rol FROM emp_usuarios WHERE correo = '%s' AND contrasenia = '%s'",
+    "SELECT id, nombre, correo, contrasenia, rol FROM emp_usuarios WHERE correo = '%s' AND aes_decrypt(contrasenia, 'key') = '%s'",
     mysqli_real_escape_string($connLocalhost, trim($correo)),
     mysqli_real_escape_string($connLocalhost, trim($contrasenia))
   );
@@ -138,11 +138,12 @@ function iniciarSesion($correo, $contrasenia){
     if (!isset($_SESSION)) {
       session_start();
     }
+
     // Definimos variables de sesion en $_SESSION
     $_SESSION['userId'] = $userData['id'];
     $_SESSION['userNombre'] = $userData['nombre'];
     $_SESSION['userCorreo'] = $userData['correo'];
-    $_SESSION['userContrasenia'] = $userData['contrasenia'];
+    $_SESSION['userContrasenia'] = $contrasenia;
     $_SESSION['userRol'] = $userData['rol'];
 
     

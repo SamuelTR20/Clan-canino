@@ -13566,3 +13566,12 @@ ul ul li {
     border-color: transparent;
     cursor: pointer;
 }
+.iconos{
+   text-align: center; 
+}
+
+.icon-whats{
+    font-size: 40px;
+    color:#00bd55;
+  
+}

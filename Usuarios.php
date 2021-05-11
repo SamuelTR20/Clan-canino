@@ -116,7 +116,7 @@ $usuarios = obtenerInfoCompletaTodos($busqueda, $maximo, $mostrar);
           <th>Correo</th>
           <th>Dirección</th>
           <th>Teléfono</th>
-          <th>Celular</th>
+          <th class="iconos"><i class="fa fa-whatsapp icon-whats "></i></th>
           <th>Rol</th>
           <th>Acciones</th>
         </tr>
@@ -127,7 +127,7 @@ $usuarios = obtenerInfoCompletaTodos($busqueda, $maximo, $mostrar);
 							<td><?php echo $usuario->getCorreo(); ?></td>
 							<td><?php echo $usuario->getInfo()->getDireccion(); ?></td>
               <td><?php echo $usuario->getInfo()->getTelefono(); ?></td>
-              <td><?php echo $usuario->getInfo()->getCelular(); ?></td>
+              <td><a href="https://wa.me/52<?php echo $usuario->getInfo()->getCelular(); ?> " target="_blank"><?php echo $usuario->getInfo()->getCelular(); ?> </a> </td>
 							<td><?php echo $usuario->getRol(); ?></td>
 							<td>
               <form action="Usuarios.php" method="POST">

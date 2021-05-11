@@ -112,7 +112,7 @@ $tramites = getTramites($busqueda, $maximo, $mostrar);
           <th>Fecha</th>
           <th>Usuario</th>
           <th>Correo</th>
-          <th>Celular</th>
+          <th class="iconos"><i class="fa fa-whatsapp icon-whats "></i></th>
           <th>Teléfono</th>
           <th>Mascota</th>
           <th>Especie</th>
@@ -129,7 +129,7 @@ $tramites = getTramites($busqueda, $maximo, $mostrar);
               <td><?php echo $tramite->getFechaSolicitud(); ?></td>
 							<td><a href="cliente.php?idUsuario=<?php echo $tramite->getIdUsuario()->getId() ?>"><span class="glyphicon glyphicon-user" aria-hidden="true"><?php echo $tramite->getIdUsuario()->getNombre(); ?></span></a></td>
 							<td><?php echo $tramite->getIdUsuario()->getCorreo(); ?></td>
-							<td><?php echo $tramite->getIdUsuario()->getInfo()->getCelular(); ?></td>
+							<td><a href="https://wa.me/52<?php echo $tramite->getIdUsuario()->getInfo()->getCelular();?>" target="_blank"><?php echo $tramite->getIdUsuario()->getInfo()->getCelular(); ?></a></td>
               <td><?php echo$tramite->getIdUsuario()->getInfo()->getTelefono(); ?></td>
               <td><a href="pet.php?idMascota=<?php echo $tramite->getIdMascota()->getId() ?>"><?php echo $tramite->getIdMascota()->getNombre();  ?></a></td>
               <td><?php echo $tramite->getIdMascota()->getEspecie();  ?></td>
