@@ -88,7 +88,7 @@ function obtenerInfoUsuariosPorId($idUsuario){
     $queryTotalUsuarios = sprintf(
      
       "SELECT  DISTINCTROW COUNT(*) as filas
-      FROM emp_usuario_info as inf join emp_usuarios as usu on inf.id_usuario = usu.id
+      FROM emp_usuarios as usu left join emp_usuario_info as inf on inf.id_usuario = usu.id
       WHERE  usu.nombre like '%%%s%%' or usu.correo like '%%%s%%' ",
      
      
@@ -118,7 +118,7 @@ function obtenerInfoUsuariosPorId($idUsuario){
      "SELECT  DISTINCTROW inf.edad as edad_inf, inf.direccion as direccion_inf, inf.numero_mascotas as num_masInf, 
      inf.telefono as telefono_ing, inf.id_usuario as id_user_inf, inf.cedula as cedula_inf, inf.celular as celular_inf, 
      usu.nombre as nombre_us, usu.correo as correo_us, usu.rol as rol_usu
-     FROM emp_usuario_info as inf join emp_usuarios as usu on inf.id_usuario = usu.id
+     FROM emp_usuarios as usu  left join emp_usuario_info as inf on inf.id_usuario = usu.id
      WHERE  usu.nombre like '%%%s%%' or usu.correo like '%%%s%%'  limit %d OFFSET %d",
      mysqli_real_escape_string($connLocalhost, trim($busqueda)),
      mysqli_real_escape_string($connLocalhost, trim($busqueda)),

@@ -7,12 +7,15 @@ function addUsuario($nombre, $email, $contrasenia, $contrasenia2){
 	include_once "Persistencia/UsuarioDAO.php";
 
 	if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+		
 		$error[]="No se ha introducido un email valido";
 		}
 	if ($contrasenia != $contrasenia2) {
+		
 		$error[] = "Los contraseñas no son coincidentes";
 		}
 	if(verificarEmail($email)){
+		
 		$error[] = "El email ya esta siendo utilizado";
 		
 	}
@@ -20,6 +23,11 @@ function addUsuario($nombre, $email, $contrasenia, $contrasenia2){
 	$correcto = agregarUsuario($nombre, $email, $contrasenia);
 	return $correcto;
 		
+	}else {
+		if (!isset($error)){
+		$error[] = "Ocurrio un error al registrarse";
+		}
+		return $error;
 	}
 
 }

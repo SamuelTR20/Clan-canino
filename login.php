@@ -11,17 +11,18 @@
 
     if (isset($_POST['login_sent'])){
           foreach ($_POST as $inputs => $vars) {
-      if(trim($vars) == "") $error[] = "La caja $inputs es obligatoria";
+      if(trim($vars) == "") $error[0] = "No se han llenado todos los datos";
         }
         $permitido = false;
 
         include_once("Negocio/UsuarioNegocio.php");
         if (!isset($error)) {
         $permitido = login($_POST['correo'],$_POST['contrasenia']);
-        }
+        
+    }
         
         if(!$permitido){
-            $error[] = "El conjunto de usuario y contraseña no son correctas";            
+            $error[0] = "El conjunto de usuario y contraseña no son correctas";            
         }
 
         if (!isset($error)) {

@@ -14,17 +14,14 @@ if(!isset($_SESSION)) {
 
 if (isset($_POST['register_sent'])){
     foreach ($_POST as $inputs => $vars) {
-if(trim($vars) == "") $error[] = "La caja $inputs es obligatoria";
+if(trim($vars) == "") $error[0] = "No se han llenado todos los datos";
 }
 include 'Negocio/UsuarioNegocio.php';
-$permitido = false;
-if (!isset($error)) {
-    $permitido = addUsuario($_POST['nombre'], $_POST['email'], $_POST['contrasena'], $_POST['contrasena2'] );
-    
-    }
 
-    if(!$permitido){
-        $error[] = "Ha ocurrido un error al registrarse";            
+if (!isset($error)) {
+    
+    $error = addUsuario($_POST['nombre'], $_POST['email'], $_POST['contrasena'], $_POST['contrasena2'] );
+    
     }
 
     
@@ -75,7 +72,7 @@ if (!isset($error)) {
                 <input type="password" name="contrasena2" placeholder="Contraseña">
             </div>
 
-            <div class="ssingup">
+            <div class="spassword">
             <input type="submit"  value="Registrarse" name="register_sent">
             </div>
     </form>

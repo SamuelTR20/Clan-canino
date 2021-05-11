@@ -110,13 +110,12 @@ $usuarios = obtenerInfoCompletaTodos($busqueda, $maximo, $mostrar);
 			<hr />
 			<br />
 			<div class="table-responsive">
-			<table class="table table-striped table-hover">
+			<table class="table table-striped table-hover ">
 				<tr>
           <th>Nombre</th>
           <th>Correo</th>
-          <th>Dirección</th>
-          <th>Teléfono</th>
           <th class="iconos"><i class="fa fa-whatsapp icon-whats "></i></th>
+          <th>Teléfono</th>
           <th>Rol</th>
           <th>Acciones</th>
         </tr>
@@ -125,19 +124,26 @@ $usuarios = obtenerInfoCompletaTodos($busqueda, $maximo, $mostrar);
 						<tr>
 							<td><a href="cliente.php?idUsuario=<?php echo $usuario->getInfo()->getIdUsuario(); ?>"><span class="glyphicon glyphicon-user" aria-hidden="true"><?php echo $usuario->getNombre(); ?></span></a></td>
 							<td><?php echo $usuario->getCorreo(); ?></td>
-							<td><?php echo $usuario->getInfo()->getDireccion(); ?></td>
-              <td><?php echo $usuario->getInfo()->getTelefono(); ?></td>
               <td><a href="https://wa.me/52<?php echo $usuario->getInfo()->getCelular(); ?> " target="_blank"><?php echo $usuario->getInfo()->getCelular(); ?> </a> </td>
-							<td><?php echo $usuario->getRol(); ?></td>
-							<td>
+              <td><?php echo $usuario->getInfo()->getTelefono(); ?></td>
+      				<td><?php echo $usuario->getRol(); ?></td>
+							<td scope="row">
+              
               <form action="Usuarios.php" method="POST">
-								
-							
+              <div class= 'row '>
+              <div class="mx-2">
                 <button type="submit" value="" name="Eliminar"  onclick="return confirm('¿Seguro desea eliminar al usuario? \nSi eliminas un usuario, se eliminaran todos los datos que esten vinculados a el.')" class="btn btn-danger btn-sm "> <i class="fa fa-trash iconos-usuarios"></i></button>
+                </div>
+                
                 <input type="hidden" name="usuarioId" value="<?php echo $usuario->getInfo()->getIdUsuario(); ?>">  
+                <div class="mx-2">
+              
                 <a href="cliente.php?idUsuario=<?php echo $usuario->getInfo()->getIdUsuario(); ?>" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span><i class="fa fa-edit iconos-usuarios"></i></a>
+                </div>
+              
+                </div>
               </form>
-
+              
               </td>
 						</tr>
             <?php
