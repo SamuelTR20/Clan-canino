@@ -114,8 +114,10 @@ if(isset($_GET['idMascota'])){
               <div class="col-md-6 services-2 w-100 d-flex justify-content-start">
 	    				
 	    					<div class="text pl-3">
+                <?php if(isset($_SESSION['userNombre']) and $_SESSION['userRol']!='admin') { ?>
                   <a href="formulario.php?idMascota=<?php echo $mascota->getId() ?>" class="btn btn-dark"> Adoptar </a>
-	    					</div>
+	    					<?php } ?>
+                </div>
 	    				</div>
 	    			</div>
 	        </div>

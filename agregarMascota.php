@@ -18,9 +18,10 @@ if(!isset($_SESSION)) {
 
 if (isset($_POST['masc_sent'])){
     foreach ($_POST as $inputs => $vars) {
-if(trim($vars) == "") $error[] = "La caja $inputs es obligatoria";
+		if(!isset($error)){
+if(trim($vars) == "") $error[] = "Faltan campos por llenar";
 	
-
+		}
 
 
 

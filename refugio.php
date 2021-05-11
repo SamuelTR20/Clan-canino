@@ -19,8 +19,9 @@ if(!isset($_SESSION)) {
 if (isset($_POST['refu_sent'])){
 
     foreach ($_POST as $inputs => $vars) {
-if(trim($vars) == "") $error[] = "La caja $inputs es obligatoria";
-	
+	if(!isset($error)){
+	if(trim($vars) == "") $error[] = "Debes ingresar todos los campos";
+	}
 }
 if($_SESSION['userRol']!="admin"){
 	$error[]= "No tiene autorización para efectuar cambios";
@@ -35,7 +36,7 @@ if (!isset($error)) {
 
      header('Location:refugio.php');
 }else{
-    echo $error;
+    
 }
 
 } 
@@ -149,6 +150,10 @@ if (!isset($error)) {
 								<div class="col-md-7">
 									<div class="contact-wrap w-100 p-md-5 p-4">
 										<h3 class="mb-4">Editar Refugio</h3>
+										<?php if(isset($error)){
+										foreach($error as $err){ ?>
+									<div class="alert alert-danger" role="alert"><?php echo $err?></div>
+									<?php } } ?>
 										<form method="POST" id="contactForm" name="contactForm" class="contactForm" action="refugio.php" enctype="multipart/form-data">
 											<div class="row">
 												<div class="col-md-6">

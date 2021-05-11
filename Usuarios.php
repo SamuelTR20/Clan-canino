@@ -122,7 +122,7 @@ $usuarios = obtenerInfoCompletaTodos($busqueda, $maximo, $mostrar);
         <?php
           foreach($usuarios as $usuario ){ ?>
 						<tr>
-							<td><a href="cliente.php?idUsuario=<?php echo $usuario->getInfo()->getIdUsuario(); ?>"><span class="glyphicon glyphicon-user" aria-hidden="true"><?php echo $usuario->getNombre(); ?></span></a></td>
+							<td><a href="cliente.php?idUsuario=<?php echo  $usuario->getId(); ?>"><span class="glyphicon glyphicon-user" aria-hidden="true"><?php echo $usuario->getNombre(); ?></span></a></td>
 							<td><?php echo $usuario->getCorreo(); ?></td>
               <td><a href="https://wa.me/52<?php echo $usuario->getInfo()->getCelular(); ?> " target="_blank"><?php echo $usuario->getInfo()->getCelular(); ?> </a> </td>
               <td><?php echo $usuario->getInfo()->getTelefono(); ?></td>
@@ -135,10 +135,10 @@ $usuarios = obtenerInfoCompletaTodos($busqueda, $maximo, $mostrar);
                 <button type="submit" value="" name="Eliminar"  onclick="return confirm('¿Seguro desea eliminar al usuario? \nSi eliminas un usuario, se eliminaran todos los datos que esten vinculados a el.')" class="btn btn-danger btn-sm "> <i class="fa fa-trash iconos-usuarios"></i></button>
                 </div>
                 
-                <input type="hidden" name="usuarioId" value="<?php echo $usuario->getInfo()->getIdUsuario(); ?>">  
+                <input type="hidden" name="usuarioId" value="<?php echo $usuario->getId(); ?>">  
                 <div class="mx-2">
               
-                <a href="cliente.php?idUsuario=<?php echo $usuario->getInfo()->getIdUsuario(); ?>" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span><i class="fa fa-edit iconos-usuarios"></i></a>
+                <a href="cliente.php?idUsuario=<?php echo $usuario->getId(); ?>" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span><i class="fa fa-edit iconos-usuarios"></i></a>
                 </div>
               
                 </div>

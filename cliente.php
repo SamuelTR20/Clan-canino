@@ -106,21 +106,21 @@ if(isset($_POST['edit_submit'])){
 	    					<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-customer-service"></span></div>
 	    					<div class="text pl-3">
 	    						<h4>Edad</h4>
-	    						<p><?php echo $usuario->getInfo()->getEdad(); ?></p>
+	    						<p><?php if(null !== ($usuario->getInfo())){ echo $usuario->getInfo()->getEdad();}else{echo "No se han registrado los datos";} ?></p>
 	    					</div>
 	    				</div>
 	    				<div class="col-md-6 services-2 w-100 d-flex">
 	    					<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-map-marker"></span></div>
 	    					<div class="text pl-3">
 	    						<h4>Direccion</h4>
-	    						<p><?php echo $usuario->getInfo()->getDireccion(); ?></p>
+	    						<p><?php if(null !== ($usuario->getInfo())){  echo $usuario->getInfo()->getDireccion();} else{echo "No se han registrado los datos";} ?></p>
 	    					</div>
 	    				</div>
 	    				<div class="col-md-6 services-2 w-100 d-flex">
 	    					<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-veterinarian"></span></div>
 	    					<div class="text pl-3">
 	    						<h4># Mascotas</h4>
-	    						<p><?php echo $usuario->getInfo()->getNumeroMascotas(); ?></p>
+	    						<p><?php if(null !== ($usuario->getInfo())){  echo $usuario->getInfo()->getNumeroMascotas();} else{ echo " No se han registrado los datos";} ?></p>
 	    					</div>
 	    				</div>
               
@@ -128,21 +128,21 @@ if(isset($_POST['edit_submit'])){
 	    					<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-emergency-call"></span></div>
 	    					<div class="text pl-3">
 	    						<h4>Telefono</h4>
-	    						<p><?php echo $usuario->getInfo()->getTelefono(); ?></p>
+	    						<p><?php if(null !== ($usuario->getInfo())){ echo $usuario->getInfo()->getTelefono(); } else{echo "no se han registrado los datos ";}?></p>
 	    					</div>
 	    				</div>
 	    				<div class="col-md-6 services-2 w-100 d-flex">
 	    					<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-customer-service"></span></div>
 	    					<div class="text pl-3">
 	    						<h4>Cedula</h4>
-	    						<p><?php echo $usuario->getInfo()->getCedula(); ?></p>
+	    						<p><?php if(null !== ($usuario->getInfo())){  echo $usuario->getInfo()->getCedula();} else {echo "no se han registrado los datos " ;} ?></p>
 	    					</div>
 	    				</div>
 	    				<div class="col-md-6 services-2 w-100 d-flex">
 	    					<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-emergency-call"></span></div>
 	    					<div class="text pl-3">
 	    						<h4>Celular</h4>
-	    						<p><?php echo $usuario->getInfo()->getCelular(); ?></p>
+	    						<p><?php if(null !== ($usuario->getInfo())){ echo $usuario->getInfo()->getCelular();}else {echo "no se han registrado los datos ";} ?></p>
 	    					</div>
 	    				</div>
 	    				

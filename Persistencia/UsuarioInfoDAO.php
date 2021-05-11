@@ -117,7 +117,7 @@ function obtenerInfoUsuariosPorId($idUsuario){
      $queryUsuarioInfo = sprintf(
      "SELECT  DISTINCTROW inf.edad as edad_inf, inf.direccion as direccion_inf, inf.numero_mascotas as num_masInf, 
      inf.telefono as telefono_ing, inf.id_usuario as id_user_inf, inf.cedula as cedula_inf, inf.celular as celular_inf, 
-     usu.nombre as nombre_us, usu.correo as correo_us, usu.rol as rol_usu
+     usu.nombre as nombre_us, usu.correo as correo_us, usu.rol as rol_usu, usu.id as id_usu
      FROM emp_usuarios as usu  left join emp_usuario_info as inf on inf.id_usuario = usu.id
      WHERE  usu.nombre like '%%%s%%' or usu.correo like '%%%s%%'  limit %d OFFSET %d",
      mysqli_real_escape_string($connLocalhost, trim($busqueda)),
@@ -145,7 +145,7 @@ function obtenerInfoUsuariosPorId($idUsuario){
       $info->setCedula($infoData['cedula_inf']);
       $info->setCelular($infoData['celular_inf']);
 
-     
+      $usu->setId($infoData['id_usu']);
       $usu->setNombre($infoData['nombre_us']);
       $usu->setCorreo($infoData['correo_us']);
       $usu->setRol($infoData['rol_usu']);
@@ -170,8 +170,8 @@ function obtenerInfoUsuariosPorId($idUsuario){
      "SELECT  DISTINCTROW inf.edad as edad_inf, inf.direccion as direccion_inf, inf.numero_mascotas as num_masInf, 
      inf.telefono as telefono_ing, inf.id_usuario as id_user_inf, inf.cedula as cedula_inf, inf.celular as celular_inf, 
      usu.nombre as nombre_us, usu.correo as correo_us, usu.rol as rol_usu
-     FROM emp_usuario_info as inf join emp_usuarios as usu on inf.id_usuario = usu.id
-     WHERE inf.id_usuario = %d  ",
+     FROM emp_usuarios as usu  left join emp_usuario_info as inf on inf.id_usuario = usu.id
+     WHERE usu.id = %d  ",
      mysqli_real_escape_string($connLocalhost, trim($idUsuario))
     );
     

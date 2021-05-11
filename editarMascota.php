@@ -43,10 +43,11 @@ if(isset($_POST['Eliminar'])){
 if (isset($_POST['masc_sent'])){
 	$permitido = false;
     foreach ($_POST as $inputs => $vars) {
-		
-if(trim($vars) == "" and $inputs =! "ruta" ) $error[] = "La caja $inputs es obligatoria";
-	
 
+	if(!isset($error)){	
+   if(trim($vars) == "" and $inputs != "ruta" ) $error[] = "No debes dejar campos vacios";
+	
+	}
 
 
 
@@ -210,11 +211,12 @@ if(isset($idMascota)){
 							<div class="row no-gutters">
 								<div class="col-md-7">
 									<div class="contact-wrap w-100 p-md-5 p-4">
-									<?php if(isset($error)){
+									
+										<h3 class="mb-4">Editar Mascota</h3>
+										<?php if(isset($error)){
 										foreach($error as $err){ ?>
 									<div class="alert alert-danger" role="alert"><?php echo $err?></div>
 									<?php } } ?>
-										<h3 class="mb-4">Registrar Mascota</h3>
 										<form method="POST" id="contactForm" name="contactForm" class="contactForm" action="editarMascota.php" enctype="multipart/form-data">
 											<div class="row">
 												<div class="col-md-6">
