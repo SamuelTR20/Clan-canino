@@ -5,7 +5,10 @@ include "Negocio/UsuarioNegocio.php";
 if (!isset($_SESSION)) {
   session_start();
 }
+if( !isset($_SESSION['userNombre']) or $_SESSION['userRol'] != "admin"){
+  header('Location: index.php');
 
+}
 
 if(isset($_POST['Eliminar'])){
 	
@@ -13,6 +16,8 @@ if(isset($_POST['Eliminar'])){
 	if($eliminado){header('Location:Usuarios.php');}
 
 }
+
+
 
 $busqueda = "";
 if (empty($_GET['buscar'])) {

@@ -3,6 +3,11 @@
 }
 include "Negocio/TramiteNegocio.php";
 
+if( !isset($_SESSION['userNombre']) ){
+	header('Location: index.php');
+  
+  }
+
 if(isset($_GET['idTramite'])){
 	$idTram = $_GET['idTramite'];
 

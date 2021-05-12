@@ -11,6 +11,11 @@ if(!isset($_SESSION)) {
    // if(isset($_SESSION['userId'])) header('Location: index.php');
    // if(!isset($_SESSION['userId'])) header('Location: formulario.php');
 }
+
+if( !isset($_SESSION['userNombre']) or $_SESSION['userRol'] != "admin"){
+	header('Location: index.php');
+  
+  }
 $ruta = "";
 
 

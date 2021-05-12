@@ -14,7 +14,10 @@ if(!isset($_SESSION)) {
    // if(!isset($_SESSION['userId'])) header('Location: formulario.php');
 }
 
-
+if( !isset($_SESSION['userNombre']) or $_SESSION['userRol'] != "admin"){
+	header('Location: index.php');
+  
+  }
 
 if (isset($_POST['masc_sent'])){
     foreach ($_POST as $inputs => $vars) {
@@ -161,7 +164,7 @@ if (!isset($error)) {
 				        			<span class="fa fa-globe"></span>
 				        		</div>
 				        		<div class="text">
-					            <p><span>Website</span> <a href="#">Clan-canino.com</a></p>
+					            <p><span>Website</span> <a href="index.php">Clan-canino.com</a></p>
 					          </div>
 				          </div>
 								</div>

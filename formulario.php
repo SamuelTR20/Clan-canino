@@ -8,6 +8,11 @@ if(!isset($_SESSION)) {
    // if(isset($_SESSION['userId'])) header('Location: index.php');
    // if(!isset($_SESSION['userId'])) header('Location: formulario.php');
 }
+
+if( !isset($_SESSION['userNombre']) ){
+	header('Location: login.php');
+  
+  }
 include 'Negocio/TramiteNegocio.php';
 include 'Negocio/UsuarioInfoNegocio.php';
 $usuario = infoById($_SESSION['userId']);
@@ -31,12 +36,14 @@ if(trim($vars) == "") $error[0] = "No se llenaron todos los datos";
 }
 $permitido = false;
 if (!isset($error)) {
+	$celular = str_replace(array(':', '\\', '/', '*', ' ', '-', '(', ')'), '', $_POST['celular']);
+	$telefono = str_replace(array(':', '\\', '/', '*', ' ', '-', '(', ')'), '', $_POST['telefono']);
 
 	if ($usuario){
-	$permitido = UpdateInfo($_POST['edad'], $_POST['direccion'], $_POST['numeroMascotas'], $_POST['telefono'], $_SESSION['userId'], $_POST['cedula'], $_POST['celular'] );	
+	$permitido = UpdateInfo($_POST['edad'], $_POST['direccion'], $_POST['numeroMascotas'], $telefono, $_SESSION['userId'], $_POST['cedula'], $celular );	
 	
 }else {
-    $permitido = addInfo( $_POST['edad'], $_POST['direccion'], $_POST['numeroMascotas'], $_POST['telefono'], $_SESSION['userId'], $_POST['cedula'], $_POST['celular'] );
+    $permitido = addInfo( $_POST['edad'], $_POST['direccion'], $_POST['numeroMascotas'], $telefono, $_SESSION['userId'], $_POST['cedula'], $celular );
 	}
 
 	

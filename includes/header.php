@@ -48,7 +48,6 @@ if(isset($_GET['logOff']) && $_GET['logOff'] == "true") {
 	        	<?php if( isset($_SESSION['userNombre']) and $_SESSION['userRol'] == "cliente"){ ?>
 					<li class="nav-item"><a href="tramites.php" class="nav-link">Mis tramites</a></li>
 			<?php }?>
-	        <li class="nav-item"><a href="formulario.php" class="nav-link">Perfil</a></li>
 			<li class="nav-item"><a href="refugio.php" class="nav-link">Refugio</a></li>
 			<?php if( isset($_SESSION['userNombre']) and  $_SESSION['userRol'] == 'admin'){ ?>
 			<li class="nav-item">
@@ -71,7 +70,7 @@ if(isset($_GET['logOff']) && $_GET['logOff'] == "true") {
 				<ul class="submenu">
 						<a href="formulario.php"  ><li class="nav-item children" > Mis datos </li></a>
 						<a href= "editarPerfil.php" class="children"><li class="nav-item">Configuración</li></a>
-						<a href= "?logOff=true" class="children"><li class="nav-item">Cerrar sesión</li></a> 
+						<a href= "index.php?logOff=true" class="children"><li class="nav-item">Cerrar sesión</li></a> 
 					</ul>
 		</li>
 				<?php

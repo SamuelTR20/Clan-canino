@@ -10,7 +10,11 @@ if(isset($_GET['idUsuario'])){
   $idCliente = $_POST['idUsuario'];
 }
 
-
+if( !isset($_SESSION['userNombre']) or $_SESSION['userRol'] != "admin"){
+	header('Location: index.php');
+  
+  }
+  
 if(isset($idCliente)){
 
   
