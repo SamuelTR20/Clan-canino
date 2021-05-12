@@ -13575,3 +13575,11 @@ ul ul li {
     color:#00bd55;
   
 }
+
+.navbar {
+   position:sticky;
+   width: 100%;
+   top:0;
+  
+   
+}
