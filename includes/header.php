@@ -48,7 +48,7 @@ if(isset($_GET['logOff']) && $_GET['logOff'] == "true") {
 	        	<?php if( isset($_SESSION['userNombre']) and $_SESSION['userRol'] == "cliente"){ ?>
 					<li class="nav-item"><a href="tramites.php" class="nav-link">Mis tramites</a></li>
 			<?php }?>
-	        <li class="nav-item"><a href="editarPerfil.php" class="nav-link">Perfil</a></li>
+	        <li class="nav-item"><a href="formulario.php" class="nav-link">Perfil</a></li>
 			<li class="nav-item"><a href="refugio.php" class="nav-link">Refugio</a></li>
 			<?php if( isset($_SESSION['userNombre']) and  $_SESSION['userRol'] == 'admin'){ ?>
 			<li class="nav-item">
@@ -62,8 +62,22 @@ if(isset($_GET['logOff']) && $_GET['logOff'] == "true") {
 
 					</ul>
 			 
-			 </li> <?php }?>
-			  <li class= "nav-item"><a href="<?php echo (isset($_SESSION['userNombre'])) ? '?logOff=true' : 'login.php';?>" class="nav-link"><?php echo (isset($_SESSION['userNombre'])) ?  "Cerrar Sesión" :  "Iniciar sesión"; ?></a></li>
+			 </li> <?php }
+			if( isset($_SESSION['userNombre'])){?>
+				<li class="nav-item">
+			
+			<label for="btn-show" class="nav-link" id="labelSubmenu">Mi PERFiL<i class="fa fa-angle-down icono-desplega"> </i></label>
+				<input type="checkbox" id="btn-show" class="show-input">
+				<ul class="submenu">
+						<a href="formulario.php"  ><li class="nav-item children" > Mis datos </li></a>
+						<a href= "editarPerfil.php" class="children"><li class="nav-item">Configuración</li></a>
+						<a href= "?logOff=true" class="children"><li class="nav-item">Cerrar sesión</li></a> 
+					</ul>
+		</li>
+				<?php
+				}else{?>
+			 <li class= "nav-item"><a href="login.php" class="nav-link">Iniciar sesión</a></li>
+				<?php }?>
 	        </ul>
 	      </div>
 	    </div>

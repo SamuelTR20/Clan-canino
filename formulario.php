@@ -26,11 +26,12 @@ if(isset($_POST['idMascota'])){
 
 if (isset($_POST['info_sent'])){
     foreach ($_POST as $inputs => $vars) {
-if(trim($vars) == "") $error[] = "La caja $inputs es obligatoria";
+if(trim($vars) == "") $error[0] = "No se llenaron todos los datos";
 	
 }
 $permitido = false;
 if (!isset($error)) {
+
 	if ($usuario){
 	$permitido = UpdateInfo($_POST['edad'], $_POST['direccion'], $_POST['numeroMascotas'], $_POST['telefono'], $_SESSION['userId'], $_POST['cedula'], $_POST['celular'] );	
 	
@@ -50,7 +51,7 @@ if (!isset($error)) {
 
     }
 
-    if(!$permitido){
+    if(!$permitido and !isset($error)){
         $error[] = "Ha ocurrido un error al registrarse";            
     }
 

@@ -76,9 +76,9 @@ $tramites = getTramites($busqueda, $maximo, $mostrar);
       </div>
     </section>
 
-    <div class="s010  d-flex justify-content-center  py-4">
-<form action="tramites.php" method="GET">
-<div class="inner-form  ">
+<div class="s010  py-4">
+    <form action="tramites.php" method="GET">
+<div class="inner-form  col-md-6 offset-md-3">
 <div class="basic-search ">
 <div class="input-field">
 <input id="search" type="text" placeholder="Buscar Tramite" name='buscar'>
@@ -95,6 +95,8 @@ $tramites = getTramites($busqueda, $maximo, $mostrar);
 </div>
 </form>
 </div>
+
+
 </div>
 
 

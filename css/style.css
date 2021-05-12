@@ -13419,25 +13419,25 @@ ul ul li {
     padding: 10px 32px 10px 70px;
     font-size: 18px;
     height: 70px;
-    color: #fff;
-    background: linear-gradient(45deg, #207dff 0%, #00bd55 100%);
+    color: #767676;
+    background: #E1E1E1;
     font-family: lato, sans-serif
 }
 
 .s010 form .inner-form .input-field input.placeholder {
-    color: #fff;
+    color: #767676;
     font-size: 18px;
     font-weight: 400
 }
 
 .s010 form .inner-form .input-field input:-moz-placeholder {
-    color: #fff;
+    color: #767676;
     font-size: 18px;
     font-weight: 400
 }
 
 .s010 form .inner-form .input-field input::-webkit-input-placeholder {
-    color: #fff;
+    color: #767676;
     font-size: 18px;
     font-weight: 400
 }
@@ -13456,7 +13456,7 @@ ul ul li {
     white-space: nowrap;
     border-radius: 20px;
     font-size: 14px;
-    color: #fff;
+    color: #767676;
     transition: all .2s ease-out, color .2s ease-out;
     border: 0;
     cursor: pointer;
@@ -13507,13 +13507,13 @@ ul ul li {
 
 .s010 form .inner-form .input-field .btn-delete:hover,
 .s010 form .inner-form .input-field .btn-delete:focus {
-    color: #000;
+    color: #767676;
     outline: 0;
     box-shadow: none
 }
 
 .s010 form .inner-form .basic-search {
-    box-shadow: 0 8px 20px 0 rgba(0, 0, 0, .15);
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, .15);
     overflow: hidden;
     border-radius: 34px;
     margin-bottom: 5px
@@ -13557,7 +13557,7 @@ ul ul li {
 .s010 form .inner-form .basic-search .input-field .icon-wrap svg {
     width: 100%;
     height: 100%;
-    fill: #fff;
+    fill: #767676;
     cursor: pointer;
 }
 
