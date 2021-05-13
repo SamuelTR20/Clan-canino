@@ -22,6 +22,7 @@ $ruta = "";
 
 if(!isset($_GET['idMascota']) and !isset($_POST['idMascota'])){
 	header("index.php");
+	
 }
 
 
@@ -32,12 +33,13 @@ if (isset($_GET['idMascota'])) {
 	$idMascota = $_POST['mascotaId'];
 	$ruta = $_POST['rutaAnt'];
   }
-
+  
 
 
 //ELIMINAR
 if(isset($_POST['Eliminar'])){
-	
+
+	deleteImage($idMascota);
 	$eliminado= deleteMascota($idMascota);
 	if($eliminado){header('Location:index.php');}
 
@@ -87,6 +89,9 @@ if (!isset($error)) {
 	$image->output("images");
 
     rename($image->getOutputFilename(), $ruta);
+
+	//eliminar imagen anterior
+	deleteImage($idMascota);
 
 }
 

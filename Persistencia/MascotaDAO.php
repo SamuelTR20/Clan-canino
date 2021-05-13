@@ -204,3 +204,39 @@ function obtenerMascota($idMascota){
     return $permitido;
   }
 }
+
+
+
+function obtenerImagenMascota($idMascota){
+  include_once("Conexion.php");
+  $connLocalhost = conexion();
+  $permitido = false;
+  
+  $queryMasc = sprintf(
+    "SELECT foto FROM emp_mascota WHERE id = '%s' ",
+    mysqli_real_escape_string($connLocalhost, trim($idMascota))
+    
+  );
+
+  // Ejecutamos el query
+  $resQueryMasc = mysqli_query($connLocalhost, $queryMasc) or trigger_error("El query de macota falló");
+
+ 
+  if (mysqli_num_rows($resQueryMasc) == 1) {
+
+   $mascData = mysqli_fetch_assoc($resQueryMasc);
+    echo  $mascData['foto'];
+    $fotoMascota = $mascData['foto'];
+    
+    $permitido = true;
+
+    $connLocalhost->close();
+    return $fotoMascota;
+    
+
+
+  } else {
+    $connLocalhost->close();
+    return $permitido;
+  }
+}

@@ -72,4 +72,14 @@ function deleteMascota($id){
 	}
 }
 
+function deleteImage($id){
+	include_once "Persistencia/MascotaDAO.php";
+	$ruta = obtenerImagenMascota($id);
+
+	if($ruta != false){
+	unlink($ruta);
+	}
+
+}
+
 ?>

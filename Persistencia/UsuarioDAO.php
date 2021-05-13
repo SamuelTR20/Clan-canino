@@ -37,18 +37,20 @@ function obtenerUsuarios(){
 }
 
 
-function agregarUsuario($nombre, $email, $contrasenia){
+function agregarUsuario($nombre, $email, $contrasenia, $token){
   include_once("Conexion.php");
   $connLocalhost = conexion();
 
   include_once "Entidades/Usuario.php";
 
   $queryInsertUsuario = sprintf(
-    "INSERT INTO emp_usuarios (nombre, correo, contrasenia, rol) VALUES ( '%s', '%s',  aes_encrypt('%s', 'key'), '%s')",
+    "INSERT INTO emp_usuarios (nombre, correo, contrasenia, rol, token, activa) VALUES ( '%s', '%s',  aes_encrypt('%s', 'key'), '%s', '%s', %d )",
     mysqli_real_escape_string($connLocalhost, trim($nombre)),
     mysqli_real_escape_string($connLocalhost, trim($email)),
     mysqli_real_escape_string($connLocalhost, trim($contrasenia)),
-    mysqli_real_escape_string($connLocalhost, 'cliente')
+    mysqli_real_escape_string($connLocalhost, 'cliente'),
+    mysqli_real_escape_string($connLocalhost, trim($token) ),
+    mysqli_real_escape_string($connLocalhost, false)
 
   );
 

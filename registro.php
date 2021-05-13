@@ -20,7 +20,7 @@ include 'Negocio/UsuarioNegocio.php';
 
 if (!isset($error)) {
     
-    $error = addUsuario($_POST['nombre'], $_POST['email'], $_POST['contrasena'], $_POST['contrasena2'] );
+     addUsuario($_POST['nombre'], $_POST['email'], $_POST['contrasena'], $_POST['contrasena2'] );
     
     }
 
@@ -47,7 +47,7 @@ if (!isset($error)) {
         <h1>Registro de usuario</h1>
         <?php if(isset($error)){
 			foreach($error as $err){ ?>
-			<div class="alert alert-danger" role="alert"><?php echo $err?></div>
+			<div class="alert alert-danger" role="alert"><?php echo $err ?></div>
 			<?php } } ?>
             
             <div class="txt_field">
