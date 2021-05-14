@@ -65,7 +65,7 @@ try {
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
     $mail->Subject = 'Clan canino| activación de cuenta';
-    $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
+    $mail->Body    = "Su correo esta siendo utilizado para crear una cuenta en Clan-Canino.com, para activar su cuenta presione <a href='localhost/Clan-canino/verificacion.php?token=$token&e=$email'> aquí</a>. En caso de no ser usted, haga caso omiso a este correo, ¡Gracias!";
     
 
     $mail->send();
@@ -76,6 +76,12 @@ try {
 
 
 
+
+}
+
+function activarCuentaUsuario($correo,$token){
+	include_once "Persistencia/UsuarioDAO.php";
+	return activarCuenta($correo, $token);
 
 }
 

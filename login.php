@@ -48,8 +48,15 @@
 </head>
 <body>
     <div class="center">
+    
     <form  action="login.php" method="post">
         <h1>Inicio de sesión</h1>
+
+        <?php if(isset($_GET['confirmation'])&& $_GET['confirmation']=="sent"){ ?>
+        <div class=" alert alert-success" role="alert"><?php echo 'Se te ha enviado un correo para activar tu cuenta';?></div>
+        <br>
+        <?php }?>
+
         <?php if(isset($_GET['loggedOff']) ){
             ?>
             <div class=" alert alert-success" role="alert"><?php echo 'Has cerrado sesión, ¡vuelve pronto!';?></div>

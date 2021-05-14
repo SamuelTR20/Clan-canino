@@ -26,8 +26,8 @@ if (!isset($error)) {
 
     
     if (!isset($error)) {
-        login($_POST['email'],$_POST['contrasena']);
-        header('Location:index.php');
+        
+        header('Location:login.php?confirmation=sent');
         }else{
 
         }
@@ -42,6 +42,8 @@ if (!isset($error)) {
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+
+       
 
     <form class="center" action="registro.php" method="post">
         <h1>Registro de usuario</h1>
