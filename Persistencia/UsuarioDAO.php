@@ -234,5 +234,36 @@ function editarRolUsuario($id, $rol){
 
 }
 
+function activarCuenta ($correo, $token){
+  include_once("Conexion.php");
+  $connLocalhost = conexion();
+
+  include_once "Entidades/Usuario.php";
+
+  $queryActivarCuenta = sprintf(
+    "UPDATE  emp_usuarios SET activa = 1 WHERE correo = '%s' AND token= '%s' ",
+    mysqli_real_escape_string($connLocalhost, trim($correo)),
+    mysqli_real_escape_string($connLocalhost, trim($token))
+
+  );
+
+  // Ejecutamos el query en la BD
+  $resQueryActivarCuenta = mysqli_query($connLocalhost, $queryActivarCuenta) or trigger_error("El query de activacion de cuenta falló");
+
+  if ($resQueryActivarCuenta) {
+    $connLocalhost->close();
+
+    if (!isset($_SESSION)) {
+      session_start();
+    }
+ 
+
+    return true;
+  } else {
+    $connLocalhost->close();
+    return false;
+  }
+}
+
 
 ?>

@@ -47,6 +47,8 @@ if (!isset($error)) {
 </head>
 <body>
 
+       
+
     <form class="center" action="registro.php" method="post">
         <h1>Registro de usuario</h1>
         <?php if(isset($error)){

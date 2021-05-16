@@ -230,30 +230,28 @@ if (!isset($error)) {
 							<div class="col-md-6 services-2 w-100 d-flex">
 								<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-customer-service"></span></div>
 								<div class="text pl-3">
-									<h4>Historia</h4>
-									<p>aqui puede ir como empezó todo</p>
+									<h4>¿Qué hacemos?</h4>
+									<p>Rescate y reubicación de mascotas de la calle ademas de la elaboración de dispensadores de croquetas y agua.</p>
 								</div>
 							</div>
 							<div class="col-md-6 services-2 w-100 d-flex">
 								<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-emergency-call"></span></div>
 								<div class="text pl-3">
-									<h4>Equipo</h4>
-									<p>Aqui se puede mencionar cuantos son los que ayudan</p>
+									<h4>¿Qué somos?</h4>
+									<p>Somos un grupo de jóvenes que busca ayudar a los animales sin hogar que se encuentran en las calles.</p>
 								</div>
 							</div>
 							<div class="col-md-6 services-2 w-100 d-flex">
 								<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-veterinarian"></span></div>
 								<div class="text pl-3">
-									<h4>Objetivo</h4>
-									<p>Nuestro propósito es ayudar a los perritos sin hogar.</p>
+									<h4>¿Qué esperamos?</h4>
+									<p>Concientizar a la sociedad aportando nuestro granito de arena y haciendo eco a futuras generaciones.</p>
 								</div>
 							</div>
 						</div>
 				</div>
 			</div>
-			<div class="row justify-content-center">
-						<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4505.588288609406!2d-110.925029758233!3d27.93823051373606!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86c97ac0a897ae87%3A0xa7cb3d47793ea8f0!2sWalmart%20Guaymas!5e0!3m2!1ses!2smx!4v1619756641543!5m2!1ses!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-			</div>
+			
 
 			</div>
 			
