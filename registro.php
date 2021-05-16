@@ -29,8 +29,12 @@ if (!isset($error)) {
         login($_POST['email'],$_POST['contrasena']);
         header('Location:index.php');
         }else{
+            if (isset($error)){
+                
+            $error[] = $correcto;
+            }else{
             $error = $correcto;
-        }
+        }}
 }
 ?>
 <!DOCTYPE html>
@@ -46,9 +50,10 @@ if (!isset($error)) {
     <form class="center" action="registro.php" method="post">
         <h1>Registro de usuario</h1>
         <?php if(isset($error)){
-			foreach($error as $err){ ?>
+			foreach($error as $err){ 
+                if ($err != ''){?>
 			<div class="alert alert-danger" role="alert"><?php echo $err ?></div>
-			<?php } } ?>
+			<?php } }} ?>
             
             <div class="txt_field">
                 <label>Nombre</label><br>

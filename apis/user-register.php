@@ -36,28 +36,21 @@ if($_SERVER["REQUEST_METHOD"] != "POST"){
 
         include $_SERVER["DOCUMENT_ROOT"]."/Negocio/UsuarioNegocio.php";
 
-        if (!isset($error)) {
-        addUsuario($_POST['name'],$_POST['email'], $_POST['password'], $_POST['password']);
+        $correcto = addUsuario($_POST['name'],$_POST['email'], $_POST['password'], $_POST['password']);
         
+        if ($correcto == 1) {
+            $returnData = [
+                'success' => 1,
+                'message' => 'Se ha registrado con exito'
+            ];
+          header("HTTP/1.1 200 OK");
+          echo json_encode($returnData);
+          exit();
+
+            }else{
+                $returnData = msg(0,422, $correcto[0]);    
+            }
     }
-    }
-
-
-    if(isset($permitido) and $permitido)
-    {
-        $returnData = [
-            'success' => 1,
-            'message' => 'Se ha iniciado sesion'
-        ];
-      header("HTTP/1.1 200 OK");
-      echo json_encode($returnData);
-      exit();
-	 }else{
-
-        $returnData = msg(0,422,'Credenciales invalidas');
-     }
-      
-
     }
     echo json_encode($returnData); 
     ?>
