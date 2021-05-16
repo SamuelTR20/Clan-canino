@@ -11,25 +11,25 @@ if(!isset($_SESSION)) {
 }
 
 
-
 if (isset($_POST['register_sent'])){
     foreach ($_POST as $inputs => $vars) {
 if(trim($vars) == "") $error[0] = "No se han llenado todos los datos";
 }
 include 'Negocio/UsuarioNegocio.php';
-
+$correcto = False;
 if (!isset($error)) {
     
-     addUsuario($_POST['nombre'], $_POST['email'], $_POST['contrasena'], $_POST['contrasena2'] );
+    $correcto = addUsuario($_POST['nombre'], $_POST['email'], $_POST['contrasena'], $_POST['contrasena2'] );
+    
     
     }
 
     
-    if (!isset($error)) {
+    if ($correcto == 1 and !isset($error)) {
         login($_POST['email'],$_POST['contrasena']);
         header('Location:index.php');
         }else{
-
+            $error = $correcto;
         }
 }
 ?>

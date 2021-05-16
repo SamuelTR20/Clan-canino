@@ -9,7 +9,7 @@ function obtenerUsuarios(){
   include_once("Conexion.php");
   $connLocalhost = conexion();
 
-  include_once "Entidades/Usuario.php";
+  include_once $_SERVER["DOCUMENT_ROOT"]."Entidades/Usuario.php";
 
   $queryUsuarios = "SELECT id, nombre, correo, aes_decrypt(contrasenia, 'key'), rol FROM emp_usuarios";
 
@@ -41,7 +41,7 @@ function agregarUsuario($nombre, $email, $contrasenia, $token){
   include_once("Conexion.php");
   $connLocalhost = conexion();
 
-  include_once "Entidades/Usuario.php";
+  include_once $_SERVER["DOCUMENT_ROOT"]."/Entidades/Usuario.php";
 
   $queryInsertUsuario = sprintf(
     "INSERT INTO emp_usuarios (nombre, correo, contrasenia, rol, token, activa) VALUES ( '%s', '%s',  aes_encrypt('%s', 'key'), '%s', '%s', %d )",
@@ -72,7 +72,7 @@ function editarUsuario($id, $nombre, $correo, $contrasenia, $rol){
   include_once("Conexion.php");
   $connLocalhost = conexion();
 
-  include_once "Entidades/Usuario.php";
+  include_once $_SERVER["DOCUMENT_ROOT"]."Entidades/Usuario.php";
 
   $queryEditUsuario = sprintf(
     "UPDATE  emp_usuarios SET nombre = '%s', correo = '%s', contrasenia = aes_encrypt('%s', 'key'), rol = '%s' WHERE id = '%d' ",
@@ -121,7 +121,7 @@ function iniciarSesion($correo, $contrasenia){
   
 
   $permitido = false;
-  include_once("Entidades/Usuario.php");
+  include_once($_SERVER["DOCUMENT_ROOT"]."/Entidades/Usuario.php");
   // Armamos el query para verificar el correo y contraseña en la base de datos
   $queryLogin = sprintf(
     "SELECT id, nombre, correo, contrasenia, rol FROM emp_usuarios WHERE correo = '%s' AND aes_decrypt(contrasenia, 'key') = '%s'",
@@ -203,7 +203,7 @@ function editarRolUsuario($id, $rol){
   include_once("Conexion.php");
   $connLocalhost = conexion();
 
-  include_once "Entidades/Usuario.php";
+  include_once $_SERVER["DOCUMENT_ROOT"]."Entidades/Usuario.php";
 
   $queryEditUsuario = sprintf(
     "UPDATE  emp_usuarios SET rol = '%s' WHERE id = '%d' ",

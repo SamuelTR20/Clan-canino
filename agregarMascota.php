@@ -51,7 +51,7 @@ if (!isset($error)) {
     $image->contain(1136, 640);
 
 	$nom = str_replace(' ', '',$_POST['nombre']);
-	$nom2 = $nom.rand ( 1 , 10000000 ).".jpg"; 
+	$nom2 = $nom.rand ( 1 , 10000000 ).".webp"; 
     $ruta = "images/".$nom2;
     
 	$image->output("images");

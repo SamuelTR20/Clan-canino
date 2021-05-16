@@ -2,14 +2,14 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require 'PHPMailer/Exception.php';
-require 'PHPMailer/PHPMailer.php';
-require 'PHPMailer/SMTP.php';
+require ($_SERVER["DOCUMENT_ROOT"].'/PHPMailer/Exception.php');
+require ($_SERVER["DOCUMENT_ROOT"].'/PHPMailer/PHPMailer.php');
+require ($_SERVER["DOCUMENT_ROOT"].'/PHPMailer/SMTP.php');
 
 function addUsuario($nombre, $email, $contrasenia, $contrasenia2){
 	$correcto = false;
 	//Se manda a llamar el metodo de la persistencia para agregar al usuario a la BD
-	include_once "Persistencia/UsuarioDAO.php";
+	include_once $_SERVER["DOCUMENT_ROOT"]."/Persistencia/UsuarioDAO.php";
 
 	if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
 		
@@ -31,9 +31,7 @@ function addUsuario($nombre, $email, $contrasenia, $contrasenia2){
 	return $correcto;
 		
 	}else {
-		if (!isset($error)){
 		$error[] = "Ocurrio un error al registrarse";
-		}
 		return $error;
 	}
 
@@ -69,7 +67,6 @@ try {
     
 
     $mail->send();
-    echo 'Message has been sent';
 } catch (Exception $e) {
     header('Location: login.php');
 }
@@ -81,7 +78,7 @@ try {
 
 
 function editarUsuarioRol($id, $rol){
-	include_once "Persistencia/UsuarioDAO.php";
+	include_once $_SERVER["DOCUMENT_ROOT"]."/Persistencia/UsuarioDAO.php";
 	return editarRolUsuario($id, $rol);
 
 }
@@ -96,7 +93,7 @@ function editUsuario ($id, $nombre, $correo, $contrasenia, $rol){
 
 	}else{
 			//Se manda a llamar el metodo de la persistencia para editar la info del usuario en la BD
-			include_once "Persistencia/UsuarioDAO.php";
+			include_once $_SERVER["DOCUMENT_ROOT"]."/Persistencia/UsuarioDAO.php";
 		 return	editarUsuario($id, $nombre, $correo, $contrasenia, $rol);
 	}
 }
@@ -110,8 +107,8 @@ function deleteUsuario ($id){
 
 
 	}else{
-			//Se manda a llamar el metodo de la persistencia para eliminar al usuario a la BD
-			include_once "Persistencia/UsuarioDAO.php";
+			//Se manda a llamar el metodo de la Persistencia para eliminar al usuario a la BD
+			include_once $_SERVER["DOCUMENT_ROOT"]."/Persistencia/UsuarioDAO.php";
 			eliminarUsuario($id);
 	}
 }
@@ -119,7 +116,7 @@ function deleteUsuario ($id){
 
 function getUsuarios(){
 
-	include_once "Persistencia/UsuarioDAO.php";
+	include_once $_SERVER["DOCUMENT_ROOT"]."/Persistencia/UsuarioDAO.php";
 	$usuarios = obtenerUsuarios();
 
 	return $usuarios;
@@ -131,7 +128,7 @@ function login($correo, $contrasenia){
 	if( trim($correo)=="" || trim($contrasenia)=="" ){
 
 	}else{
-		include_once("Persistencia/UsuarioDAO.php");
+		include_once($_SERVER["DOCUMENT_ROOT"]."/Persistencia/UsuarioDAO.php");
 		
 		$permitido = iniciarSesion($correo, $contrasenia);
 
