@@ -230,11 +230,37 @@ if (!isset($error)) {
 												
 												<div class="col-md-12">
 													<div class="form-group">
-													<input type="hidden" name="idMascota" value="<?php echo $idMascota; ?>">
-														<input type="submit" value="Guardar información" class="btn btn-primary" name="info_sent">
+													<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Guardar Información</button>
+
 														<div class="submitting"></div>
 													</div>
 												</div>
+
+													<div class="modal fade" id="myModal" role="dialog">
+														<div class="modal-dialog">
+														
+														<div class="modal-content">
+															<div class="modal-header">
+																<h4 class="modal-title">Términos y condiciones</h4>
+															<button type="button" class="close" data-dismiss="modal">&times;</button>
+														
+															</div>
+															<div class="modal-body">
+															<p>Para poder solicitar la adopción de una mascota debes de aceptar los siguientes términos y condiciones:</p>
+															<br>
+															<p>Los términos y condiciones, también conocidos como condiciones de uso y contratación, son elementos que regulan la relación con el usuario respecto al acceso de los contenidos y de los servicios que se ponen a disposición a través de la página web. Dichas condiciones son redactadas unilateralmente por el empresario titular de la página web o tienda online sin posibilidad de que los usuarios tengan capacidad de negociación dado que se trata de contratos de adhesión. Los términos y condiciones, también conocidos como condiciones de uso y contratación, son elementos que regulan la relación con el usuario respecto al acceso de los contenidos y de los servicios que se ponen a disposición a través de la página web. Dichas condiciones son redactadas unilateralmente por el empresario titular de la página web o tienda online sin posibilidad de que los usuarios tengan capacidad de negociación dado que se trata de contratos de adhesión.</p>
+
+															</div>
+															<div class="modal-footer">
+															<input type="hidden" name="idMascota" value="<?php echo $idMascota; ?>">
+															<input type="submit" value="Aceptar" class="btn btn-primary" name="info_sent">
+																<div class="submitting"></div>
+															<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+															</div>
+														</div>
+														
+														</div>
+													</div>
 												
 											</div>
 										</form>

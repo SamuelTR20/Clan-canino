@@ -70,6 +70,7 @@ if(isset($_GET['logOff']) && $_GET['logOff'] == "true") {
 				<ul class="submenu">
 						<a href="formulario.php"  ><li class="nav-item children" > Mis datos </li></a>
 						<a href= "editarPerfil.php" class="children"><li class="nav-item">Configuración</li></a>
+						<a href= "ayuda.php" class="children"><li class="nav-item">Ayuda</li></a>
 						<a href= "index.php?logOff=true" class="children"><li class="nav-item">Cerrar sesión</li></a> 
 					</ul>
 		</li>

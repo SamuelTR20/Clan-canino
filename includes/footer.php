@@ -9,31 +9,7 @@
               <li class="ftco-animate"><a href="https://www.instagram.com/clancanino/?hl=es-la&fbclid=IwAR1r7VNWZeZXoiVNfvFQUSKm-485eqt2ulckprqaPvrChkFhevzWKQ9dSqQ" target=" _blank" data-toggle="tooltip" data-placement="top" title="Instagram"><span class="fa fa-instagram"></span></a></li>
             </ul>
 					</div>
-					<div class="col-md-6 col-lg-3 mb-4 mb-md-0">
-						<h2 class="footer-heading">Latest News</h2>
-						<div class="block-21 mb-4 d-flex">
-              <a class="img mr-4 rounded" style="background-image: url(images/image_1.jpg);"></a>
-              <div class="text">
-                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
-                <div class="meta">
-                  <div><a href="#"><span class="icon-calendar"></span> April 7, 2020</a></div>
-                  <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                  <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                </div>
-              </div>
-            </div>
-            <div class="block-21 mb-4 d-flex">
-              <a class="img mr-4 rounded" style="background-image: url(images/image_2.jpg);"></a>
-              <div class="text">
-                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
-                <div class="meta">
-                  <div><a href="#"><span class="icon-calendar"></span> April 7, 2020</a></div>
-                  <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                  <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                </div>
-              </div>
-            </div>
-					</div>
+				
 					<div class="col-md-6 col-lg-3 pl-lg-5 mb-4 mb-md-0">
 						<h2 class="footer-heading">Quick Links</h2>
 						<ul class="list-unstyled">
@@ -41,6 +17,7 @@
               <li><a href="editarPerfil.php" class="py-2 d-block">Perfil</a></li>
               <li><a href="Refugio.php" class="py-2 d-block">Refugio</a></li>
               <li><a href="tramites.php" class="py-2 d-block">Tramites</a></li>
+              <li><a href="ayuda.php" class="py-2 d-block">Ayuda</a></li>
               <li><a href="?logOff=true" class="py-2 d-block">Cerrar Sesion</a></li>
             </ul>
 					</div>

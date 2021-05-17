@@ -108,7 +108,7 @@ $mascotas = getMascotas($busqueda, $mostrar , $maximo);
       <div class="container">
         <div class="row d-flex">
         <?php if(isset($_SESSION['userActiva']) and $_SESSION['userRol'] == "cliente" and $_SESSION['userActiva'] == 0 ) {?>
-              <div class="alert alert-danger" role="alert"> Para poder adoptar debes de activar tu cuenta, se mandó un correo electronico a  <?php echo $_SESSION['userCorreo'] ?> ¿No resiviste un correo? <a href="index.php?SendEmail=1012">Clic aquí para volver a enviarlo </a></div>
+              <div class="alert alert-danger" role="alert"> Para poder adoptar debes de activar tu cuenta, se mandó un correo electronico a  <?php echo $_SESSION['userCorreo'] ?> ¿No recibiste un correo? <a href="index.php?SendEmail=1012">Clic aquí para volver a enviarlo </a></div>
             
             <?php } ?>
 
