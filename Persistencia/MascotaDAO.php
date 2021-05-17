@@ -69,6 +69,49 @@ $connLocalhost->close();
 
 }
 
+function obtenerMascotasApp(){
+
+  include_once $_SERVER["DOCUMENT_ROOT"]."/Entidades/Mascota.php";
+  include_once("Conexion.php");
+  $connLocalhost = conexion();
+  
+  $queryObtenerMascotas = sprintf(
+    "SELECT * FROM emp_mascota "
+  );
+    // Ejecutamos el query
+    $resQueryMascotas = mysqli_query($connLocalhost, $queryObtenerMascotas) or trigger_error("El query de login de usuario falló");
+  
+    $Mascotas = [];
+  
+    
+  
+  if (mysqli_num_rows($resQueryMascotas)) { 
+  
+  while ($mascData = mysqli_fetch_assoc($resQueryMascotas)){
+    $masc = new Mascota();
+    $masc->setId($mascData['id']);
+    $masc->setNombre($mascData['nombre']);
+    $masc->setIdRefugio($mascData['id_refugio']);
+    $masc->setEdad($mascData['edad']);
+    $masc->setSexo($mascData['sexo']);
+    $masc->setHistoria($mascData['historia']);
+    $masc->setFoto($mascData['foto']);
+    $masc->setEstado($mascData['estado']);
+    $masc->setObservaciones($mascData['observaciones']);
+    $masc->setEspecie($mascData['especie']);
+  
+    
+    array_push($Mascotas, $masc);
+  } 
+  
+  }
+  
+  $connLocalhost->close();
+   return $Mascotas;
+  
+  }
+
+
 function agregarMascota($idRefugio, $nombre, $especie, $edad, $sexo, $observaciones, $estado, $historia, $foto)
 {
 include_once "Entidades/Mascota.php";

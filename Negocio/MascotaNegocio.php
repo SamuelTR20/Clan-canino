@@ -15,6 +15,13 @@ function getMascotas($busqueda, $mostrar, $maximo){
 	$mascotas = obtenerMascotas($busqueda, $mostrar, $maximo);
 	return $mascotas;
 }
+function getMascotasApp(){
+
+	include_once $_SERVER["DOCUMENT_ROOT"]."/Persistencia/MascotaDAO.php";
+
+	return obtenerMascotasApp();
+
+}
 
 	function getMascota($idMascota){
 		//Validamos si las variables  vienen vacias
