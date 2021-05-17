@@ -27,10 +27,10 @@ if($_SERVER["REQUEST_METHOD"] != "GET"){
         foreach($mascotas as $masc){
 
           $mascota = [
-            'id'=> $masc->getId(),
+            'id'=> (int)$masc->getId(),
             'nombre'=> $masc->getNombre(),
             'foto'=> $masc->getFoto(),
-            'edad'=> $masc->getEdad(),
+            'edad'=> (int)$masc->getEdad(),
             'especie' => $masc->getEspecie()
 
           ];
@@ -38,10 +38,10 @@ if($_SERVER["REQUEST_METHOD"] != "GET"){
           $list[]= $mascota;
         }
 
-        $listMasc = ['mascota' => $list ];
+        //$listMasc = ['mascota' => $list ];
            
           header("HTTP/1.1 200 OK");
-          echo json_encode($listMasc);
+          echo json_encode($list);
           exit();
 
     }
