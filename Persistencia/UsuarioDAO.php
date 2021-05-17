@@ -11,7 +11,7 @@ function obtenerUsuarios(){
 
   include_once $_SERVER["DOCUMENT_ROOT"]."Entidades/Usuario.php";
 
-  $queryUsuarios = "SELECT id, nombre, correo, aes_decrypt(contrasenia, 'key'), rol FROM emp_usuarios";
+  $queryUsuarios = "SELECT id, nombre, correo, aes_decrypt(contrasenia, 'key'), rol, activa FROM emp_usuarios";
 
   // Ejecutamos el query
   $resQueryUsuarios = mysqli_query($connLocalhost, $queryUsuarios) or trigger_error("El query de login de usuario falló");
@@ -28,6 +28,7 @@ function obtenerUsuarios(){
       $usu->setContrasenia =  $usersData['contrasenia'];
       $usu->setCorreo =  $usersData['correo'];
       $usu->setRol =  $usersData['rol'];
+      $usu->setActiva =  $usersData['activa'];
 
       array_push($usuarios, $usu);
     }
@@ -124,7 +125,7 @@ function iniciarSesion($correo, $contrasenia){
   include_once($_SERVER["DOCUMENT_ROOT"]."/Entidades/Usuario.php");
   // Armamos el query para verificar el correo y contraseña en la base de datos
   $queryLogin = sprintf(
-    "SELECT id, nombre, correo, contrasenia, rol FROM emp_usuarios WHERE correo = '%s' AND aes_decrypt(contrasenia, 'key') = '%s'",
+    "SELECT id, nombre, correo, contrasenia, rol, activa, token FROM emp_usuarios WHERE correo = '%s' AND aes_decrypt(contrasenia, 'key') = '%s'",
     mysqli_real_escape_string($connLocalhost, trim($correo)),
     mysqli_real_escape_string($connLocalhost, trim($contrasenia))
   );
@@ -147,6 +148,8 @@ function iniciarSesion($correo, $contrasenia){
     $_SESSION['userCorreo'] = $userData['correo'];
     $_SESSION['userContrasenia'] = $contrasenia;
     $_SESSION['userRol'] = $userData['rol'];
+    $_SESSION['userActiva'] = $userData['activa'];
+    $_SESSION['userToken'] = $userData['token'];
 
     
     $permitido = true;
@@ -262,6 +265,52 @@ function activarCuenta ($correo, $token){
   } else {
     $connLocalhost->close();
     return false;
+  }
+}
+
+
+function obtenerUsuarioActivacion($id){
+  include_once("Conexion.php");
+  $connLocalhost = conexion();
+  
+
+  $permitido = false;
+  include_once($_SERVER["DOCUMENT_ROOT"]."/Entidades/Usuario.php");
+  // Armamos el query para verificar el correo y contraseña en la base de datos
+  $queryLogin = sprintf(
+    "SELECT activa FROM emp_usuarios WHERE id = '%d' ",
+    mysqli_real_escape_string($connLocalhost, trim($id))
+    
+  );
+
+  // Ejecutamos el query
+  $resQueryLogin = mysqli_query($connLocalhost, $queryLogin) or trigger_error("El query de login de usuario falló");
+
+  // Determinamos si el login es valido (email y password sean coincidentes)
+  // Contamos el recordset (el resultado esperado para un login valido es 1)
+  if (mysqli_num_rows($resQueryLogin) == 1) {
+    // Hacemos un fetch del recordset
+    $userData = mysqli_fetch_assoc($resQueryLogin);
+    if (!isset($_SESSION)) {
+      session_start();
+    }
+
+    // Definimos variables de sesion en $_SESSION
+  
+    $_SESSION['userActiva'] = $userData['activa'];
+
+    
+    $permitido = true;
+
+    $connLocalhost->close();
+    return $permitido;
+    // Redireccionamos al usuario al panel de control
+
+    //nombre de redirección pendiente.
+
+  } else {
+    $connLocalhost->close();
+    return $permitido;
   }
 }
 

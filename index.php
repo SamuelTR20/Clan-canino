@@ -1,8 +1,19 @@
 <?php 
 include "Negocio/MascotaNegocio.php";
+include "Negocio/UsuarioNegocio.php";
 if (!isset($_SESSION)) {
   session_start();
 }
+
+
+if(isset($_SESSION['userId']) and $_SESSION['userRol'] == "cliente"){
+  obtenerActivacion($_SESSION['userId']);
+
+if(isset($_GET['SendEmail'])){
+  confirmarEmail($_SESSION['userCorreo'],  $_SESSION['userToken'], $_SESSION['userNombre']);
+}
+}
+
 
 $busqueda = "";
 
@@ -96,6 +107,11 @@ $mascotas = getMascotas($busqueda, $mostrar , $maximo);
     <section class="ftco-section bg-light">
       <div class="container">
         <div class="row d-flex">
+        <?php if(isset($_SESSION['userActiva']) and $_SESSION['userRol'] == "cliente" and $_SESSION['userActiva'] == 0 ) {?>
+              <div class="alert alert-danger" role="alert"> Para poder adoptar debes de activar tu cuenta, se mandó un correo electronico a  <?php echo $_SESSION['userCorreo'] ?> ¿No resiviste un correo? <a href="index.php?SendEmail=1012">Clic aquí para volver a enviarlo </a></div>
+            
+            <?php } ?>
+
         <?php
         
           foreach($mascotas as $mascota ){ ?>

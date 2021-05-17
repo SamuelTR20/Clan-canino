@@ -1,10 +1,20 @@
 <?php if (!isset($_SESSION)) {
   session_start(); 
 }
+include "Negocio/UsuarioNegocio.php";
+
 if(isset($_GET['idMascota'])){
 	include "Negocio/MascotaNegocio.php";
 	$mascota = getMascota($_GET['idMascota']);
 
+if(isset($_SESSION['userId']) and $_SESSION['userRol'] == "cliente"){
+  obtenerActivacion($_SESSION['userId']);
+
+if(isset($_GET['SendEmail'])){
+  confirmarEmail($_SESSION['userCorreo'],  $_SESSION['userToken'], $_SESSION['userNombre']);
+}
+  
+}
   if (!$mascota){
 	header('Location:index.php');
 
@@ -68,6 +78,10 @@ if(isset($_GET['idMascota'])){
     			</div>
     			<div class="col-md-7 pl-md-5 py-md-5">
     				<div class="heading-section pt-md-5">
+            <?php if(isset($_SESSION['userActiva']) and $_SESSION['userRol'] == "cliente" and $_SESSION['userActiva'] == 0 ) {?>
+              <div class="alert alert-danger" role="alert"> Para poder adoptar debes de activar tu cuenta, se mandó un correo electronico a  <?php echo $_SESSION['userCorreo'] ?> ¿No resiviste un correo? <a href="pet.php?idMascota=<?php echo $mascota->getId(); ?>&SendEmail=1012">Clic aquí para volver a enviarlo </a></div>
+            
+            <?php } ?>
 	            <h2 class="mb-4"><?php echo $mascota->getNombre() ?></h2>
     				</div>
     				<div class="row">
@@ -114,7 +128,7 @@ if(isset($_GET['idMascota'])){
               <div class="col-md-6 services-2 w-100 d-flex justify-content-start">
 	    				
 	    					<div class="text pl-3">
-                <?php if(isset($_SESSION['userNombre']) and $_SESSION['userRol']!='admin') { ?>
+                <?php if(isset($_SESSION['userNombre']) and $_SESSION['userRol']!='admin' and $_SESSION['userActiva'] == 1) { ?>
                   <a href="formulario.php?idMascota=<?php echo $mascota->getId() ?>" class="btn btn-dark"> Adoptar </a>
 	    					<?php } ?>
                 </div>

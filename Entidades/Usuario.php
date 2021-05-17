@@ -7,6 +7,25 @@ class Usuario
 	private $contrasenia;
 	private $rol;
 	private $info;
+	private $activa;
+	private $token;
+
+
+	public function getToken(){
+		return $this->token;
+	}
+
+	public function setToken($token){
+		$this->token = $token;
+	}
+
+	public function getactiva(){
+		return $this->activa;
+	}
+
+	public function setActiva($activa){
+		$this->activa = $activa;
+	}
 
 	public function getInfo(){
 		return $this->info;

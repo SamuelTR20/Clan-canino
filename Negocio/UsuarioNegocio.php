@@ -62,7 +62,8 @@ try {
     
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
-    $mail->Subject = 'Clan canino| activación de cuenta';
+    $mail->CharSet = 'UTF-8';
+	$mail->Subject = 'Clan canino| activación de cuenta';
     $mail->Body    = "Su correo esta siendo utilizado para crear una cuenta en Clan-Canino.com, para activar su cuenta presione <a href='localhost/Clan-canino/verificacion.php?token=$token&e=$email'> aquí</a>. En caso de no ser usted, haga caso omiso a este correo, ¡Gracias!";
     
 
@@ -140,6 +141,16 @@ function login($correo, $contrasenia){
 
 return $permitido;
 }
+}
+
+function obtenerActivacion($id){
+
+	include_once($_SERVER["DOCUMENT_ROOT"]."/Persistencia/UsuarioDAO.php");
+	
+	$permitido = obtenerUsuarioActivacion($id);
+
+return $permitido;
+
 }
 
 
