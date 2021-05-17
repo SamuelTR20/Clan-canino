@@ -33,8 +33,9 @@ function addTramite($idUsuario, $idMascota, $estado){
 	}else{
 
 		//Se manda a llamar el metodo de la persistencia para agregar la mascota a la BD
-	include_once "Persistencia/TramiteDAO.php";
-		return	agregarTramite($idUsuario, $idMascota, $estado);
+	include_once $_SERVER["DOCUMENT_ROOT"]."/Persistencia/TramiteDAO.php";
+	
+	return	agregarTramite($idUsuario, $idMascota, $estado);
 	}
 }
 

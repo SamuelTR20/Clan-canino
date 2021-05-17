@@ -26,7 +26,7 @@ function getMascotasApp(){
 	function getMascota($idMascota){
 		//Validamos si las variables  vienen vacias
 	
-		include_once("Persistencia/MascotaDAO.php");
+		include_once $_SERVER["DOCUMENT_ROOT"]."/Persistencia/MascotaDAO.php";
 		
 		$mascota = obtenerMascota($idMascota);
 

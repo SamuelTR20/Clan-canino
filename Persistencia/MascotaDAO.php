@@ -209,7 +209,7 @@ function obtenerMascota($idMascota){
   
 
   $permitido = false;
-  include_once("Entidades/Mascota.php");
+  include_once $_SERVER["DOCUMENT_ROOT"]."/Entidades/Mascota.php";
   $masc = new Mascota();
   $queryMasc = sprintf(
     "SELECT id, id_refugio, nombre, edad, sexo, historia, foto, estado, observaciones,especie FROM emp_mascota WHERE id = '%s' ",
