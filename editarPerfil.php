@@ -9,10 +9,11 @@ if(!isset($_SESSION)) {
    // if(isset($_SESSION['userId'])) header('Location: index.php');
    // if(!isset($_SESSION['userId'])) header('Location: formulario.php');
 }
-$contra;
+
 
 if (isset($_SESSION['userId'])) {
 
+	
    if (isset($_POST['usu_sent'])){
     foreach ($_POST as $inputs => $vars) {
 
@@ -22,15 +23,15 @@ if (isset($_SESSION['userId'])) {
 }
 
 
-$contra = $_POST['contra'];
-echo $contra;
+$contra = $_POST["contra"];
+
 
 if($_POST['contra'] == ""){
 	$error[] = "Debes ingresar tu contraseña para poder realizar los cambios";
 
 }
 
-if (isset($_POST['contrasenia1'])){
+if (isset($_POST['contrasenia1']) and $_POST['contrasenia1'] != "" ){
 
 if($_POST['contrasenia1'] != $_POST['contrasenia2']){
 	$error[] = "La contraseña nueva y su confirmación no coinciden";
@@ -38,6 +39,10 @@ if($_POST['contrasenia1'] != $_POST['contrasenia2']){
 	$contra = $_POST['contrasenia1'];
 }
 
+}
+
+if($_POST["contra"] != $_SESSION['userContrasenia']){
+	$error[] = "Debes ingresar correctamente tu contraseña para efectuar los cambios";
 }
 
 
