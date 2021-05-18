@@ -96,7 +96,7 @@ function editarUsuarioRol($id, $rol){
 function editUsuario ($id, $nombre, $correo, $contrasenia, $rol){
 	//Validamos si las variables  vienen vacias
 	if($id=="" || $nombre =="" || $correo=="" || $contrasenia=="" || $rol=="" ){
-		echo 'Falta(n) completar campo(s)';
+		echo 'Falta(n) completar campo(s) fdssdf'. $id.$nombre.$correo.$contrasenia.$rol;
 
 	}else{
 			//Se manda a llamar el metodo de la persistencia para editar la info del usuario en la BD

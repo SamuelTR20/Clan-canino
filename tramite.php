@@ -45,7 +45,7 @@ if($_SESSION['userRol'] == 'cliente' and $tramite->getIdUsuario()->getId() != $_
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Pet Sitting - Free Bootstrap 4 Template by Colorlib</title>
+    <title>Clan Canino</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -76,8 +76,8 @@ if($_SESSION['userRol'] == 'cliente' and $tramite->getIdUsuario()->getId() != $_
       <div class="container">
         <div class="row no-gutters slider-text align-items-end">
           <div class="col-md-9 ftco-animate pb-5">
-          	<p class="breadcrumbs mb-2"><span class="mr-2"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>About us <i class="ion-ios-arrow-forward"></i></span></p>
-            <h1 class="mb-0 bread">About Us</h1>
+          	<p class="breadcrumbs mb-2"><span class="mr-2"><a href="index.php">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Trámite <i class="ion-ios-arrow-forward"></i></span></p>
+            <h1 class="mb-0 bread">Detalle de trámite</h1>
           </div>
         </div>
       </div>

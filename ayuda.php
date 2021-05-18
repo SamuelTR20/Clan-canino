@@ -31,7 +31,7 @@
       <div class="container">
         <div class="row no-gutters slider-text align-items-end">
           <div class="col-md-9 ftco-animate pb-5">
-          	<p class="breadcrumbs mb-2"><span class="mr-2"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Ayuda<i class="ion-ios-arrow-forward"></i></span></p>
+          	<p class="breadcrumbs mb-2"><span class="mr-2"><a href="index.php">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Ayuda<i class="ion-ios-arrow-forward"></i></span></p>
             <h1 class="mb-0 bread">Ayuda </h1>
           </div>
         </div>
@@ -56,7 +56,6 @@
     			<div class="col-lg-6">
     				<div class="heading-section mb-5 mt-5 mt-lg-0">
 	            <h2 class="mb-3">Preguntas frecuentes</h2>
-	            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
     				</div>
     				<div id="accordion" class="myaccordion w-100" aria-multiselectable="true">
 						  <div class="card">
@@ -92,13 +91,7 @@
 						    </div>
 						    <div class="collapse" id="collapseTwo" role="tabpanel" aria-labelledby="headingTwo">
 						      <div class="card-body py-3 px-0">
-						      	<ol>
-						      		<li>Far far away, behind the word mountains</li>
-						      		<li>Consonantia, there live the blind texts</li>
-						      		<li>When she reached the first hills of the Italic Mountains</li>
-						      		<li>Bookmarksgrove, the headline of Alphabet Village</li>
-						      		<li>Separated they live in Bookmarksgrove right</li>
-						      	</ol>
+						      	<p>Somos un grupo de jóvenes que tienen como propósito ayudar a los perros sin hogar que se encuentran por las calles de nuestra ciudad, al igual que trabajar en conjunto con nuestra comunidad con el fin de brindarles alimento y agua.</p>
 						      </div>
 						    </div>
 						  </div>
@@ -114,13 +107,11 @@
 						    </div>
 						    <div class="collapse" id="collapseThree" role="tabpanel" aria-labelledby="headingTwo">
 						      <div class="card-body py-3 px-0">
-						      	<ol>
-						      		<li>Far far away, behind the word mountains</li>
-						      		<li>Consonantia, there live the blind texts</li>
-						      		<li>When she reached the first hills of the Italic Mountains</li>
-						      		<li>Bookmarksgrove, the headline of Alphabet Village</li>
-						      		<li>Separated they live in Bookmarksgrove right</li>
-						      	</ol>
+						      	<ul>
+						      		<li>La protegemos y mantenemos segura</li>
+									  <li>La información no es utilizada para otro asunto fuera de los trámites de adopción</li>
+						      		
+						      	</ul>
 						      </div>
 						    </div>
 						  </div>
@@ -136,7 +127,7 @@
 						    </div>
 						    <div class="collapse" id="collapseFour" role="tabpanel" aria-labelledby="headingTwo">
 						      <div class="card-body py-3 px-0">
-						      	<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+						      	<p>El periodo de respuesta estimado es de 1 a 2 días hábiles.</p>
 						      </div>
 						    </div>
 						  </div>

@@ -9,7 +9,7 @@ if(!isset($_SESSION)) {
    // if(isset($_SESSION['userId'])) header('Location: index.php');
    // if(!isset($_SESSION['userId'])) header('Location: formulario.php');
 }
-
+$contra;
 
 if (isset($_SESSION['userId'])) {
 
@@ -21,21 +21,31 @@ if (isset($_SESSION['userId'])) {
 		}
 }
 
-if($_POST['contrasenia'] == ""){
+
+$contra = $_POST['contra'];
+echo $contra;
+
+if($_POST['contra'] == ""){
 	$error[] = "Debes ingresar tu contraseña para poder realizar los cambios";
-}  
-if($_POST['contrasenia1'] != $_POST['contrasenia2']){
-	$error[] = "La contraseña nueva y su confirmación no coinciden";
+
 }
 
+if (isset($_POST['contrasenia1'])){
 
+if($_POST['contrasenia1'] != $_POST['contrasenia2']){
+	$error[] = "La contraseña nueva y su confirmación no coinciden";
+}else{
+	$contra = $_POST['contrasenia1'];
+}
+
+}
 
 
 
 if (!isset($error)) {
 
 	include 'Negocio/UsuarioNegocio.php';
-	$permitido = editUsuario($_SESSION['userId'], $_POST['nombre'], $_POST['correo'],  $_POST['contrasenia1'], $_SESSION['userRol']);
+	$permitido = editUsuario($_SESSION['userId'], $_POST['nombre'], $_POST['correo'],  $contra, $_SESSION['userRol']);
 
 
 
@@ -88,7 +98,7 @@ if (!isset($error)) {
       <div class="container">
         <div class="row no-gutters slider-text align-items-end">
           <div class="col-md-9 ftco-animate pb-5">
-          	<p class="breadcrumbs mb-2"><span class="mr-2"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Editar Perfil <i class="ion-ios-arrow-forward"></i></span></p>
+          	<p class="breadcrumbs mb-2"><span class="mr-2"><a href="index.php">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Editar Perfil <i class="ion-ios-arrow-forward"></i></span></p>
             <h1 class="mb-0 bread">Editar Perfil </h1>
           </div>
         </div>
@@ -97,56 +107,12 @@ if (!isset($error)) {
 
     <section class="ftco-section bg-light">
 			<div class="container">
-				<div class="row justify-content-center">
-					<div class="col-md-6 text-center mb-5">
-						<h2 class="heading-section">Contáctanos</h2>
-					</div>
-				</div>
+				
 				<div class="row justify-content-center">
 					<div class="col-md-12">
 						<div class="wrapper">
-							<div class="row mb-5">
-								<div class="col-md-3">
-									<div class="dbox w-100 text-center">
-				        		<div class="icon d-flex align-items-center justify-content-center">
-				        			<span class="fa fa-map-marker"></span>
-				        		</div>
-				        		<div class="text">
-					            <p><span>Ubicación:</span> dirección aqui próximamente</p>
-					          </div>
-				          </div>
-								</div>
-								<div class="col-md-3">
-									<div class="dbox w-100 text-center">
-				        		<div class="icon d-flex align-items-center justify-content-center">
-				        			<span class="fa fa-phone"></span>
-				        		</div>
-				        		<div class="text">
-					            <p><span>Teléfono:</span> <a href="tel://1234567920">622 123 1111</a></p>
-					          </div>
-				          </div>
-								</div>
-								<div class="col-md-3">
-									<div class="dbox w-100 text-center">
-				        		<div class="icon d-flex align-items-center justify-content-center">
-				        			<span class="fa fa-paper-plane"></span>
-				        		</div>
-				        		<div class="text">
-					            <p><span>Email:</span> <a href="mailto:info@yoursite.com">perla.duran12@gmail.com</a></p>
-					          </div>
-				          </div>
-								</div>
-								<div class="col-md-3">
-									<div class="dbox w-100 text-center">
-				        		<div class="icon d-flex align-items-center justify-content-center">
-				        			<span class="fa fa-globe"></span>
-				        		</div>
-				        		<div class="text">
-					            <p><span>Website</span> <a href="#">Clan-canino.com</a></p>
-					          </div>
-				          </div>
-								</div>
-							</div>
+							
+							
 							<div class="row no-gutters">
 								<div class="col-md-7">
 									<div class="contact-wrap w-100 p-md-5 p-4">
@@ -172,7 +138,7 @@ if (!isset($error)) {
 												<div class="col-md-6"> 
 													<div class="form-group">
 														<label class="label" for="especie">Contraseña </label>
-														<input type="password" class="form-control" name="contrasenia" id="email" placeholder="Contraseña">
+														<input type="password" class="form-control" name="contra" id="email" placeholder="Contraseña">
 													</div>
 												</div>
 												<div class="col-md-6"> 

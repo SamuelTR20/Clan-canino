@@ -75,8 +75,8 @@ $mascotas = getMascotas($busqueda, $mostrar , $maximo);
       <div class="container">
         <div class="row no-gutters slider-text align-items-end">
           <div class="col-md-9 ftco-animate pb-5">
-          	<p class="breadcrumbs mb-2"><span class="mr-2"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Blog <i class="ion-ios-arrow-forward"></i></span></p>
-            <h1 class="mb-0 bread"><?php if(isset($_SESSION['userNombre'])) echo $_SESSION['userNombre']?></h1>
+          	<p class="breadcrumbs mb-2"><span class="mr-2"><a href="index.php">Home <i class="ion-ios-arrow-forward"></i></a></span> </p>
+            <h1 class="mb-0 bread"><?php if(isset($_SESSION['userNombre'])){ echo "Hola, ". $_SESSION['userNombre'];}else{echo "Inicio";} ?></h1>
           </div>
         </div>
       </div>

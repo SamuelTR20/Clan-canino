@@ -119,56 +119,12 @@ if (!isset($error)) {
 
     <section class="ftco-section bg-light">
 			<div class="container">
-				<div class="row justify-content-center">
-					<div class="col-md-6 text-center mb-5">
-						<h2 class="heading-section">Contáctanos</h2>
-					</div>
-				</div>
+				
 				<div class="row justify-content-center">
 					<div class="col-md-12">
 						<div class="wrapper">
-							<div class="row mb-5">
-								<div class="col-md-3">
-									<div class="dbox w-100 text-center">
-				        		<div class="icon d-flex align-items-center justify-content-center">
-				        			<span class="fa fa-map-marker"></span>
-				        		</div>
-				        		<div class="text">
-					            <p><span>Ubicación:</span><?php echo $_SESSION['refugioDireccion']?></p>
-					          </div>
-				          </div>
-								</div>
-								<div class="col-md-3">
-									<div class="dbox w-100 text-center">
-				        		<div class="icon d-flex align-items-center justify-content-center">
-				        			<span class="fa fa-phone"></span>
-				        		</div>
-				        		<div class="text">
-					            <p><span>Teléfono:</span> <a href="tel://1234567920"> <?php echo $_SESSION['refugioTelefono']?></a></p>
-					          </div>
-				          </div>
-								</div>
-								<div class="col-md-3">
-									<div class="dbox w-100 text-center">
-				        		<div class="icon d-flex align-items-center justify-content-center">
-				        			<span class="fa fa-paper-plane"></span>
-				        		</div>
-				        		<div class="text">
-					            <p><span>Email:</span> <a href="mailto:info@yoursite.com">perla.duran12@gmail.com</a></p>
-					          </div>
-				          </div>
-								</div>
-								<div class="col-md-3">
-									<div class="dbox w-100 text-center">
-				        		<div class="icon d-flex align-items-center justify-content-center">
-				        			<span class="fa fa-globe"></span>
-				        		</div>
-				        		<div class="text">
-					            <p><span>Website</span> <a href="index.php">Clan-canino.com</a></p>
-					          </div>
-				          </div>
-								</div>
-							</div>
+							
+							
 							<div class="row no-gutters">
 								<div class="col-md-7">
 									<div class="contact-wrap w-100 p-md-5 p-4">

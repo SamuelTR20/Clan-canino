@@ -3,13 +3,11 @@
   // Inicializamos la sesion o la retomamos
 if(!isset($_SESSION)) {
     session_start();
-    // Protegemos el documento para que solamente sea visible cuando NO HAS INICIADO sesión
-   // if(isset($_SESSION['userId'])) header('Location: index.php');
-   // if(!isset($_SESSION['userId'])) header('Location: formulario.php');
+    
 }
 
-//include "Negocio/RefugioNegocio.php";
-//getRefugio();
+
+
 
 if (isset($_POST['refu_sent'])){
 
@@ -26,7 +24,7 @@ if($_SESSION['userRol']!="admin"){
 
 if (!isset($error)) {
 
-
+include "Negocio/RefugioNegocio.php";
 	 editRefugio( $_POST['nombre'], $_POST['ciudad'],  $_POST['telefono'],$_POST['direccion'],  $_POST['descripcion'] );
 
      header('Location:refugio.php');
@@ -77,7 +75,7 @@ if (!isset($error)) {
       <div class="container">
         <div class="row no-gutters slider-text align-items-end">
           <div class="col-md-9 ftco-animate pb-5">
-          	<p class="breadcrumbs mb-2"><span class="mr-2"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Refugio <i class="ion-ios-arrow-forward"></i></span></p>
+          	<p class="breadcrumbs mb-2"><span class="mr-2"><a href="index.php">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Refugio <i class="ion-ios-arrow-forward"></i></span></p>
             <h1 class="mb-0 bread">Refugio </h1>
           </div>
         </div>
@@ -122,7 +120,7 @@ if (!isset($error)) {
 				        			<span class="fa fa-paper-plane"></span>
 				        		</div>
 				        		<div class="text">
-					            <p><span>Email:</span> <a href="mailto:info@yoursite.com">perla.duran12@gmail.com</a></p>
+					            <p><span>Email:</span> <a href="mailto:info@yoursite.com">clancanino.gym@gmail.com</a></p>
 					          </div>
 				          </div>
 								</div>
@@ -138,7 +136,7 @@ if (!isset($error)) {
 								</div>
 							</div>
 							
-							<?php	//echo $_SESSION['userNombre']. "  es ".$_SESSION['userRol'] ;
+							<?php	
 	 								if(isset($_SESSION['userRol']) and $_SESSION['userRol'] == 'admin'){
 									?>
 							<div class="row no-gutters">

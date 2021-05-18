@@ -73,7 +73,7 @@ function editarUsuario($id, $nombre, $correo, $contrasenia, $rol){
   include_once("Conexion.php");
   $connLocalhost = conexion();
 
-  include_once $_SERVER["DOCUMENT_ROOT"]."Entidades/Usuario.php";
+  include_once $_SERVER["DOCUMENT_ROOT"]."/Entidades/Usuario.php";
 
   $queryEditUsuario = sprintf(
     "UPDATE  emp_usuarios SET nombre = '%s', correo = '%s', contrasenia = aes_encrypt('%s', 'key'), rol = '%s' WHERE id = '%d' ",

@@ -159,8 +159,8 @@ if(isset($idMascota)){
       <div class="container">
         <div class="row no-gutters slider-text align-items-end">
           <div class="col-md-9 ftco-animate pb-5">
-          	<p class="breadcrumbs mb-2"><span class="mr-2"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Agregar Mascota <i class="ion-ios-arrow-forward"></i></span></p>
-            <h1 class="mb-0 bread">Agregar Mascota</h1>
+          	<p class="breadcrumbs mb-2"><span class="mr-2"><a href="index.php">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Editar Mascota <i class="ion-ios-arrow-forward"></i></span></p>
+            <h1 class="mb-0 bread">Editar Mascota</h1>
           </div>
         </div>
       </div>
@@ -168,56 +168,12 @@ if(isset($idMascota)){
 
     <section class="ftco-section bg-light">
 			<div class="container">
-				<div class="row justify-content-center">
-					<div class="col-md-6 text-center mb-5">
-						<h2 class="heading-section">Contáctanos</h2>
-					</div>
-				</div>
+				
 				<div class="row justify-content-center">
 					<div class="col-md-12">
 						<div class="wrapper">
-							<div class="row mb-5">
-								<div class="col-md-3">
-									<div class="dbox w-100 text-center">
-				        		<div class="icon d-flex align-items-center justify-content-center">
-				        			<span class="fa fa-map-marker"></span>
-				        		</div>
-				        		<div class="text">
-					            <p><span>Ubicación:</span><?php echo $_SESSION['refugioDireccion']?></p>
-					          </div>
-				          </div>
-								</div>
-								<div class="col-md-3">
-									<div class="dbox w-100 text-center">
-				        		<div class="icon d-flex align-items-center justify-content-center">
-				        			<span class="fa fa-phone"></span>
-				        		</div>
-				        		<div class="text">
-					            <p><span>Teléfono:</span> <a href="tel://1234567920"> <?php echo $_SESSION['refugioTelefono']?></a></p>
-					          </div>
-				          </div>
-								</div>
-								<div class="col-md-3">
-									<div class="dbox w-100 text-center">
-				        		<div class="icon d-flex align-items-center justify-content-center">
-				        			<span class="fa fa-paper-plane"></span>
-				        		</div>
-				        		<div class="text">
-					            <p><span>Email:</span> <a href="mailto:info@yoursite.com">perla.duran12@gmail.com</a></p>
-					          </div>
-				          </div>
-								</div>
-								<div class="col-md-3">
-									<div class="dbox w-100 text-center">
-				        		<div class="icon d-flex align-items-center justify-content-center">
-				        			<span class="fa fa-globe"></span>
-				        		</div>
-				        		<div class="text">
-					            <p><span>Website</span> <a href="#">Clan-canino.com</a></p>
-					          </div>
-				          </div>
-								</div>
-							</div>
+
+							
 							<div class="row no-gutters">
 								<div class="col-md-7">
 									<div class="contact-wrap w-100 p-md-5 p-4">

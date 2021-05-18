@@ -25,9 +25,9 @@
 						<h2 class="footer-heading">Contacto</h2>
 						<div class="block-23 mb-3">
               <ul>
-                <li><span class="icon fa fa-map"></span><span class="text"><?php echo $_SESSION['refugioDireccion'];?>]</span></li>
+                <li><span class="icon fa fa-map"></span><span class="text"><?php echo $_SESSION['refugioDireccion'];?></span></li>
                 <li><a href="#"><span class="icon fa fa-phone"></span><span class="text"><?php echo $_SESSION['refugioTelefono'];?></span></a></li>
-                <li><a href="#"><span class="icon fa fa-paper-plane"></span><span class="text">perla.duran12@gmail.com</span></a></li>
+                <li><a href="#"><span class="icon fa fa-paper-plane"></span><span class="text">clancanino.gym@gmail.com</span></a></li>
               </ul>
             </div>
 					</div>

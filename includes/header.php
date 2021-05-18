@@ -18,8 +18,8 @@ if(isset($_GET['logOff']) && $_GET['logOff'] == "true") {
 				<div class="row">
 					<div class="col-md-6 d-flex align-items-center">
 						<p class="mb-0 phone pl-md-2">
-							<a href="#" class="mr-2"><span class="fa fa-phone mr-1"></span> 6221823289</a> 
-							<a href="#"><span class="fa fa-paper-plane mr-1"></span> correocaninopordefinir@gmail.com</a>
+							<a href="#" class="mr-2"><span class="fa fa-phone mr-1"></span> <?php echo $_SESSION['refugioTelefono'];?></a> 
+							<a href="#"><span class="fa fa-paper-plane mr-1"></span> clancanino.gym@gmail.com</a>
 							
 
 						</p>

@@ -110,7 +110,7 @@ if (!isset($error)) {
       <div class="container">
         <div class="row no-gutters slider-text align-items-end">
           <div class="col-md-9 ftco-animate pb-5">
-          	<p class="breadcrumbs mb-2"><span class="mr-2"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Adopción <i class="ion-ios-arrow-forward"></i></span></p>
+          	<p class="breadcrumbs mb-2"><span class="mr-2"><a href="index.php">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Adopción <i class="ion-ios-arrow-forward"></i></span></p>
             <h1 class="mb-0 bread">Formulario de adopción</h1>
           </div>
         </div>
@@ -134,7 +134,7 @@ if (!isset($error)) {
 				        			<span class="fa fa-map-marker"></span>
 				        		</div>
 				        		<div class="text">
-					            <p><span>Ubicación:</span> dirección aqui próximamente</p>
+								<p><span>Ubicación:</span><?php echo $_SESSION['refugioDireccion']?></p>
 					          </div>
 				          </div>
 								</div>
@@ -144,7 +144,7 @@ if (!isset($error)) {
 				        			<span class="fa fa-phone"></span>
 				        		</div>
 				        		<div class="text">
-					            <p><span>Teléfono:</span> <a href="tel://1234567920">622 123 1111</a></p>
+					            <p><span>Teléfono:</span> <a href="tel://1234567920"> <?php echo $_SESSION['refugioTelefono']?></a></p>
 					          </div>
 				          </div>
 								</div>
@@ -154,7 +154,7 @@ if (!isset($error)) {
 				        			<span class="fa fa-paper-plane"></span>
 				        		</div>
 				        		<div class="text">
-					            <p><span>Email:</span> <a href="mailto:info@yoursite.com">perla.duran12@gmail.com</a></p>
+					            <p><span>Email:</span> <a href="mailto:info@yoursite.com">clancanino.gym@gmail.com</a></p>
 					          </div>
 				          </div>
 								</div>
@@ -246,10 +246,13 @@ if (!isset($error)) {
 														
 															</div>
 															<div class="modal-body">
-															<p>Para poder solicitar la adopción de una mascota debes de aceptar los siguientes términos y condiciones:</p>
+															<p>Para poder solicitar la adopción de una mascota es importante leer y aceptar los siguientes términos y condiciones:</p>
 															<br>
-															<p>Los términos y condiciones, también conocidos como condiciones de uso y contratación, son elementos que regulan la relación con el usuario respecto al acceso de los contenidos y de los servicios que se ponen a disposición a través de la página web. Dichas condiciones son redactadas unilateralmente por el empresario titular de la página web o tienda online sin posibilidad de que los usuarios tengan capacidad de negociación dado que se trata de contratos de adhesión. Los términos y condiciones, también conocidos como condiciones de uso y contratación, son elementos que regulan la relación con el usuario respecto al acceso de los contenidos y de los servicios que se ponen a disposición a través de la página web. Dichas condiciones son redactadas unilateralmente por el empresario titular de la página web o tienda online sin posibilidad de que los usuarios tengan capacidad de negociación dado que se trata de contratos de adhesión.</p>
-
+															<p>- En caso de que la solicitud sea aceptada se agendará una cita en la vivienda del solicitante para determinar el resultado del proceso de adopción.</p>
+															<p>- El hecho de agendar una cita en la vivienda no asegura que la adopción de la mascota se concretará, la cita es para determinar ciertos aspectos antes de la decisión final.</p>
+															<p>- Se debe de contar con un espacio apropiado destinado para la mascota.</p>
+															<p>- Es importante que haya disponibilidad de las personas para cuidar a la mascota (que no quede solx la mayor parte del tiempo).</p>
+															<p>- En caso de que el solicitante sea menor de edad, contar con la autorización y apoyo de sus padres o tutores.</p>
 															</div>
 															<div class="modal-footer">
 															<input type="hidden" name="idMascota" value="<?php echo $idMascota; ?>">
