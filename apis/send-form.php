@@ -37,7 +37,7 @@ if($_SERVER["REQUEST_METHOD"] != "POST"){
 
         $correcto = addTramite((int)$data["idUsuario"], (int)$data["idMascota"], 'procesando');
         
-        if ($correcto == 1) {
+        if ($correcto) {
             $returnData = [
                 'success' => 1,
                 'message' => 'Se ha registrado el tramite con exito'

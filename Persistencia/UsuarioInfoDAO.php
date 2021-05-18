@@ -39,7 +39,7 @@ $connLocalhost->close();
 }
 
 function obtenerInfoUsuariosPorId($idUsuario){
-  include_once "Entidades/UsuarioInfo.php";
+  include_once $_SERVER["DOCUMENT_ROOT"]."/Entidades/UsuarioInfo.php";
   include_once("Conexion.php");
   $connLocalhost = conexion();
 
