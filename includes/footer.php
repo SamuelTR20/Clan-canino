@@ -11,14 +11,14 @@
 					</div>
 				
 					<div class="col-md-6 col-lg-3 pl-lg-5 mb-4 mb-md-0">
-						<h2 class="footer-heading">Quick Links</h2>
+						<h2 class="footer-heading">Acceso Rápido</h2>
 						<ul class="list-unstyled">
               <li><a href="index.php" class="py-2 d-block">Inicio</a></li>
               <li><a href="editarPerfil.php" class="py-2 d-block">Perfil</a></li>
               <li><a href="Refugio.php" class="py-2 d-block">Refugio</a></li>
               <li><a href="tramites.php" class="py-2 d-block">Tramites</a></li>
               <li><a href="ayuda.php" class="py-2 d-block">Ayuda</a></li>
-              <li><a href="?logOff=true" class="py-2 d-block">Cerrar Sesion</a></li>
+              
             </ul>
 					</div>
 					<div class="col-md-6 col-lg-3 mb-4 mb-md-0">

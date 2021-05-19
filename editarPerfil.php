@@ -51,7 +51,7 @@ if (!isset($error)) {
 
 	include 'Negocio/UsuarioNegocio.php';
 	$permitido = editUsuario($_SESSION['userId'], $_POST['nombre'], $_POST['correo'],  $contra, $_SESSION['userRol']);
-
+	header('Location: editarPerfil.php?status=saved');
 
 
 
@@ -122,7 +122,11 @@ if (!isset($error)) {
 								<div class="col-md-7">
 									<div class="contact-wrap w-100 p-md-5 p-4">
 										<h3 class="mb-4">Editar información</h3>
-										<?php if(isset($error)){
+										<?php if(isset($_GET['status']) && $_GET['status'] == 'saved' ){	?>
+										
+										<div class=" alert alert-success" role="alert"><?php echo 'La información se ha guardado exitosamente';?></div>
+										<?php }
+										 if(isset($error)){
 		                             	foreach($error as $err){ ?>
 	                        		<div class="alert alert-danger" role="alert"><?php echo $err?></div>
 		                         	<?php } } ?>
@@ -137,7 +141,7 @@ if (!isset($error)) {
 												<div class="col-md-6"> 
 													<div class="form-group">
 														<label class="label" for="edad">Correo electronico</label>
-														<input type="email" class="form-control" name="correo" id="edad" placeholder="Correo" value=" <?php echo $_SESSION['userCorreo']?>">
+														<input type="email" class="form-control" name="correo" id="edad" placeholder="Correo" value=" <?php echo $_SESSION['userCorreo']?>" disabled>
 													</div>
 												</div>
 												<div class="col-md-6"> 

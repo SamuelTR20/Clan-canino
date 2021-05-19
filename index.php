@@ -106,13 +106,20 @@ $mascotas = getMascotas($busqueda, $mostrar , $maximo);
 
     <section class="ftco-section bg-light">
       <div class="container">
+      
+            
+          <?php   if(isset($_GET['status']) and $_GET['status'] == "saved" ) {?>
+              <div class="alert alert-success" role="alert"> La información se ha guardado exitosamente </div>
+              <?php }?>
+
+
         <div class="row d-flex">
         <?php if(isset($_SESSION['userActiva']) and $_SESSION['userRol'] == "cliente" and $_SESSION['userActiva'] == 0 ) {?>
               <div class="alert alert-danger" role="alert"> Para poder adoptar debes de activar tu cuenta, se mandó un correo electronico a  <?php echo $_SESSION['userCorreo'] ?> ¿No recibiste un correo? <a href="index.php?SendEmail=1012">Clic aquí para volver a enviarlo </a></div>
             
-            <?php } ?>
+            <?php } 
 
-        <?php
+       
         
           foreach($mascotas as $mascota ){ ?>
           <div class="col-md-4 d-flex ftco-animate">

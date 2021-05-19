@@ -27,7 +27,7 @@ if (!isset($error)) {
 include "Negocio/RefugioNegocio.php";
 	 editRefugio( $_POST['nombre'], $_POST['ciudad'],  $_POST['telefono'],$_POST['direccion'],  $_POST['descripcion'] );
 
-     header('Location:refugio.php');
+     header('Location:refugio.php?status=saved');
 }else{
     
 }
@@ -143,7 +143,11 @@ include "Negocio/RefugioNegocio.php";
 								<div class="col-md-7">
 									<div class="contact-wrap w-100 p-md-5 p-4">
 										<h3 class="mb-4">Editar Refugio</h3>
-										<?php if(isset($error)){
+										<?php if(isset($_GET['status']) && $_GET['status'] == 'saved' ){	?>
+										
+										<div class=" alert alert-success" role="alert"><?php echo 'La información se ha guardado exitosamente';?></div>
+										<?php }
+										 if(isset($error)){
 										foreach($error as $err){ ?>
 									<div class="alert alert-danger" role="alert"><?php echo $err?></div>
 									<?php } } ?>

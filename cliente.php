@@ -3,6 +3,7 @@
 }
 include "Negocio/UsuarioInfoNegocio.php";
 include "Negocio/UsuarioNegocio.php";
+$success=0;
 
 if(isset($_GET['idUsuario'])){
   $idCliente = $_GET['idUsuario'];
@@ -21,10 +22,12 @@ if(isset($idCliente)){
 if(isset($_POST['edit_submit'])){
   //editar rol de usuario
   $editado = editarUsuarioRol($idCliente, $_POST['rol']);
+  
   if(!$editado){
     $error[] = "Error al editar rol de usuairo";
+	$success=0;
   }
-
+  $success=1;
 }
 
 
@@ -89,7 +92,11 @@ if(isset($_POST['edit_submit'])){
     </section>
 
     <section class="ftco-section pt-5 pb-5">
+		<?php if($success==1){	?>
+				<div class=" alert alert-success" role="alert"><?php echo 'La información se ha guardado exitosamente';?></div>
+				<?php } ?>
     	<div class="container d-flex justify-content-center" >
+		
     		<div class="row d-flex no-gutters">
     			<div class="col-md-5 d-flex">
     				</div>

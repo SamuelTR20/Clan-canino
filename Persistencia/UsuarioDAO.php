@@ -206,7 +206,7 @@ function editarRolUsuario($id, $rol){
   include_once("Conexion.php");
   $connLocalhost = conexion();
 
-  include_once $_SERVER["DOCUMENT_ROOT"]."Entidades/Usuario.php";
+  include_once $_SERVER["DOCUMENT_ROOT"]."/Entidades/Usuario.php";
 
   $queryEditUsuario = sprintf(
     "UPDATE  emp_usuarios SET rol = '%s' WHERE id = '%d' ",

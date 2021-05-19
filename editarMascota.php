@@ -104,7 +104,7 @@ if (!isset($error)) {
         $error[] = "Ha ocurrido un error al registrarse";            
     }else{
 
-		header('Location:index.php');
+		header('Location:index.php?status=saved');
 
 
 	}
