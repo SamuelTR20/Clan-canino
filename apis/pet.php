@@ -35,6 +35,7 @@ if($_SERVER["REQUEST_METHOD"] != "GET"){
         
         if ($mascota != false) {
             $returnData = [
+                'success' => 1,
                 'id' => (int)$mascota->getId(),
                 'nombre' => $mascota->getNombre(),
 	            'idRefugio' => (int)$mascota->getIdRefugio(),

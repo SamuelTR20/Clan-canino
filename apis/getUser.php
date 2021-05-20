@@ -35,6 +35,7 @@ if($_SERVER["REQUEST_METHOD"] != "GET"){
         
         if ($usu != false) {
             $returnData = [
+                'success' => 1,
                 'nombre' => $usu->getNombre(),
                 'correo' => $usu->getCorreo(),
                 'edad'=> $usu->getInfo()->getEdad(),
@@ -50,7 +51,7 @@ if($_SERVER["REQUEST_METHOD"] != "GET"){
           exit();
 
             }else{
-                $returnData = msg(0,422, $correcto[0]);    
+                $returnData = msg(0,423,'No se encontro el usuario');    
             }
     }
     }

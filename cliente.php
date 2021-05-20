@@ -158,15 +158,18 @@ if(isset($_POST['edit_submit'])){
 	    				</div>
 	    				
 
-              
+					
 
 
               <?php if ($_SESSION['userRol']=='admin'){ ?>
-              <form class= "col-md-12 services-2 w-100 d-flex" method="POST" action="cliente.php">
+				
+				<div> 
+              <form class= "col-md-12 form-right" method="POST" action="cliente.php">
               
-              <div class="col-md-6 services-2 w-100 d-flex">
+			  
+              <div class="col-md-15 services-2 w-10 d-flex align-items-center justify-content-center">
 	    					
-	    					<div class="text pl-3">
+	    					<div class="text pl-3 ">
                 
 	    						<select name="rol" class="form-control">
                   <option value ="admin"  <?php if($usuario->getRol() == "admin"){echo "selected";} ?>>Administrador</option>
@@ -175,9 +178,9 @@ if(isset($_POST['edit_submit'])){
                    <input type="hidden" name="idUsuario" value="<?php echo $idCliente; ?>">
 	    					</div>
 	    				</div>
-	    				<div class="col-md-6 services-2 w-100 d-flex">
+	    				<div class="col-md-6 services-2 w-100 d-flex align-items-center justify-content-center">
 	    				
-	    					<div class="text pl-3">
+	    					<div class="text pl-6 ">
 	    						<input type="submit" value="Guardar rol" name="edit_submit" class="btn btn-primary" onclick="return confirm('¿Seguro desea editar al usuario? \nSi editas el rol de un usuario este tendrá acceso a diferentes funciones en la plataforma')">
 	    					</div>
 	    				</div>

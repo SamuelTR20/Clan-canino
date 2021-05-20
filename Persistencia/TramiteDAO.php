@@ -332,7 +332,8 @@ function obtenerTramites2()
   include_once("Conexion.php");
   $connLocalhost = conexion();
 
- $queryTramites = "SELECT id, id_usuario, id_mascota, estado, fecha_solicitud FROM emp_tramite";
+ $queryTramites = sprintf("SELECT id, id_usuario, id_mascota, estado, fecha_solicitud FROM emp_tramite",
+);
 
   // Ejecutamos el query
   $resQueryTramites = mysqli_query($connLocalhost, $queryTramites) or trigger_error("El query de login de usuario falló");
@@ -357,6 +358,43 @@ while ($tramData = mysqli_fetch_assoc($resQueryTramites)){
 }
 
  return $Tramites;
+
+}
+
+
+function obtenerTramitePorMascota($idMascota, $idUsuario)
+{
+  include_once($_SERVER["DOCUMENT_ROOT"]."/Entidades/Tramite.php");
+  include_once("Conexion.php");
+  $connLocalhost = conexion();
+
+ $queryTramites = sprintf("SELECT id, id_usuario, id_mascota, estado, fecha_solicitud FROM emp_tramite WHERE id_usuario = '%d' and id_mascota = '%d' ",
+ mysqli_real_escape_string($connLocalhost, trim($idUsuario)),
+ mysqli_real_escape_string($connLocalhost, trim($idMascota)));
+
+  // Ejecutamos el query
+  $resQueryTramites = mysqli_query($connLocalhost, $queryTramites) or trigger_error("El query de login de usuario falló");
+
+  $tram = new Tramite();
+
+
+if (mysqli_num_rows($resQueryTramites) == 1) { 
+while ($tramData = mysqli_fetch_assoc($resQueryTramites)){
+    
+	$tram->setId($tramData['id']);
+	$tram->setIdUsuario($tramData['id_usuario']);
+	$tram->setIdMascota($tramData['id_mascota']);
+	$tram->setEstado($tramData['estado']);
+	$tram->setFechaSolicitud($tramData['fecha_solicitud']);
+	
+	
+
+
+} 
+$connLocalhost->close();
+return $tram;
+}else{
+ return false;}
 
 }
 

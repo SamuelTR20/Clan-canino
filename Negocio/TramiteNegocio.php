@@ -38,6 +38,13 @@ function addTramite($idUsuario, $idMascota, $estado){
 	return	agregarTramite($idUsuario, $idMascota, $estado);
 	}
 }
+function getTramiteMasc($idMascota, $idUsuario){
+	include_once($_SERVER["DOCUMENT_ROOT"]."/Persistencia/TramiteDAO.php");
+	
+	return obtenerTramitePorMascota($idMascota, $idUsuario);
+
+  
+}
 
 
 function editTramite($id, $idUsuario, $idMascota, $estado){
