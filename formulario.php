@@ -21,8 +21,7 @@ $usuario = infoById($_SESSION['userId']);
 if(isset($_GET['idMascota'])){
 	$idMascota = $_GET['idMascota'];
 	
-}
-if(isset($_POST['idMascota'])){
+}else if(isset($_POST['idMascota'])){
 	$idMascota = $_POST['idMascota'];
 	
 }
@@ -30,19 +29,26 @@ if(isset($_POST['idMascota'])){
 
 
 if (isset($_POST['info_sent'])){
+
+		echo "ENTRA AQUI";
     foreach ($_POST as $inputs => $vars) {
-if(trim($vars) == "") $error[0] = "No se llenaron todos los datos";
+if(trim($vars) == "") {$error[0] = "No se llenaron todos los datos";
+	
+}
 	
 }
 $permitido = false;
 if (!isset($error)) {
 	$celular = str_replace(array(':', '\\', '/', '*', ' ', '-', '(', ')'), '', $_POST['celular']);
 	$telefono = str_replace(array(':', '\\', '/', '*', ' ', '-', '(', ')'), '', $_POST['telefono']);
-
+	echo "entra a lo anterior";
+	
 	if ($usuario){
+		echo "si entra";
 	$permitido = UpdateInfo($_POST['edad'], $_POST['direccion'], $_POST['numeroMascotas'], $telefono, $_SESSION['userId'], $_POST['cedula'], $celular );	
 	
 }else {
+	echo "si entra al segundo";
     $permitido = addInfo( $_POST['edad'], $_POST['direccion'], $_POST['numeroMascotas'], $telefono, $_SESSION['userId'], $_POST['cedula'], $celular );
 	}
 
@@ -51,7 +57,9 @@ if (!isset($error)) {
 		$agregado = addTramite($_SESSION['userId'], $idMascota, 'procesando');
 		
 	}else{
+		if(isset($idMascota)){
 		$error[] ="Error al ingresar información";
+		}
 	}
 
 
@@ -230,12 +238,12 @@ if (!isset($error)) {
 												
 												<div class="col-md-12">
 													<div class="form-group">
-													<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Guardar Información</button>
+													<button <?php if(isset($idMascota)){ ?> type="button"  <?php } else {?> type="submit" name="info_sent"   value="entra" <?php } ?>class="btn btn-primary" <?php if(isset($idMascota)){ ?> data-toggle="modal" data-target="#myModal" <?php } ?>>Guardar Información</button>
 
 														<div class="submitting"></div>
 													</div>
 												</div>
-
+												<?php if(isset($idMascota)){ ?>
 													<div class="modal fade" id="myModal" role="dialog">
 														<div class="modal-dialog">
 														
@@ -255,15 +263,18 @@ if (!isset($error)) {
 															<p>- En caso de que el solicitante sea menor de edad, contar con la autorización y apoyo de sus padres o tutores.</p>
 															</div>
 															<div class="modal-footer">
+															<?php if(isset($idMascota)){ ?>
 															<input type="hidden" name="idMascota" value="<?php echo $idMascota; ?>">
+															<?php } ?>
 															<input type="submit" value="Aceptar" class="btn btn-primary" name="info_sent">
 																<div class="submitting"></div>
-															<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+															<button type="button" class="btn btn-default" <?php if(isset($idMascota)){ ?> data-dismiss="modal"<?php } ?>>Cancelar</button>
 															</div>
 														</div>
 														
 														</div>
 													</div>
+													<?php } ?>
 												
 											</div>
 										</form>

@@ -87,7 +87,7 @@ if(isset($_GET['SendEmail'])){
             <?php if(isset($_SESSION['userActiva']) and $_SESSION['userRol'] == "cliente" and $_SESSION['userActiva'] == 0 ) {?>
               <div class="alert alert-danger" role="alert"> Para poder adoptar debes de activar tu cuenta, se mandó un correo electronico a  <?php echo $_SESSION['userCorreo'] ?> ¿No recibiste un correo? <a href="pet.php?idMascota=<?php echo $mascota->getId(); ?>&SendEmail=1012">Clic aquí para volver a enviarlo </a></div>
             
-            <?php } if($tramiteActivo != false){?>
+            <?php } if(isset($_SESSION['userActiva']) and $_SESSION['userRol'] == "cliente" and $tramiteActivo != false){?>
               <div class="alert alert-primary " role="alert"> Tienes un tramite activo con esta mascota   <a href="tramite.php?idTramite=<?php echo $tramiteActivo->getId(); ?>">Clic aquí para visualizarlo </a></div>
             <?php } ?>
 	            <h2 class="mb-4"><?php echo $mascota->getNombre() ?></h2>

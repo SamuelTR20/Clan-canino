@@ -43,9 +43,19 @@ if($_SERVER["REQUEST_METHOD"] != "POST"){
 
     if(isset($permitido) and $permitido)
     {
+        if (!isset($_SESSION)) {
+            session_start();
+          }
+          // Definimos variables de sesion en $_SESSION
+         
         $returnData = [
             'success' => 1,
-            'message' => 'Se ha iniciado sesion'
+            'message' => 'Se ha iniciado sesion',
+            'id' =>  $_SESSION['userId'],
+            'nombre'=> $_SESSION['userNombre'],
+            'rol'=> $_SESSION['userRol'],
+            'correo'=> $_SESSION['userCorreo']
+
         ];
       header("HTTP/1.1 200 OK");
       echo json_encode($returnData);
