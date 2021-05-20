@@ -21,6 +21,7 @@ if($_SERVER["REQUEST_METHOD"] != "POST"){
     $data = $_POST;
 
     if(!isset($data["idUsuario"]) 
+    || !isset($data["idMascota"])
     || !isset($data["edad"])
     || !isset($data["direccion"])
     || !isset($data["numeroMascotas"])
@@ -28,6 +29,7 @@ if($_SERVER["REQUEST_METHOD"] != "POST"){
     || !isset($data["cedula"])
     || !isset($data["celular"])
     || empty(trim($data["idUsuario"]))
+    || empty(trim($data["idMascota"]))
     || empty(trim($data["edad"]))
     || empty(trim($data["direccion"]))
     || empty(trim($data["numeroMascotas"]))
@@ -36,13 +38,14 @@ if($_SERVER["REQUEST_METHOD"] != "POST"){
     || empty(trim($data["celular"]))
     ){
 
-    $fields = ['fields' => ['idUsuario','edad', 'direccion', 'numeroMascotas', 'telefono', 'cedula', 'celular']];
+    $fields = ['fields' => ['idUsuario','edad', 'direccion', 'numeroMascotas', 'telefono', 'cedula', 'celular', 'idMascota']];
     $returnData = msg(0,422,'Por favor llene todos los recuadros',$fields);
     }else{
         $permitido = false;
 
 
         include $_SERVER["DOCUMENT_ROOT"]."/Negocio/UsuarioInfoNegocio.php";
+        include $_SERVER["DOCUMENT_ROOT"]."/Negocio/TramiteNegocio.php";
 
 
         $existe = infoById($data["idUsuario"]);
@@ -56,16 +59,22 @@ if($_SERVER["REQUEST_METHOD"] != "POST"){
             }
         
         if ($permitido) {
+
+            $tramitePermitido = addTramite((int)$data["idUsuario"], (int)$data["idMascota"], 'procesando');
+
+            if($tramitePermitido){
             $returnData = [
                 'success' => 1,
-                'message' => 'Se ha registrado con exito'
+                'message' => 'Se ha registrado el tramite con exito'
             ];
           header("HTTP/1.1 200 OK");
           echo json_encode($returnData);
           exit();
-
-            }else{
-                $returnData = msg(0,422, 'No se ha podido completar el registro');    
+                
+           }else{
+            $returnData = msg(0,422, 'No se ha podido completar el registro del tramite');  
+           } }else{
+                $returnData = msg(0,422, 'No se ha podido completar el registro de tu información');    
             }
     }
     }

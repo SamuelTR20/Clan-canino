@@ -1,7 +1,7 @@
 <?php
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: access");
-header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Allow-Methods: GET");
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
@@ -14,33 +14,36 @@ function msg($success,$status,$message,$extra = []){
         'message' => $message
     ],$extra);
 }
-if($_SERVER["REQUEST_METHOD"] != "POST"){
+if($_SERVER["REQUEST_METHOD"] != "GET"){
     $returnData = msg(0,404,'Pagina no encontrada');
 
-}elseif ($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $data = $_POST;
-
+}elseif ($_SERVER['REQUEST_METHOD'] == 'GET'){
+    $data = $_GET;
 
     if(!isset($data["idUsuario"]) 
-    || !isset($data["idMascota"])
     || empty(trim($data["idUsuario"]))
-    || empty(trim($data["idMascota"]))
     ){
 
-    $fields = ['fields' => ['email','password', 'name']];
     $returnData = msg(0,422,'No se tienen los datos necesarios');
     }else{
         $permitido = false;
 
 
-        include $_SERVER["DOCUMENT_ROOT"]."/Negocio/TramiteNegocio.php";
+        include $_SERVER["DOCUMENT_ROOT"]."/Negocio/UsuarioInfoNegocio.php";
 
-        $correcto = addTramite((int)$data["idUsuario"], (int)$data["idMascota"], 'procesando');
+        $usu = obtenerInfoCompleta($data["idUsuario"]);
         
-        if ($correcto) {
+        if ($usu != false) {
             $returnData = [
-                'success' => 1,
-                'message' => 'Se ha registrado el tramite con exito'
+                'nombre' => $usu->getNombre(),
+                'correo' => $usu->getCorreo(),
+                'edad'=> $usu->getInfo()->getEdad(),
+                'direccion'=>  $usu->getInfo()->getDireccion(),
+                'numMascotas'=>  $usu->getInfo()->getNumeroMascotas(),
+                'telefono'=>  $usu->getInfo()->getTelefono(),
+                'cedula'=>  $usu->getInfo()->getCedula(),
+                'celula'=>  $usu->getInfo()->getCelular()
+               
             ];
           header("HTTP/1.1 200 OK");
           echo json_encode($returnData);

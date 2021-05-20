@@ -13404,12 +13404,25 @@ ul ul li {
     #labelSubmenu:hover {
         color: #000000 !important;
     }
-    #btn-show:checked~.submenu {
+    #btn-show1:checked~.submenu1 {
         opacity: 1;
         top: 75px;
         position: static;
         visibility: visible;
     }
+    #btn-show2:checked~.submenu2 {
+        opacity: 1;
+        top: 75px;
+        position: static;
+        visibility: visible;
+    }
+/* 
+     [id="#btn-show"]:checked + .submenu { color: red;
+        opacity: 1;
+        top: 75px;
+        position: static;
+        visibility: visible;
+    } */
 }
 
 .s010 form .inner-form .input-field {

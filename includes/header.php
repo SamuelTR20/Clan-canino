@@ -52,9 +52,9 @@ if(isset($_GET['logOff']) && $_GET['logOff'] == "true") {
 			<?php if( isset($_SESSION['userNombre']) and  $_SESSION['userRol'] == 'admin'){ ?>
 			<li class="nav-item">
 			
-			<label for="btn-show" class="nav-link" id="labelSubmenu">Admin<i class="fa fa-angle-down icono-desplega"> </i></label>
-				<input type="checkbox" id="btn-show" class="show-input">
-				<ul class="submenu">
+			<label for="btn-show1" class="nav-link" id="labelSubmenu">Admin<i class="fa fa-angle-down icono-desplega"> </i></label>
+				<input type="checkbox" id="btn-show1" class="show-input">
+				<ul class="submenu submenu1">
 						<a href="tramites.php"  ><li class="nav-item children" > Tramites </li></a>
 						<a href= "Usuarios.php" class="children"><li class="nav-item">Usuarios</li></a>
 						<a href= "agregarMascota.php" class="children"><li class="nav-item">Agregar mascota</li></a> 
@@ -65,9 +65,9 @@ if(isset($_GET['logOff']) && $_GET['logOff'] == "true") {
 			if( isset($_SESSION['userNombre'])){?>
 				<li class="nav-item">
 			
-			<label for="btn-show" class="nav-link" id="labelSubmenu">Mi PERFiL<i class="fa fa-angle-down icono-desplega"> </i></label>
-				<input type="checkbox" id="btn-show" class="show-input">
-				<ul class="submenu">
+			<label for="btn-show2" class="nav-link" id="labelSubmenu">Mi PERFiL<i class="fa fa-angle-down icono-desplega"> </i></label>
+				<input type="checkbox" id="btn-show2" class="show-input">
+				<ul class="submenu submenu2">
 						<a href="formulario.php"  ><li class="nav-item children" > Mis datos </li></a>
 						<a href= "editarPerfil.php" class="children"><li class="nav-item">Configuración</li></a>
 						<a href= "ayuda.php" class="children"><li class="nav-item">Ayuda</li></a>

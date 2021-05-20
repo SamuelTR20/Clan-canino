@@ -41,7 +41,7 @@ function UpdateInfo($edad, $direccion, $numeroMascotas, $telefono, $idUsuario, $
 
 
 function obtenerInfoCompleta($idUsuario){
-	include_once "Persistencia/UsuarioInfoDAO.php";
+	include_once $_SERVER["DOCUMENT_ROOT"]."/Persistencia/UsuarioInfoDAO.php";
 	$info = obtenerInfoCompletaUsuario($idUsuario);
 	return $info;
 }

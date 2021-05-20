@@ -161,8 +161,8 @@ function obtenerInfoUsuariosPorId($idUsuario){
 }
 
   function obtenerInfoCompletaUsuario($idUsuario){
-    include_once "Entidades/UsuarioInfo.php";
-    include_once "Entidades/Usuario.php";
+    include_once $_SERVER["DOCUMENT_ROOT"]."/Entidades/UsuarioInfo.php";
+    include_once $_SERVER["DOCUMENT_ROOT"]."/Entidades/Usuario.php";
     include_once("Conexion.php");
     $connLocalhost = conexion();
   
