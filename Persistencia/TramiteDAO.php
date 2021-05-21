@@ -332,7 +332,7 @@ function obtenerTramites2()
   include_once("Conexion.php");
   $connLocalhost = conexion();
 
- $queryTramites = sprintf("SELECT id, id_usuario, id_mascota, estado, fecha_solicitud FROM emp_tramite",
+ $queryTramites = sprintf("SELECT id, id_usuario, id_mascota, estado, fecha_solicitud FROM emp_tramite"
 );
 
   // Ejecutamos el query
@@ -376,7 +376,7 @@ function obtenerTramitePorMascota($idMascota, $idUsuario)
   $resQueryTramites = mysqli_query($connLocalhost, $queryTramites) or trigger_error("El query de login de usuario falló");
 
   $tram = new Tramite();
-
+$exito = false;
 
 if (mysqli_num_rows($resQueryTramites) == 1) { 
 while ($tramData = mysqli_fetch_assoc($resQueryTramites)){
@@ -392,9 +392,11 @@ while ($tramData = mysqli_fetch_assoc($resQueryTramites)){
 
 } 
 $connLocalhost->close();
+$exito = true;
 return $tram;
 }else{
- return false;}
+ return $exito;}
+ return $exito;
 
 }
 

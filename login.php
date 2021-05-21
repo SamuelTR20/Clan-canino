@@ -6,6 +6,10 @@
     session_start();
   
 }
+
+
+
+
  if(isset($_SESSION['userId'])) header('Location: index.php');
 
     if (isset($_POST['login_sent'])){
@@ -50,7 +54,11 @@
     
     <form  action="login.php" method="post">
         <h1>Inicio de sesión</h1>
-
+      
+        <?php if(isset($_GET['delete'])&& $_GET['delete']=="1"){ ?>
+            <div class=" alert alert-success" role="alert"><?php echo 'Tu cuenta ha sido eliminada, crea una nueva cuenta';?></div>
+        <br>
+        <?php }?>
         <?php if(isset($_GET['confirmation'])&& $_GET['confirmation']=="sent"){ ?>
         <div class=" alert alert-success" role="alert"><?php echo 'Se te ha enviado un correo para activar tu cuenta';?></div>
         <br>

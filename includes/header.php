@@ -6,6 +6,12 @@ if(isset($_GET['logOff']) && $_GET['logOff'] == "true") {
     session_destroy();
 	header('Cache-Control: no cache');
     header('Location: login.php?loggedOff=true');
+  }if(isset($_GET['delete'])){
+	session_destroy();
+	header('Cache-Control: no cache');
+    header('Location: login.php?loggedOff=true&delete=1');
+
+
   }
 
   //Lógica para obtención de datos del refugio para apartados generales

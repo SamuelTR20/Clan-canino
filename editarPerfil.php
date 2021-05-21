@@ -13,6 +13,24 @@ if(!isset($_SESSION)) {
 
 if (isset($_SESSION['userId'])) {
 
+	include 'Negocio/UsuarioNegocio.php';
+	if(isset($_POST['delete_sent'])){
+	if($_POST["contra"] != $_SESSION['userContrasenia']){
+		$error[] = "Debes ingresar correctamente tu contraseña para efectuar los cambios";
+	}else{
+		
+			$eliminado = deleteUsuario($_SESSION['userId']);
+			if($eliminado){
+	
+				header('Location: index.php?delete=1&logOff=true');
+			}else{
+				$error[] = "Error al eliminar usuario";
+			}
+		}
+	}
+
+	
+
 	
    if (isset($_POST['usu_sent'])){
     foreach ($_POST as $inputs => $vars) {
@@ -49,7 +67,7 @@ if($_POST["contra"] != $_SESSION['userContrasenia']){
 
 if (!isset($error)) {
 
-	include 'Negocio/UsuarioNegocio.php';
+	
 	$permitido = editUsuario($_SESSION['userId'], $_POST['nombre'], $_POST['correo'],  $contra, $_SESSION['userRol']);
 	header('Location: editarPerfil.php?status=saved');
 
@@ -122,6 +140,7 @@ if (!isset($error)) {
 								<div class="col-md-7">
 									<div class="contact-wrap w-100 p-md-5 p-4">
 										<h3 class="mb-4">Editar información</h3>
+
 										<?php if(isset($_GET['status']) && $_GET['status'] == 'saved' ){	?>
 										
 										<div class=" alert alert-success" role="alert"><?php echo 'La información se ha guardado exitosamente';?></div>
@@ -156,15 +175,20 @@ if (!isset($error)) {
 														<input type="password" class="form-control" name="contrasenia1" id="email" placeholder="Contraseña">
 													</div>
 												</div>
-												<div class="col-md-6"> 
+												<div class="col-md-8"> 
 													<div class="form-group">
 														<label class="label" for="especie">Confirma contraseña nueva </label>
 														<input type="password" class="form-control" name="contrasenia2" id="email" placeholder="Contraseña">
 													</div>
 												</div>
+												<div class="col-md-6">
+													<div class="form-group">
+														<input type="submit" value="Eliminar cuenta" class="btn  btn-danger" name="delete_sent" onClick="return confirm('¿Seguro desea eliminar tu cuenta? \nSi eliminas tu cuenta, se eliminaran todos los tramites, mascotas y más vinculados a este, además deberás registrarte de nuevo para poder ingresar')">
+														<div class="submitting"></div>
+													</div>
+												</div>
 												
-												
-												<div class="col-md-12">
+												<div class="col-md-6">
 													<div class="form-group">
 														<input type="submit" value="Guardar información" class="btn btn-primary" name="usu_sent">
 														<div class="submitting"></div>

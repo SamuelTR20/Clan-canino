@@ -108,16 +108,11 @@ function editUsuario ($id, $nombre, $correo, $contrasenia, $rol){
 
 function deleteUsuario ($id){
 
-	//Validamos si las variables  vienen vacias
-	if($id=="" ){
-		echo 'Falta seleccionar id';
 
-
-	}else{
 			//Se manda a llamar el metodo de la Persistencia para eliminar al usuario a la BD
 			include_once $_SERVER["DOCUMENT_ROOT"]."/Persistencia/UsuarioDAO.php";
-			eliminarUsuario($id);
-	}
+			return eliminarUsuario($id);
+	
 }
 
 

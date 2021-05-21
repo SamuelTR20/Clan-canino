@@ -25,7 +25,13 @@ if(isset($_GET['idMascota'])){
 	$idMascota = $_POST['idMascota'];
 	
 }
-//echo $idMascota;
+if(isset($idMascota)){
+	
+	$tramiteActivo = getTramiteMasc($idMascota, $_SESSION['userId']);
+	if($tramiteActivo != false){
+		header('Location:index.php');
+	}
+}
 
 
 if (isset($_POST['info_sent'])){

@@ -32,7 +32,6 @@ if($_SERVER["REQUEST_METHOD"] != "POST"){
     || empty(trim($data["idMascota"]))
     || empty(trim($data["edad"]))
     || empty(trim($data["direccion"]))
-    || empty(trim($data["numeroMascotas"]))
     || empty(trim($data["telefono"]))
     || empty(trim($data["cedula"]))
     || empty(trim($data["celular"]))

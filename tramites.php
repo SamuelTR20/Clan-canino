@@ -160,7 +160,7 @@ $tramites = getTramites($busqueda, $maximo, $mostrar);
   </div>
                   <?php
                     include_once("includes/common_functions.php");
-                    paginacion($pags, $pagina, $busqueda, "Usuarios.php?");
+                    paginacion($pags, $pagina, $busqueda, "tramites.php?");
                   ?>
       </div>
 

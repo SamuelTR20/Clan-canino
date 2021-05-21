@@ -178,7 +178,13 @@ function eliminarUsuario($id){
 
   // Ejecutamos el query en la BD
   $resQueryUserData = mysqli_query($connLocalhost, $queryDeleteUsuario) or trigger_error("El query de eliminación de mascotas falló");
-  $connLocalhost->close();
+  if ($resQueryUserData) {
+    $connLocalhost->close();
+    return true;
+  } else {
+    $connLocalhost->close();
+    return false;
+  }
 }
 
 function verificarEmail($correo){
