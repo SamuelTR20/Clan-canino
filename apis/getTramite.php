@@ -37,7 +37,8 @@ if($_SERVER["REQUEST_METHOD"] != "GET"){
 
           $mascota = [
             'id'=> (int)$tram->getId(),
-            'nombreMascota'=> (int) $tram->getIdMascota()->getNombre(),
+            'nombreMascota'=> $tram->getIdMascota()->getNombre(),
+            'idMascota'=> $tram->getIdMascota()->getId(),
             'foto'=> $tram->getIdMascota()->getFoto(),
             'especie'=>$tram->getIdMascota()->getEspecie(),
             'fecha'=> $tram->getFechaSolicitud(),
