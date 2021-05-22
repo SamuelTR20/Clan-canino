@@ -13601,7 +13601,21 @@ ul ul li {
   
    
 }
-.form-right{
- justify-content: end;
-  
+
+.radio-form .radio-input{
+    padding-top: 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5;
+    font-style:initial;
+    color:rgb(24, 24, 24);
+    
+    
+}
+.radio-1{
+    margin-left: 5%;
+}
+.form-wrap1{
+    padding-top:2rem;
+    
 }

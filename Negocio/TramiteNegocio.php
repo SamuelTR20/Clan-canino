@@ -19,12 +19,21 @@ function getTramites($busqueda, $maximo, $mostrar){
 
 function getTramitePorId($id){
 
-		include_once "Persistencia/TramiteDAO.php";
+	include_once $_SERVER["DOCUMENT_ROOT"]."/Persistencia/TramiteDAO.php";
 		
 		$tramite = obtenerTramiteId($id);
 		
 		return $tramite;
 		}
+
+function getTramitePorIdAPI($id){
+
+		include_once $_SERVER["DOCUMENT_ROOT"]."/Persistencia/TramiteDAO.php";
+				
+		$tramite = obtenerTramitesClienteAPI($id);
+				
+		return $tramite;
+			}
 
 function addTramite($idUsuario, $idMascota, $estado){
 

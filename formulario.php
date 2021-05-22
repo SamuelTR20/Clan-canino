@@ -14,6 +14,7 @@ if( !isset($_SESSION['userNombre']) ){
   
   }
 include 'Negocio/TramiteNegocio.php';
+include 'Negocio/MascotaNegocio.php';
 include 'Negocio/UsuarioInfoNegocio.php';
 $usuario = infoById($_SESSION['userId']);
 
@@ -27,16 +28,25 @@ if(isset($_GET['idMascota'])){
 }
 if(isset($idMascota)){
 	
+	$mascota = getMascota($_GET['idMascota']);
 	$tramiteActivo = getTramiteMasc($idMascota, $_SESSION['userId']);
 	if($tramiteActivo != false){
 		header('Location:index.php');
 	}
+	if($mascota != false){
+		
+		$estadoMasc = $mascota->getEstado();
+
+		if($estadoMasc == 'adoptado'){
+			header('Location:index.php');
+		}
+	}else{ header('Location:index.php'); }
 }
 
 
 if (isset($_POST['info_sent'])){
 
-		echo "ENTRA AQUI";
+		
     foreach ($_POST as $inputs => $vars) {
 if(trim($vars) == "") {$error[0] = "No se llenaron todos los datos";
 	
@@ -47,14 +57,14 @@ $permitido = false;
 if (!isset($error)) {
 	$celular = str_replace(array(':', '\\', '/', '*', ' ', '-', '(', ')'), '', $_POST['celular']);
 	$telefono = str_replace(array(':', '\\', '/', '*', ' ', '-', '(', ')'), '', $_POST['telefono']);
-	echo "entra a lo anterior";
+
 	
 	if ($usuario){
-		echo "si entra";
+		
 	$permitido = UpdateInfo($_POST['edad'], $_POST['direccion'], $_POST['numeroMascotas'], $telefono, $_SESSION['userId'], $_POST['cedula'], $celular );	
 	
 }else {
-	echo "si entra al segundo";
+	
     $permitido = addInfo( $_POST['edad'], $_POST['direccion'], $_POST['numeroMascotas'], $telefono, $_SESSION['userId'], $_POST['cedula'], $celular );
 	}
 

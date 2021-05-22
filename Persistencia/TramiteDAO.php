@@ -244,11 +244,11 @@ while ($tramData = mysqli_fetch_assoc($resQueryTramites)){
 
 
 function obtenerTramiteId($id){
-include_once "Entidades/Tramite.php";
-include_once "Entidades/Mascota.php";
-include_once "Entidades/UsuarioInfo.php";
-include_once "Entidades/Usuario.php";
-include_once "Entidades/Refugio.php";
+  include_once $_SERVER["DOCUMENT_ROOT"]."/Entidades/Usuario.php";
+  include_once $_SERVER["DOCUMENT_ROOT"]."/Entidades/Refugio.php";
+  include_once $_SERVER["DOCUMENT_ROOT"]."/Entidades/Tramite.php";
+  include_once $_SERVER["DOCUMENT_ROOT"]."/Entidades/Mascota.php";
+  include_once $_SERVER["DOCUMENT_ROOT"]."/Entidades/UsuarioInfo.php";
 
 
 include_once("Conexion.php");
@@ -515,4 +515,81 @@ function eliminarTramite($id){
 
   // Ejecutamos el query en la BD
   $resQueryUsuarioInfo = mysqli_query($connLocalhost, $queryDeleteTramite) or trigger_error("El query de eliminación de mascotas falló");
+}
+
+
+function obtenerTramitesClienteAPI($id)
+{
+
+  include_once $_SERVER["DOCUMENT_ROOT"]."/Entidades/Usuario.php";
+  include_once $_SERVER["DOCUMENT_ROOT"]."/Entidades/Refugio.php";
+  include_once $_SERVER["DOCUMENT_ROOT"]."/Entidades/Tramite.php";
+  include_once $_SERVER["DOCUMENT_ROOT"]."/Entidades/Mascota.php";
+  include_once $_SERVER["DOCUMENT_ROOT"]."/Entidades/UsuarioInfo.php";
+
+
+include_once("Conexion.php");
+$connLocalhost = conexion();
+
+$queryGetTram = sprintf("SELECT  DISTINCTROW tra.id as id_tramite, usu.id as id_us, usu.nombre as nombre_us, 
+usu.correo as correo_usu, mas.foto as foto_mas, mas.especie as especie_mas, mas.sexo as sexo_mas, mas.id as id_mas, mas.nombre as nombre_mas,
+ref.nombre as nombre_ref, ref.ciudad as ciudad_ref, ref.telefono as telefono_ref,
+tra.estado as estado_tra, tra.fecha_solicitud as fecha_tra
+from emp_tramite as tra join emp_usuarios as usu on tra.id_usuario = usu.id 
+join emp_mascota as mas on tra.id_mascota=mas.id join emp_refugio as ref on mas.id_refugio = ref.id 
+join emp_usuario_info as inf on usu.id=inf.id_usuario where usu.id = '%d' ",
+mysqli_real_escape_string($connLocalhost, $id));
+
+
+  // Ejecutamos el query
+  $resQueryTramites = mysqli_query($connLocalhost, $queryGetTram) or trigger_error("El query de login de usuario falló");
+
+  $Tramites = [];
+
+
+if (mysqli_num_rows($resQueryTramites)) { 
+
+while ($tramData = mysqli_fetch_assoc($resQueryTramites)){
+  
+ 
+  
+  $usu = new Usuario();
+  $usu->setId ( $tramData['id_us']);
+  $usu->setNombre($tramData['nombre_us']);
+  $usu->setCorreo($tramData['correo_usu']);
+
+
+  $ref = new Refugio();
+  $ref->setNombre($tramData['nombre_ref']);
+	$ref->setCiudad($tramData['ciudad_ref']);
+	$ref->setTelefono($tramData['telefono_ref']);
+
+
+  $masc = new Mascota();
+  $masc->setId($tramData['id_mas']);
+	$masc->setNombre($tramData['nombre_mas']);
+	$masc->setSexo($tramData['sexo_mas']);
+	$masc->setEspecie($tramData['especie_mas']);
+  $masc->setFoto($tramData['foto_mas']);
+  $masc->setIdRefugio($ref);
+
+
+  
+  $tram = new Tramite();
+	$tram->setId($tramData['id_tramite']);
+	$tram->setIdUsuario($usu);
+	$tram->setIdMascota($masc);
+	$tram->setEstado($tramData['estado_tra']);
+	$tram->setFechaSolicitud ($tramData['fecha_tra']);
+	
+	
+
+	array_push($Tramites, $tram);
+} 
+$connLocalhost->close();
+return $Tramites;
+}else{
+ $connLocalhost->close();
+ return false;
+}
 }

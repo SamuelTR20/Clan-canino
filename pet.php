@@ -90,6 +90,10 @@ if(isset($_GET['SendEmail'])){
             <?php } if(isset($_SESSION['userActiva']) and $_SESSION['userRol'] == "cliente" and $tramiteActivo != false){?>
               <div class="alert alert-primary " role="alert"> Tienes un tramite activo con esta mascota   <a href="tramite.php?idTramite=<?php echo $tramiteActivo->getId(); ?>">Clic aquí para visualizarlo </a></div>
             <?php } ?>
+            <?php  if( $mascota->getEstado() == 'adoptado'){?>
+              <div class="alert alert-primary " role="alert"> Esta mascota ya fue adoptada :) </a></div>
+            <?php } ?>
+            
 	            <h2 class="mb-4"><?php echo $mascota->getNombre() ?></h2>
     				</div>
     				<div class="row">
@@ -136,7 +140,7 @@ if(isset($_GET['SendEmail'])){
               <div class="col-md-6 services-2 w-100 d-flex justify-content-start">
 	    				
 	    					<div class="text pl-3">
-                <?php if(isset($_SESSION['userNombre']) and $_SESSION['userRol']!='admin' and $_SESSION['userActiva'] == 1) { if($tramiteActivo == false) {?>
+                <?php if(isset($_SESSION['userNombre']) and $_SESSION['userRol']!='admin' and $_SESSION['userActiva'] == 1) { if($tramiteActivo == false and $mascota->getEstado() == 'disponible' ) {?>
                   <a href="formulario.php?idMascota=<?php echo $mascota->getId() ?>" class="btn btn-dark"> Adoptar </a>
 	    					<?php } }?>
                 </div>

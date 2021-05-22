@@ -9,10 +9,10 @@ function getTotalMascotas($busqueda){
 	return $totalMascotas;
 	}
 
-function getMascotas($busqueda, $mostrar, $maximo){
+function getMascotas($busqueda, $mostrar, $maximo, $estado){
 	include_once "Persistencia/MascotaDAO.php";
 	
-	$mascotas = obtenerMascotas($busqueda, $mostrar, $maximo);
+	$mascotas = obtenerMascotas($busqueda, $mostrar, $maximo, $estado);
 	return $mascotas;
 }
 function getMascotasApp(){

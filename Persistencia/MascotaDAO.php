@@ -22,16 +22,17 @@ function obtenerTotalMasscotas($busqueda){
   }
 
 
-function obtenerMascotas($busqueda, $mostrar, $maximo){
+function obtenerMascotas($busqueda, $mostrar, $maximo, $estado){
 
 include_once "Entidades/Mascota.php";
 include_once("Conexion.php");
 $connLocalhost = conexion();
 
 $queryObtenerMascotas = sprintf(
-  "SELECT * FROM emp_mascota where (nombre like '%%%s%%' or especie like '%%%s%%') and estado = 'disponible' limit %d OFFSET %d",
+  "SELECT * FROM emp_mascota where (nombre like '%%%s%%' or especie like '%%%s%%') and estado like '%%%s%%' limit %d OFFSET %d",
   mysqli_real_escape_string($connLocalhost, $busqueda),
   mysqli_real_escape_string($connLocalhost, $busqueda),
+  mysqli_real_escape_string($connLocalhost, $estado),
   mysqli_real_escape_string($connLocalhost, (int)$maximo),
   mysqli_real_escape_string($connLocalhost, (int)$mostrar)
 

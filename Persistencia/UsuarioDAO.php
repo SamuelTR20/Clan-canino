@@ -9,7 +9,7 @@ function obtenerUsuarios(){
   include_once("Conexion.php");
   $connLocalhost = conexion();
 
-  include_once $_SERVER["DOCUMENT_ROOT"]."Entidades/Usuario.php";
+  include_once $_SERVER["DOCUMENT_ROOT"]."/Entidades/Usuario.php";
 
   $queryUsuarios = "SELECT id, nombre, correo, aes_decrypt(contrasenia, 'key'), rol, activa FROM emp_usuarios";
 
