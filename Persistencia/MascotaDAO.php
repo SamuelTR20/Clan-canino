@@ -77,7 +77,7 @@ function obtenerMascotasApp(){
   $connLocalhost = conexion();
   
   $queryObtenerMascotas = sprintf(
-    "SELECT * FROM emp_mascota "
+    "SELECT * FROM emp_mascota where estado = 'disponible' "
   );
     // Ejecutamos el query
     $resQueryMascotas = mysqli_query($connLocalhost, $queryObtenerMascotas) or trigger_error("El query de login de usuario falló");
