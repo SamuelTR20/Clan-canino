@@ -91,8 +91,9 @@ function deleteTramite ($id){
 
 	}else{
 			//Se manda a llamar el metodo de la persistencia para eliminar al usuario a la BD
-			include_once "Persistencia/TramiteDAO.php";
-			eliminarTramite($id);
+			
+			include_once $_SERVER["DOCUMENT_ROOT"]."/Persistencia/TramiteDAO.php";
+			return eliminarTramite($id);
 	}
 }
 

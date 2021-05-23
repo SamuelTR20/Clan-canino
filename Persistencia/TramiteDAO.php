@@ -506,7 +506,12 @@ $queryEditTramite = sprintf(
 
 function eliminarTramite($id){
 
-	include_once("Conexion.php");
+  include_once $_SERVER["DOCUMENT_ROOT"]."/Entidades/Tramite.php";
+
+
+include_once("Conexion.php");
+$connLocalhost = conexion();
+
 	$queryDeleteTramite = sprintf(
     "DELETE from emp_tramite where id = '%d'",
     mysqli_real_escape_string($connLocalhost, trim($id))
@@ -515,6 +520,15 @@ function eliminarTramite($id){
 
   // Ejecutamos el query en la BD
   $resQueryUsuarioInfo = mysqli_query($connLocalhost, $queryDeleteTramite) or trigger_error("El query de eliminación de mascotas falló");
+
+if($resQueryUsuarioInfo){
+  $connLocalhost->close();
+return true;
+}else{
+  $connLocalhost->close();
+  return false;}
+
+
 }
 
 
