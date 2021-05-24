@@ -64,11 +64,31 @@ try {
     $mail->isHTML(true);                                  //Set email format to HTML
     $mail->CharSet = 'UTF-8';
 	$mail->Subject = 'Clan canino | Activación de cuenta';
-    $mail->Body    = "<h2 style='color:black' >¡Bienvenido(a) a Clan Canino!</h2>
-	<p style='color:black'> ¡Gracias por registrarte! Al unirte a nosotros aportarás tu granito de arena en apoyo a la comunidad de perros sin hogar, ojalá aquí encuentres al próximo integrante de tu familia y puedas brindarle un hogar.<br>
-	Para poder realizar trámites en la plataforma es necesario activar su cuenta, en caso de no ser usted, haga caso omiso a este correo, ¡Gracias!</p> <br>
-	
-	<a href='localhost/Clan-canino/verificacion.php?token=$token&e=$email'><button  style ='color: #fff; background-color: #28a745; border-color: #28a745; line-height: 2;  border-radius: 1.5rem; display: inline-block; text-align: center; padding: 0.375rem 0.75rem; margin: 0 auto;'>Activar Cuenta</button></a>";
+    $mail->Body    = "
+	<body>
+	<table width='100%'  cellpadding='0' cellspacing='0' border='0'>
+		<thead>
+		<tr height='150'>
+		<th colspan='4' style=' border-bottom:solid 1px #bdbdbd;  color:black; font-size:34px;' ><img src='https://i.ibb.co/qBptd00/clanca.png' width='450' height='125' ></th>
+		</tr>
+		</thead>
+
+		<tbody style='color:black;'>
+      <tr align='center' height='100'>
+       <td ><h2>¡Bienvenido(a) a Clan Canino!</h2></td>
+		</tr>
+		<tr align='center' height='100'>
+	   <td > ¡Gracias por registrarte! Al unirte a nosotros aportarás tu granito de arena en apoyo a la comunidad de perros sin hogar, ojalá aquí encuentres al próximo integrante de tu familia y puedas brindarle un hogar.<br>
+	   Para poder realizar trámites en la plataforma es necesario activar su cuenta, en caso de no ser usted, haga caso omiso a este correo, ¡Gracias!</td>
+	 	</tr>  
+	   <tr align='center' height='100'>
+		 <td ><a href='localhost/Clan-canino/verificacion.php?token=$token&e=$email'><button  style ='color: #fff; background-color: #28a745; border-color: #28a745; line-height: 2;  border-radius: 1.5rem; display: inline-block; text-align: center; padding: 0.375rem 0.75rem; margin: 0 auto;'>Activar Cuenta</button></a></td>
+		</tr>
+		</tbody>
+		</table>
+	   
+			
+	</body>";
 
     $mail->send();
 } catch (Exception $e) {
