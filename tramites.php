@@ -4,6 +4,21 @@ if (!isset($_SESSION)) {
   session_start();
 }
 
+if(isset($_POST['Eliminar'])){
+
+  $tram = getTramitePorId($_POST['idTramite']);
+  if($tram != false and $tram->getIdUsuario()->getId() == $_SESSION['userId']){
+
+  $eliminado = deleteTramite($_POST['idTramite']);
+  if($eliminado == false){
+    $error[]="ocurrió un error al eliminar el tramite";
+
+  }
+
+  }
+
+}
+
 if (empty($_GET['buscar'])) {
   $busqueda = "";
 } else {
@@ -109,10 +124,14 @@ $tramites = getTramites($busqueda, $maximo, $mostrar);
 	<div class="container">
 		<div class="content">
 			<h2>Lista de tramites</h2>
+      <?php if(isset($eliminado) and $eliminado == true ){?>
+        <div class="alert alert-success" role="alert"> El tramite se ha eliminado exitosamente </div>
+      <?php } ?>
 			<hr />
 			<br />
 			<div class="table-responsive">
 			<table class="table table-striped table-hover">
+      <?php if ($_SESSION['userRol']=='admin'){ ?>
 				<tr>
           <th>Fecha</th>
           <th>Usuario</th>
@@ -123,9 +142,9 @@ $tramites = getTramites($busqueda, $maximo, $mostrar);
           <th>Especie</th>
           <th>Estado</th>
           
-          <?php if ($_SESSION['userRol']=='admin'){ ?>
+         
           <th>Acciones</th>
-          <?php }?>
+        
 
         </tr>
         <?php
@@ -152,6 +171,56 @@ $tramites = getTramites($busqueda, $maximo, $mostrar);
 						</tr>
             <?php
           } ?>
+            <?php }?>
+
+            <?php if ($_SESSION['userRol']=='cliente'){ ?>
+				<tr>
+          <th>Fecha</th>
+          <th>Usuario</th>
+          <th>Refugio Correo</th>
+          <th class="iconos"><i class="fa fa-whatsapp icon-whats "></i></th>
+         
+          <th>Mascota</th>
+          <th>Especie</th>
+          <th>Estado</th>
+          
+         
+          <th>Acciones</th>
+        
+
+        </tr>
+        <?php
+          foreach($tramites as $tramite ){ ?>
+						<tr>
+              <td><?php echo $tramite->getFechaSolicitud(); ?></td>
+							<td><a href="formulario.php"><span class="glyphicon glyphicon-user" aria-hidden="true"><?php echo $tramite->getIdUsuario()->getNombre(); ?></span></a></td>
+							<td>clanCanino@gmail.com</td>
+							<td><a href="https://wa.me/52<?php echo $tramite->getIdMascota()->getIdRefugio()->getTelefono();?>" target="_blank"><?php echo $tramite->getIdUsuario()->getInfo()->getCelular(); ?></a></td>
+              <td><a href="pet.php?idMascota=<?php echo $tramite->getIdMascota()->getId() ?>"><?php echo $tramite->getIdMascota()->getNombre();  ?></a></td>
+              <td><?php echo $tramite->getIdMascota()->getEspecie();  ?></td>
+              <td><?php echo $tramite->getEstado();  ?></td>
+							
+              
+							<td>
+              <form action="tramites.php" method="POST">
+              <div class= 'row '>
+              <div class="mx-2">
+              <?php if ($_SESSION['userRol']=='cliente'){ ?>
+                <input type="hidden" name="idTramite" value="<?php echo $tramite->getId(); ?>">  
+
+                <button type="submit" value="delete" name="Eliminar"  onclick="return confirm('¿Seguro desea eliminar al el tramite? \nSi eliminas este tramite, se eliminaran todos los datos que esten vinculados a el.')" class="btn btn-danger btn-sm "> <i class="fa fa-trash iconos-usuarios"></i></button>
+                </div>
+                
+               
+                <?php }?>
+              </form>
+
+              </td>
+             
+						</tr>
+            <?php
+          } ?>
+            <?php }?>
 			</table>
 			</div>
 		</div>

@@ -3,6 +3,9 @@
 }
 include "Negocio/TramiteNegocio.php";
 
+
+
+
 if( !isset($_SESSION['userNombre']) ){
 	header('Location: index.php');
   
@@ -116,6 +119,13 @@ if($_SESSION['userRol'] == 'cliente' and $tramite->getIdUsuario()->getId() != $_
 	    					<div class="text pl-3">
 	    						<h4>Mascota a adoptar</h4>
 	    						<p><?php echo  $tramite->getIdMascota()->getNombre(); ?></p>
+	    					</div>
+	    				</div>
+              <div class="col-md-6 services-2 w-100 d-flex">
+	    					<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-emergency-call"></span></div>
+	    					<div class="text pl-3">
+	    						<h4>Mascota a adoptar</h4>
+	    						<a href= "reporte.php?idTramite=<?php echo $tramite->getId();?>" target="_blank"> pdf</a>
 	    					</div>
 	    				</div>
 	    				

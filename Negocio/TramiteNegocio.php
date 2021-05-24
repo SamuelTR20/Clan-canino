@@ -1,4 +1,103 @@
 <?php
+
+
+
+function pdf($idTramite){
+
+	if(!empty($idTramite)){
+		$tramite =  getTramitePorId($_GET['idTramite']);
+	
+		if($tramite != false){
+
+	require_once 'librerias/fpdf/fpdf.php';
+
+	$pdf = new FPDF();
+	$pdf->AddPage();
+	
+	//Fecha
+	$pdf->SetFont('Arial', '', 12);
+
+
+// Logo
+    $pdf->Image('images/clanc.png',12,8,33);
+	
+//	$pdf->Cell(10, 10, utf8_decode('Clan canino'), 0,0,'R');
+	
+	$pdf->setTitle('Clan canino');
+	$pdf->cell(120);
+	$pdf->Cell(30, 10, utf8_decode("Guaymas, Son. ".$tramite->getFechaSolicitud()), 0,0,'L');
+	$pdf->Ln(20);
+	//titulo
+	$pdf->SetFont('Arial', 'B', 15);
+
+	$pdf->cell(80);
+	$pdf->Cell(30, 10, utf8_decode('Reporte adopción'), 0,0,'C');
+	$pdf->Ln(20);
+	//Info
+	$pdf->SetFont('Arial', '', 12);
+	$pdf->cell(20);
+	$pdf->write(5,utf8_decode('adoptante: '. $tramite->getIdUsuario()->getNombre()));
+	$pdf->cell(20);
+	$pdf->write(5,utf8_decode('cedula: '.$tramite->getIdUsuario()->getInfo()->getCedula()));
+
+	$pdf->Ln(20);
+	$pdf->cell(20);
+	$pdf->write(5,utf8_decode('Edad: '.$tramite->getIdUsuario()->getInfo()->getEdad()));
+	$pdf->cell(20);
+	$pdf->write(5,utf8_decode('Dirección: '.$tramite->getIdUsuario()->getInfo()->getDireccion()));
+	$pdf->cell(20);
+	$pdf->write(5,utf8_decode('Email: '.$tramite->getIdUsuario()->getCorreo()) );
+	$pdf-> Ln(20);
+
+	$pdf->cell(20);
+	$pdf->write(5,utf8_decode('celular: '.$tramite->getIdUsuario()->getInfo()->getCelular()));
+	$pdf->cell(20);
+	$pdf->write(5,utf8_decode('telefono: '.$tramite->getIdUsuario()->getInfo()->getTelefono()));
+
+	$pdf-> Ln(20);
+
+	$pdf->cell(80);
+	$pdf->Cell(30, 10, utf8_decode('Mascota'), 0,0,'C');
+	$pdf->Ln(20);
+	
+	$pdf->cell(20);
+	$pdf->write(5,utf8_decode('Nombre: '.$tramite->getIdMascota()->getNombre()));
+	$pdf->cell(20);
+	$pdf->write(5,utf8_decode('Edad: '.$tramite->getIdMascota()->getEdad()));
+	$pdf->cell(20);
+	$pdf->write(5,utf8_decode('Tipo: '.$tramite->getIdMascota()->getEspecie()));
+	$pdf-> Ln(20);
+
+	
+	$pdf->write(5,utf8_decode('El adooptante se compromete aqui va mucho texto y yo no lo pienso escribir mblajblanoinfoanfoanfoinaoifnaonfoianfoinaoifnaonfo blablablablablablablablablabla bla bla bla bla bla bla bla bla'));
+	
+	
+	$pdf-> Ln(20);
+	$pdf->cell(80);
+	$pdf->Cell(30, 10, utf8_decode('Firma'), 0,0,'C');
+
+	$pdf-> Ln(20);
+	$pdf->cell(80);
+	$pdf->Cell(30, 10, utf8_decode('_______________________________'), 0,0,'C');
+
+
+
+
+	
+	
+
+	$pdf->Output();
+
+}
+		else{
+			return false;}
+
+}}
+
+
+
+
+
 function getTramitesCliente($busqueda, $maximo, $mostrar, $id){
 
 	include_once "Persistencia/TramiteDAO.php";

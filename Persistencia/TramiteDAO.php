@@ -316,11 +316,14 @@ if (mysqli_num_rows($resQueryGetTram)) {
 	$tram->setIdMascota($masc);
 	$tram->setEstado($tramData['estado_tra']);
 	$tram->setFechaSolicitud ($tramData['fecha_tra']);
-	
+ 
+  $connLocalhost->close();
+  return $tram;
 
-}
+}else{
  $connLocalhost->close();
- return $tram;
+ return false;
+}
 
 }
 
@@ -546,7 +549,7 @@ include_once("Conexion.php");
 $connLocalhost = conexion();
 
 $queryGetTram = sprintf("SELECT  DISTINCTROW tra.id as id_tramite, usu.id as id_us, usu.nombre as nombre_us, 
-usu.correo as correo_usu, mas.foto as foto_mas, mas.especie as especie_mas, mas.sexo as sexo_mas, mas.id as id_mas, mas.nombre as nombre_mas,
+usu.correo as correo_usu, mas.foto as foto_mas, mas.edad as edad_mas, mas.especie as especie_mas, mas.sexo as sexo_mas, mas.id as id_mas, mas.nombre as nombre_mas,
 ref.nombre as nombre_ref, ref.ciudad as ciudad_ref, ref.telefono as telefono_ref,
 tra.estado as estado_tra, tra.fecha_solicitud as fecha_tra
 from emp_tramite as tra join emp_usuarios as usu on tra.id_usuario = usu.id 
@@ -583,6 +586,7 @@ while ($tramData = mysqli_fetch_assoc($resQueryTramites)){
   $masc->setId($tramData['id_mas']);
 	$masc->setNombre($tramData['nombre_mas']);
 	$masc->setSexo($tramData['sexo_mas']);
+  $masc->setEdad($tramData['edad_mas']);
 	$masc->setEspecie($tramData['especie_mas']);
   $masc->setFoto($tramData['foto_mas']);
   $masc->setIdRefugio($ref);
