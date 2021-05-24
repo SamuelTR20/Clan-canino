@@ -69,7 +69,12 @@ function pdf($idTramite){
 	$pdf-> Ln(20);
 
 	
-	$pdf->write(5,utf8_decode('El adooptante se compromete aqui va mucho texto y yo no lo pienso escribir mblajblanoinfoanfoanfoinaoifnaonfoianfoinaoifnaonfo blablablablablablablablablabla bla bla bla bla bla bla bla bla'));
+	$pdf->write(5,utf8_decode('El adooptante se compromete a las siguientes clausulas: 
+	- En caso de que la solicitud sea aceptada se agendará una cita en la vivienda del solicitante para determinar el resultado del proceso de adopción.
+	- El hecho de agendar una cita en la vivienda no asegura que la adopción de la mascota se concretará, la cita es para determinar ciertos aspectos antes de la decisión final.
+	- Se debe de contar con un espacio apropiado destinado para la mascota.
+	- Es importante que haya disponibilidad de las personas para cuidar a la mascota (que no quede solx la mayor parte del tiempo).
+	- En caso de que el solicitante sea menor de edad, contar con la autorización y apoyo de sus padres o tutores.'));
 	
 	
 	$pdf-> Ln(20);

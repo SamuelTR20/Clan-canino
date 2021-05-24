@@ -135,21 +135,23 @@ if($_SESSION['userRol'] == 'cliente' and $tramite->getIdUsuario()->getId() != $_
 	    					<div class="text pl-3">
                 <label class="label" for="estado">Estado </label>
 
-                <select name="estado" id="estado" class="form-control" >
-                     <option value="aceptado" >Aceptado</option>
-                     <option value="procesando" >Procesando</option>
-                     <option value="cancelado" >Cancelado</option>
+                <select name="estado" id="estado" class="form-control" <?php if($_SESSION['userRol']!= 'admin') echo "disabled"; ?>>
+                     <option value="aceptado" <?php echo ($tramite->getEstado() == "aceptado") ? "selected" : ""; ?>>Aceptado</option>
+                     <option value="procesando"<?php echo ($tramite->getEstado() == "procesando") ? "selected" : ""; ?> >Procesando</option>
+                     <option value="cancelado" <?php echo ($tramite->getEstado() == "cancelado") ? "selected" : ""; ?>>Cancelado</option>
                      </select>
 	    				</div>
 	    					</div>
                 <div class="col-md-6 services-2 w-100 d-flex pl-20" >
 	    					<div class="text pl-3 pt-5 pl-5">
 
-                
+
                 <input type="hidden" value="<?php echo $tramite->getIdMascota()->getId(); ?>" class="btn btn-primary" name="idMascota">
                 <input type="hidden" value="<?php echo 	$idTram; ?>" class="btn btn-primary" name="idTramite">
-                <input type="submit" value="Guardar" class="btn btn-primary" name="masc_sent">
                 
+                <?php if($_SESSION['userRol']== 'admin'){ ?>
+                <input type="submit" value="Guardar" class="btn btn-primary" name="masc_sent">
+                <?php } ?>
                 
                
 	    				</div>
