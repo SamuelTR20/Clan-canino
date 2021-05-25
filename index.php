@@ -10,7 +10,9 @@ if(isset($_SESSION['userId']) and $_SESSION['userRol'] == "cliente"){
   obtenerActivacion($_SESSION['userId']);
 
 if(isset($_GET['SendEmail'])){
-  confirmarEmail($_SESSION['userCorreo'],  $_SESSION['userToken'], $_SESSION['userNombre']);
+  $token = "us".rand(0,100000);
+  updateToken($_SESSION['userCorreo'],$token);
+  confirmarEmail($_SESSION['userCorreo'],  $token, $_SESSION['userNombre']);
 }
 }
 
