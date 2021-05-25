@@ -83,7 +83,7 @@
             </div>
 
             <div class="password">
-                <a href="#">¿Olvidaste tu contraseña?</a>
+                <a href="recuperacion.php">¿Olvidaste tu contraseña?</a>
             </div>
             <div class="spassword">
             <input type="submit" name="login_sent"  value="Iniciar sesión"><br>

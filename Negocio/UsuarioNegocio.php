@@ -106,6 +106,82 @@ function activarCuentaUsuario($correo,$token){
 
 }
 
+function recuperarContra($email, $token){
+
+
+
+
+	$mail = new PHPMailer(true);
+	
+	try {
+		//Server settings
+		$mail->SMTPDebug = 0;                      //Enable verbose debug output
+		$mail->isSMTP();                                            //Send using SMTP
+		$mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+		$mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+		$mail->Username   = 'clancanino.gym@gmail.com';                     //SMTP username
+		$mail->Password   = 'clancanino';                               //SMTP password
+		$mail->SMTPSecure = 'PHPMailer::ENCRYPTION_STARTTLS';         //Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+		$mail->Port       = 587;                                    //TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+	
+		//Recipients
+		$mail->setFrom('clancanino.gym@gmail.com', 'Clan Canino');
+		$mail->addAddress($email);     //Add a recipient
+					 
+		
+		//Content
+		$mail->isHTML(true);                                  //Set email format to HTML
+		$mail->CharSet = 'UTF-8';
+		$mail->Subject = 'Clan canino | Recuperación de cuenta';
+		$mail->Body    = "
+		<body>
+		<table width='100%'  cellpadding='0' cellspacing='0' border='0'>
+			<thead>
+			<tr height='150'>
+			<th colspan='4' style=' border-bottom:solid 1px #bdbdbd;  color:black; font-size:34px;' ><img src='https://i.ibb.co/qBptd00/clanca.png' width='450' height='125' ></th>
+			</tr>
+			</thead>
+	
+			<tbody style='color:black;'>
+		  <tr align='center' height='100'>
+		   <td ><h2>Recuperar Contraseña</h2></td>
+			</tr>
+			<tr align='center' height='100'>
+		   <td >
+		   Para restablecer la contraseña asociada al correo $email es necesario que pulse el boton colocado debajo y vaya a la página establecida. Cuando este en dicha página web deberá introducir y confirmar su nueva contraseña. <br>
+		   En caso de no ser usted quien solicitó el cambio de contraseña haga caso omiso a las instrucciones de este correo.</td>
+			 </tr>  
+		   <tr align='center' height='100'>
+			 <td ><a href='localhost/Clan-canino/recuperacion.php?token=$token&e=$email'><button  style ='color: #fff; background-color: #28a745; border-color: #28a745; line-height: 2;  border-radius: 1.5rem; display: inline-block; text-align: center; padding: 0.375rem 0.75rem; margin: 0 auto;'>Cambiar Contraseña</button></a></td>
+			</tr>
+			</tbody>
+			</table>
+		   
+				
+		</body>";
+	
+		$mail->send();
+	} catch (Exception $e) {
+		header('Location: login.php');
+	}
+	
+	
+	
+	
+	}
+
+function updateToken($correo,$token){
+	include_once "Persistencia/UsuarioDAO.php";
+	return actualizarToken($correo, $token);
+
+}
+
+function updateContra($contrasena,$correo,$token){
+	include_once "Persistencia/UsuarioDAO.php";
+	return editarContra($contrasena,$correo, $token);
+
+}
+
 
 function editarUsuarioRol($id, $rol){
 	include_once $_SERVER["DOCUMENT_ROOT"]."/Persistencia/UsuarioDAO.php";

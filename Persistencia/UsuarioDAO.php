@@ -243,6 +243,72 @@ function editarRolUsuario($id, $rol){
 
 }
 
+function actualizarToken($correo, $token){
+  include_once("Conexion.php");
+  $connLocalhost = conexion();
+
+  include_once $_SERVER["DOCUMENT_ROOT"]."/Entidades/Usuario.php";
+
+  $queryEditToken = sprintf(
+    "UPDATE  emp_usuarios SET token = '%s' WHERE correo = '%s' ",
+    mysqli_real_escape_string($connLocalhost, trim($token)),
+    mysqli_real_escape_string($connLocalhost, trim($correo))
+
+  );
+
+
+  // Ejecutamos el query en la BD
+  $resQueryEditToken = mysqli_query($connLocalhost, $queryEditToken) or trigger_error("El query de inserción de usuarios falló");
+
+
+  if ($resQueryEditToken) {
+    $connLocalhost->close();
+
+    if (!isset($_SESSION)) {
+      session_start();
+    }
+   
+
+    return true;
+  } else {
+    $connLocalhost->close();
+    return false;
+  }
+
+}
+
+function editarContra ($contrasena, $correo, $token){
+  include_once("Conexion.php");
+  $connLocalhost = conexion();
+
+  include_once "Entidades/Usuario.php";
+
+  $queryEditContra = sprintf(
+    "UPDATE  emp_usuarios SET contrasenia = aes_encrypt('%s', 'key') WHERE correo = '%s' AND token= '%s' ",
+    mysqli_real_escape_string($connLocalhost, trim($contrasena)),
+    mysqli_real_escape_string($connLocalhost, trim($correo)),
+    mysqli_real_escape_string($connLocalhost, trim($token))
+
+  );
+
+  // Ejecutamos el query en la BD
+  $resQueryEditContra = mysqli_query($connLocalhost, $queryEditContra) or trigger_error("El query de edicion de contrasena de cuenta falló");
+
+  if ($resQueryEditContra) {
+    $connLocalhost->close();
+
+    if (!isset($_SESSION)) {
+      session_start();
+    }
+ 
+
+    return true;
+  } else {
+    $connLocalhost->close();
+    return false;
+  }
+}
+
 function activarCuenta ($correo, $token){
   include_once("Conexion.php");
   $connLocalhost = conexion();
