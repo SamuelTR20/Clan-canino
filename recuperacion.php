@@ -76,9 +76,9 @@ if(isset($_POST['login'])){
     <div class=" alert alert-success" role="alert"><?php echo 'Se te ha enviado un correo electronico con instrucciones para recuperar tu contraseña';?></div>
     <?php } 
         if(isset($error)){
-			foreach($error as $err){ ?>
-			<div class="alert alert-danger" role="alert"><?php echo $err?></div>
-			<?php } } ?>
+			 ?>
+			<div class="alert alert-danger" role="alert"><?php echo $error?></div>
+			<?php  } ?>
 
     <?php if(!isset($_GET['e']) && !isset($_GET['token'])){ ?>
     <form action= "recuperacion.php" method="post">
