@@ -41,16 +41,27 @@ if($_SERVER["REQUEST_METHOD"] != "POST"){
     $returnData = msg(0,422,'Por favor llene todos los recuadros',$fields);
     }else{
         $permitido = false;
+        $activo = false;
 
 
         include $_SERVER["DOCUMENT_ROOT"]."/Negocio/UsuarioInfoNegocio.php";
         include $_SERVER["DOCUMENT_ROOT"]."/Negocio/TramiteNegocio.php";
 
+        $activo = getTramiteMasc((int)$data["idMascota"], (int)$data["idUsuario"]);
 
         $existe = infoById($data["idUsuario"]);
 
+        if ($activo){
+            $returnData = msg(0,423,'Ya tiene un tramite activo para esa mascota'); 
+            header("HTTP/1.1 200 OK");
+            echo json_encode($returnData);
+            exit(); 
+        }else{
+
 
         if ($existe){
+
+            
             $permitido = UpdateInfo((int)$data["edad"],$data["direccion"],(int)$data['numeroMascotas'], $data['telefono'], (int)$data['idUsuario'], $data['cedula'], $data['celular'] );	
             
         }else {
@@ -75,7 +86,7 @@ if($_SERVER["REQUEST_METHOD"] != "POST"){
            } }else{
                 $returnData = msg(0,422, 'No se ha podido completar el registro de tu información');    
             }
-    }
+    }}
     }
     echo json_encode($returnData); 
     ?>
