@@ -120,12 +120,17 @@ $tramites = getTramites($busqueda, $maximo, $mostrar);
 
 
     <nav class="navbar navbar-default navbar-fixed-top">
+
+  
 	</nav>
 	<div class="container">
 		<div class="content">
-			<h2>Lista de tramites</h2>
+			<h2 id="title-list">Lista de trámites</h2>
+      <?php if(isset($_GET['success']) and $_GET['success'] == 'true' ){?>
+        <div class="alert alert-success" role="alert" id="add-success"> Se ha registrado el tramite exitosamente! </div>
+      <?php } ?>
       <?php if(isset($eliminado) and $eliminado == true ){?>
-        <div class="alert alert-success" role="alert"> El tramite se ha eliminado exitosamente </div>
+        <div class="alert alert-success" role="alert" id="delete-success"> El tramite se ha eliminado exitosamente </div>
       <?php } ?>
 			<hr />
 			<br />

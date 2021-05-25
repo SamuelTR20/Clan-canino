@@ -166,7 +166,7 @@ $usuarios = obtenerInfoCompletaTodos($busqueda, $maximo, $mostrar);
   </div>
                   <?php
                     include_once("includes/common_functions.php");
-                    paginacion($pags, $pagina, $busqueda, "tramites.php?");
+                    paginacion($pags, $pagina, $busqueda, "Usuarios.php?");
                   ?>
       </div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

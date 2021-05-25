@@ -1,5 +1,8 @@
 <?php if (!isset($_SESSION)) {
   session_start(); 
+  if(!isset($_SESSION['userRol']) or $_SESSION['userRol'] != 'admin'){
+    header('Location: index.php');
+  }
 }
 include "Negocio/TramiteNegocio.php";
 

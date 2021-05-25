@@ -109,11 +109,11 @@ $mascotas = getMascotas($busqueda, $mostrar , $maximo, $estado);
           </div>  
           <div class="radio-form">
        
-       <input type="radio" id="adoptadas" name="estado" value="adoptado" class="radio-input" <?php if(isset($_GET['estado']) and $_GET['estado'] == "adoptado"){ echo 'checked'; } ?> >
-       <label for="adoptadas" class="radio-input" >Adoptadas</label>
+       <input type="radio" id="adoptadas" name="estado" value="adoptado" class="radio-input" <?php if(isset($_GET['estado']) and $_GET['estado'] == "adoptado"){ echo 'checked'; } ?> onclick="linkear('index.php?estado=adoptado')">
+       <label for="adoptadas" class="radio-input" onclick="linkear('index.php?estado=adoptado')">Adoptadas</label>
      
-       <input type="radio" id="disponible" name="estado" value="disponible" class="radio-input radio-1" <?php if(isset($estado) and $estado == "disponible"){ echo 'checked'; } ?> >
-       <label for="disponible" class="radio-input">Disponibles</label>
+       <input type="radio" id="disponible" name="estado" value="disponible" class="radio-input radio-1" <?php if(isset($estado) and $estado == "disponible"){ echo 'checked'; } ?>  onclick="linkear('index.php?estado=disponible')">
+       <label for="disponible" class="radio-input" onclick="linkear('index.php?estado=disponible')">Disponibles</label>
 			</div>
 		</form>
 	</div>
@@ -158,7 +158,7 @@ $mascotas = getMascotas($busqueda, $mostrar , $maximo, $estado);
         </div>
                   <?php
                     include_once("includes/common_functions.php");
-                    paginacion($pags, $pagina, $busqueda, "index.php?");
+                    paginacion($pags, $pagina, $busqueda, "index.php?estado=".$estado."&");
                   ?>
       </div>
     </section>
@@ -173,6 +173,7 @@ $mascotas = getMascotas($busqueda, $mostrar , $maximo, $estado);
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
 
+  <script src="js/functions.js"></script>
   <script src="js/jquery.min.js"></script>
   <script src="js/jquery-migrate-3.0.1.min.js"></script>
   <script src="js/popper.min.js"></script>

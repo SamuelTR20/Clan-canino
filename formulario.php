@@ -28,7 +28,7 @@ if(isset($_GET['idMascota'])){
 }
 if(isset($idMascota)){
 	
-	$mascota = getMascota($_GET['idMascota']);
+	$mascota = getMascota($idMascota);
 	$tramiteActivo = getTramiteMasc($idMascota, $_SESSION['userId']);
 	if($tramiteActivo != false){
 		header('Location:index.php');
@@ -71,6 +71,13 @@ if (!isset($error)) {
 	
 	if($permitido == true and isset($idMascota)){
 		$agregado = addTramite($_SESSION['userId'], $idMascota, 'procesando');
+
+		if($agregado){
+			header('Location:tramites.php?success=true#search');
+		}else{
+
+			$error[] ="Error al registrar tramite";
+		}
 		
 	}else{
 		if(isset($idMascota)){
@@ -87,11 +94,7 @@ if (!isset($error)) {
     }
 
     
-    if (!isset($error)) {
-        header('Location:index.php');
-        }else{
-
-        }
+    
 }
 ?>
 
@@ -188,7 +191,7 @@ if (!isset($error)) {
 				        			<span class="fa fa-globe"></span>
 				        		</div>
 				        		<div class="text">
-					            <p><span>Website</span> <a href="#">Clan-canino.com</a></p>
+					            <p><span id="error-msg">Website</span> <a href="#">Clan-canino.com</a></p>
 					          </div>
 				          </div>
 								</div>
@@ -201,7 +204,7 @@ if (!isset($error)) {
 	                               		foreach($error as $err){ ?>
 	                             		<div class="alert alert-danger" role="alert"><?php echo $err?></div>
 	                             		<?php } } ?>
-										<form method="POST" id="contactForm" name="contactForm" class="contactForm" action="formulario.php">
+										<form method="POST" id="contactForm" name="contactForm" class="contactForm" action="formulario.php#error-msg">
 											<div class="row">
 												<div class="col-md-6">
 													<div class="form-group">
