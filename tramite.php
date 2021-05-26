@@ -96,7 +96,8 @@ if($_SESSION['userRol'] == 'cliente' and $tramite->getIdUsuario()->getId() != $_
     				<div class="img img-video d-flex align-self-stretch align-items-center justify-content-center justify-content-md-center mb-4 mb-sm-0" style="background-image:url(<?php echo $tramite->getIdMascota()->getFoto(); ?>);">
     				</div>
     			</div>
-    			<div class="col-md-7 pl-md-5 py-md-5">
+    			
+          <div class="col-md-7 pl-md-5 py-md-5">
     				<div class="heading-section pt-md-5">
 	            <h2 class="mb-4">ID de trámite: <?php echo $tramite->getId(); ?></h2>
     				</div>
@@ -108,35 +109,65 @@ if($_SESSION['userRol'] == 'cliente' and $tramite->getIdUsuario()->getId() != $_
 	    						<p><?php echo $tramite->getFechaSolicitud(); ?></p>
 	    					</div>
 	    				</div>
-              <a href="cliente.php?idUsuario=<?php echo $tramite->getIdUsuario()->getId();?>">
+              
 	    				<div class="col-md-6 services-2 w-100 d-flex">
 	    					<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-customer-service"></span></div>
 	    					<div class="text pl-3">
+                <a href="cliente.php?idUsuario=<?php echo $tramite->getIdUsuario()->getId();?>">
 	    						<h4>Cliente:</h4>
-	    						<h4><?php echo $tramite->getIdUsuario()->getNombre(); ?></h4>
-	    					</div>
-	    				</div>
-	    				</a>
-              <div class="col-md-6 services-2 w-100 d-flex">
-	    					<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-emergency-call"></span></div>
-	    					<div class="text pl-3">
-	    						<h4>Mascota a adoptar</h4>
-	    						<p><?php echo  $tramite->getIdMascota()->getNombre(); ?></p>
+	    						<p><?php echo $tramite->getIdUsuario()->getNombre(); ?></p>
+                  </a>
 	    					</div>
 	    				</div>
               <div class="col-md-6 services-2 w-100 d-flex">
 	    					<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-emergency-call"></span></div>
 	    					<div class="text pl-3">
-	    						<h4>Mascota a adoptar</h4>
-	    						<a href= "reporte.php?idTramite=<?php echo $tramite->getId();?>" target="_blank"> pdf</a>
+	    						<h4>Email:</h4>
+                  <p><?php echo $tramite->getIdUsuario()->getCorreo();?></p>
 	    					</div>
 	    				</div>
+
+              <div class="col-md-6 services-2 w-100 d-flex">
+	    					<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-emergency-call"></span></div>
+	    					<div class="text pl-3">
+	    						<h4>Celular:</h4>
+                  <p><?php echo $tramite->getIdUsuario()->getInfo()->getCelular();?></p>
+	    					</div>
+	    				</div>
+             
+	    				<div class="col-md-6 services-2 w-100 d-flex">
+	    					<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-customer-service"></span></div>
+	    					<div class="text pl-3">
+                <a href="pet.php?idMascota=<?php echo $tramite->getIdMascota()->getId();?>">
+	    						<h4>Mascota a adoptar:</h4>
+	    						<p><?php echo $tramite->getIdMascota()->getNombre(); ?></p>
+                  </a>
+	    					</div>
+	    				</div>
+
+              <div class="col-md-6 services-2 w-100 d-flex">
+	    					<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-emergency-call"></span></div>
+	    					<div class="text pl-3">
+	    						<h4>Especie & Sexo:</h4>
+                  <p><?php echo $tramite->getIdMascota()->getEspecie() ." / ". $tramite->getIdMascota()->getSexo() ;?></p>
+	    					</div>
+	    				</div>
+	    				
+              <?php if($tramite->getEstado() == "aceptado"){ ?>
+              <div class="col-md-6 services-2 w-100 d-flex">
+	    					<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-emergency-call"></span></div>
+	    					<div class="text pl-3">
+	    						<h4>Reporte de trámite</h4>
+	    						<a href= "reporte.php?idTramite=<?php echo $tramite->getId();?>" target="_blank"> <button  class="btn btn-primary" >PDF</button></a>
+	    					</div>
+	    				</div>
+              <?php } ?>
 	    				
                 <form action="tramite.php" method="post" class="form-edit">
                 <div class="col-md-10   ">
 	    					<div class="col-md-8 "></div>
 	    					<div class="text pl-1 mb-3 col-md-8">
-                <label class="label" for="estado">Estado </label>
+                <h4><label class="label" for="estado">Estado </label></h4>
 
                 <select name="estado" id="estado" class="form-control col-md-12 " <?php if($_SESSION['userRol']!= 'admin') echo "disabled"; ?>>
                      <option value="aceptado" <?php echo ($tramite->getEstado() == "aceptado") ? "selected" : ""; ?>>Aceptado</option>
