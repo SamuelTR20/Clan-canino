@@ -42,7 +42,7 @@ if(isset($_GET['SendEmail'])){
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
  
     <link rel="stylesheet" href="css/animate.css">
@@ -88,36 +88,38 @@ if(isset($_GET['SendEmail'])){
               <div class="alert alert-danger" role="alert"> Para poder adoptar debes de activar tu cuenta, se mandó un correo electronico a  <?php echo $_SESSION['userCorreo'] ?> ¿No recibiste un correo? <a href="pet.php?idMascota=<?php echo $mascota->getId(); ?>&SendEmail=1012">Clic aquí para volver a enviarlo </a></div>
             
             <?php } if(isset($_SESSION['userActiva']) and $_SESSION['userRol'] == "cliente" and $tramiteActivo != false){?>
-              <div class="alert alert-primary " role="alert"> Tienes un tramite activo con esta mascota   <a href="tramite.php?idTramite=<?php echo $tramiteActivo->getId(); ?>">Clic aquí para visualizarlo </a></div>
+              <div class="alert alert-primary " role="alert"> Tienes un tramite activo con esta mascota   <a href="tramites.php#search">Clic aquí para ver tus trámites </a></div>
             <?php } ?>
             <?php  if( $mascota->getEstado() == 'adoptado'){?>
               <div class="alert alert-primary " role="alert"> Esta mascota ya fue adoptada :) </a></div>
             <?php } ?>
             
-	            <h2 class="mb-4"><?php echo $mascota->getNombre() ?></h2>
+	            <h2 class="mb-4"><?php echo "Mascota ".$mascota->getNombre() ?></h2>
     				</div>
+            
     				<div class="row">
 	    				<div class="col-md-6 services-2 w-100 d-flex">
-	    					<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-stethoscope"></span></div>
+	    					<div class="icon d-flex align-items-center justify-content-center"><i class="fas fa-dog icon-pets"></i></div>
 	    					<div class="text pl-3">
 	    						<h4>Especie & sexo</h4>
 	    						<p><?php echo $mascota->getEspecie(). ' / '. $mascota->getSexo() ?></p>
 	    					</div>
 	    				</div>
-	    				<div class="col-md-6 services-2 w-100 d-flex">
-	    					<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-customer-service"></span></div>
-	    					<div class="text pl-3">
-	    						<h4>Historia</h4>
-	    						<p><?php echo $mascota->getHistoria() ?></p>
-	    					</div>
-	    				</div>
-	    				<div class="col-md-6 services-2 w-100 d-flex">
-	    					<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-emergency-call"></span></div>
+              <div class="col-md-6 services-2 w-100 d-flex">
+	    					<div class="icon d-flex align-items-center justify-content-center"><i class="fas fa-paw icon-pets"></i></div>
 	    					<div class="text pl-3">
 	    						<h4>Edad</h4>
 	    						<p><?php echo $mascota->getEdad() ?> año(s)</p>
 	    					</div>
 	    				</div>
+	    				<div class="col-md-6 services-2 w-100 d-flex">
+	    					<div class="icon d-flex align-items-center justify-content-center"> <i class="fas fa-book-open icon-pets"></i></div>
+	    					<div class="text pl-3">
+	    						<h4>Historia</h4>
+	    						<p><?php echo $mascota->getHistoria() ?></p>
+	    					</div>
+	    				</div>
+	    				
 	    				<div class="col-md-6 services-2 w-100 d-flex">
 	    					<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-veterinarian"></span></div>
 	    					<div class="text pl-3">
@@ -141,7 +143,7 @@ if(isset($_GET['SendEmail'])){
 	    				
 	    					<div class="text pl-3">
                 <?php if(isset($_SESSION['userNombre']) and $_SESSION['userRol']!='admin' and $_SESSION['userActiva'] == 1) { if($tramiteActivo == false and $mascota->getEstado() == 'disponible' ) {?>
-                  <a href="formulario.php?idMascota=<?php echo $mascota->getId() ?>" class="btn btn-dark"> Adoptar </a>
+                  <a href="formulario.php?idMascota=<?php echo $mascota->getId() ?>" class="btn btn-primary"> Adoptar </a>
 	    					<?php } }?>
                 </div>
 	    				</div>

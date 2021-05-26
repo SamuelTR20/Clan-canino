@@ -68,8 +68,12 @@ if($_POST["contra"] != $_SESSION['userContrasenia']){
 if (!isset($error)) {
 
 	
-	$permitido = editUsuario($_SESSION['userId'], $_POST['nombre'], $_POST['correo'],  $contra, $_SESSION['userRol']);
-	header('Location: editarPerfil.php?status=saved');
+	$permitido = editUsuario($_SESSION['userId'], $_POST['nombre'], $_SESSION['userCorreo'], $contra, $_SESSION['userRol']);
+	if($permitido){
+		header('Location: editarPerfil.php?status=saved');
+	}else{
+		$error[]= "error al guardar nueva información";
+	}
 
 
 
@@ -159,8 +163,8 @@ if (!isset($error)) {
 												</div>
 												<div class="col-md-6"> 
 													<div class="form-group">
-														<label class="label" for="edad">Correo electronico</label>
-														<input type="email" class="form-control" name="correo" id="edad" placeholder="Correo" value=" <?php echo $_SESSION['userCorreo']?>" disabled>
+														<label class="label" for="correo">Correo electronico</label>
+														<input type="email" class="form-control" name="correo" id="correo" placeholder="Correo" value="<?php echo $_SESSION['userCorreo']?>" disabled>
 													</div>
 												</div>
 												<div class="col-md-6"> 

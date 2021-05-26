@@ -13381,6 +13381,7 @@ ul ul li {
         top: 110px;
         visibility: visible;
         opacity: 1;
+        box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
     }
     .submenu li:hover {
         border-bottom: 2px solid #00bd56;
@@ -13618,4 +13619,9 @@ ul ul li {
 .form-wrap1{
     padding-top:2rem;
     
+}
+.icon-pets{
+
+    color:#fff;
+    font-size: 2rem;
 }

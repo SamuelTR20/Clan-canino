@@ -199,7 +199,11 @@ if (!isset($error)) {
 							<div class="row no-gutters">
 								<div class="col-md-7">
 									<div class="contact-wrap w-100 p-md-5 p-4">
+										<?php if(isset($mascota)){?>
 										<h3 class="mb-4">Registrar para adopción</h3>
+										<?php }else{?>
+											<h3 class="mb-4">Datos personales</h3>
+										<?php } ?>
 										<?php if(isset($error)){
 	                               		foreach($error as $err){ ?>
 	                             		<div class="alert alert-danger" role="alert"><?php echo $err?></div>
@@ -300,7 +304,7 @@ if (!isset($error)) {
 									</div>
 								</div>
 								<div class="col-md-5 d-flex align-items-stretch">
-									<div class="info-wrap w-100 p-5 img" style="background-image: url(images/img.jpg);">
+									<div class="info-wrap w-100 p-5 img" style="background-image: url<?php if(isset($mascota)){ echo "(".$mascota->getFoto().")"; }else{?>(images/img.jpg)<?php } ?>;">
 				          </div>
 								</div>
 							</div>

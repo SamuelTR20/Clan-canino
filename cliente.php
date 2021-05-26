@@ -58,7 +58,7 @@ if(isset($_POST['edit_submit'])){
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
-
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
  
     <link rel="stylesheet" href="css/animate.css">
@@ -107,7 +107,7 @@ if(isset($_POST['edit_submit'])){
     				</div>
     				<div class="row">
 	    				<div class="col-md-6 services-2 w-100 d-flex">
-	    					<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-stethoscope"></span></div>
+	    					<div class="icon d-flex align-items-center justify-content-center"><i class="fas fa-at icon-pets"></i></div>
 	    					<div class="text pl-3">
 	    						<h4>Correo Electronico</h4>
 	    						<p><?php echo $usuario->getCorreo(); ?></p>
@@ -121,10 +121,10 @@ if(isset($_POST['edit_submit'])){
 	    					</div>
 	    				</div>
 	    				<div class="col-md-6 services-2 w-100 d-flex">
-	    					<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-map-marker"></span></div>
+	    					<div class="icon d-flex align-items-center justify-content-center"><i class="fas fa-mobile-alt icon-pets"></i></div>
 	    					<div class="text pl-3">
-	    						<h4>Direccion</h4>
-	    						<p><?php if("" != ($usuario->getInfo()->getDireccion())){  echo $usuario->getInfo()->getDireccion();} else{echo "No se han registrado los datos";} ?></p>
+	    						<h4>Celular</h4>
+	    						<p><?php if("" != ($usuario->getInfo()->getCelular())){ echo $usuario->getInfo()->getCelular(); } else {echo "No se han registrado los datos ";} ?></p>
 	    					</div>
 	    				</div>
 	    				<div class="col-md-6 services-2 w-100 d-flex">
@@ -143,17 +143,18 @@ if(isset($_POST['edit_submit'])){
 	    					</div>
 	    				</div>
 	    				<div class="col-md-6 services-2 w-100 d-flex">
-	    					<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-customer-service"></span></div>
+	    					<div class="icon d-flex align-items-center justify-content-center"><i class="fas fa-money-check icon-pets"></i></div>
 	    					<div class="text pl-3">
 	    						<h4>Cedula</h4>
 	    						<p><?php if("" != ($usuario->getInfo()->getCedula())){  echo $usuario->getInfo()->getCedula();} else {echo "No se han registrado los datos " ;} ?></p>
 	    					</div>
 	    				</div>
-	    				<div class="col-md-6 services-2 w-100 d-flex">
-	    					<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-emergency-call"></span></div>
+	    				
+						<div class="col-md-6 services-2 w-100 d-flex">
+	    					<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-map-marker"></span></div>
 	    					<div class="text pl-3">
-	    						<h4>Celular</h4>
-	    						<p><?php if("" != ($usuario->getInfo()->getCelular())){ echo $usuario->getInfo()->getCelular(); } else {echo "No se han registrado los datos ";} ?></p>
+	    						<h4>Direccion</h4>
+	    						<p><?php if("" != ($usuario->getInfo()->getDireccion())){  echo $usuario->getInfo()->getDireccion();} else{echo "No se han registrado los datos";} ?></p>
 	    					</div>
 	    				</div>
 	    				

@@ -52,7 +52,7 @@ if(isset($_GET['logOff']) && $_GET['logOff'] == "true") {
 	        <ul class="navbar-nav ml-auto">
 	        	<li class="nav-item"><a href="index.php" class="nav-link">Inicio</a></li>
 	        	<?php if( isset($_SESSION['userNombre']) and $_SESSION['userRol'] == "cliente"){ ?>
-					<li class="nav-item"><a href="tramites.php" class="nav-link">Mis tramites</a></li>
+					<li class="nav-item"><a href="tramites.php" class="nav-link">Mis trámites</a></li>
 			<?php }?>
 			<li class="nav-item"><a href="refugio.php" class="nav-link">Refugio</a></li>
 			<li class="nav-item"><a href="ayuda.php" class="nav-link">Ayuda</a></li>
@@ -62,7 +62,7 @@ if(isset($_GET['logOff']) && $_GET['logOff'] == "true") {
 			<label for="btn-show1" class="nav-link" id="labelSubmenu">Admin<i class="fa fa-angle-down icono-desplega"> </i></label>
 				<input type="checkbox" id="btn-show1" class="show-input">
 				<ul class="submenu submenu1">
-						<a href="tramites.php"  ><li class="nav-item children" > Tramites </li></a>
+						<a href="tramites.php"  ><li class="nav-item children" > Trámites </li></a>
 						<a href= "Usuarios.php" class="children"><li class="nav-item">Usuarios</li></a>
 						<a href= "agregarMascota.php" class="children"><li class="nav-item">Agregar mascota</li></a> 
 
