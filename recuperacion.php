@@ -9,7 +9,9 @@
    // if(!isset($_SESSION['userId'])) header('Location: formulario.php');
 
 
+
    if (isset($_POST['correo_sent'])){
+       
        
 
         include_once("Negocio/UsuarioNegocio.php");
@@ -42,6 +44,10 @@ if($_POST['contrasena'] != $_POST['contrasena2']){
 }
 include 'Negocio/UsuarioNegocio.php';
 $correcto = False;
+
+$_GET['e'] = $_POST['email'];
+$_GET['token'] = $_POST['token'];
+
 if (!isset($error)) {
     
     $correcto = updateContra($_POST['contrasena'], $_POST['email'], $_POST['token'] );
@@ -50,14 +56,14 @@ if (!isset($error)) {
     }
 
     
-    if ($correcto == 1 and !isset($error)) {
+    if ($correcto and !isset($error)) {
         login($_POST['email'],$_POST['contrasena']);
         header('Location:index.php');
+        
+
         }
 }
-if(isset($_POST['login'])){
-    header('Location:login.php');
-}
+
 }
 ?>
 
@@ -80,24 +86,8 @@ if(isset($_POST['login'])){
 			<div class="alert alert-danger" role="alert"><?php echo $error?></div>
 			<?php  } ?>
 
-    <?php if(!isset($_GET['e']) && !isset($_GET['token'])){ ?>
-    <form action= "recuperacion.php" method="post">
-    <h1>Recuperar Contraseña</h1>
-    <p>Introduzca la direccion de correo electronico asociada a su cuenta.</p>
-    <div class="txt_field">
-                <label>Correo Electronico</label><br>
-                <input type="text" name="correo" placeholder="Correo elecontrico">
-            </div>
-    <div class="spassword">
-                <input type="submit" name="correo_sent"  value="Enviar Correo"><br>
-        </div>
-    </form>
 
-
-    <?php } ?>
-
-    <br>
-    <?php if(isset($_GET['e']) && isset($_GET['token'])){ ?>
+            <?php if((isset($_GET['e']) && isset($_GET['token'])) or (isset($_POST['email']) && isset($_POST['token']))){ ?>
     <form action= "recuperacion.php" method="post">
     <h1>Recuperar Contraseña</h1>
     <p>Introduzca la nueva contraseña para su cuenta.</p>
@@ -119,7 +109,26 @@ if(isset($_POST['login'])){
     </form>
 
 
+    <?php }else{ ?>
+    <br>
+    <?php  ?>
+    <form action= "recuperacion.php" method="post">
+    <h1>Recuperar Contraseña</h1>
+    <p>Introduzca la direccion de correo electronico asociada a su cuenta.</p>
+    <div class="txt_field">
+                <label>Correo Electronico</label><br>
+                <input type="text" name="correo" placeholder="Correo elecontrico">
+            </div>
+    <div class="spassword">
+                <input type="submit" name="correo_sent"  value="Enviar Correo"><br>
+        </div>
+    </form>
+
+
     <?php } ?>
+
+    <br>
+    
 
 
     
