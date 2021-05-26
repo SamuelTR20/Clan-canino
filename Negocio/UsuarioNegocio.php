@@ -82,7 +82,7 @@ try {
 	   Para poder realizar trámites en la plataforma es necesario activar su cuenta, en caso de no ser usted, haga caso omiso a este correo, ¡Gracias!</td>
 	 	</tr>  
 	   <tr align='center' height='100'>
-		 <td ><a href='localhost/Clan-canino/verificacion.php?token=$token&e=$email'><button  style ='color: #fff; background-color: #28a745; border-color: #28a745; line-height: 2;  border-radius: 1.5rem; display: inline-block; text-align: center; padding: 0.375rem 0.75rem; margin: 0 auto;'>Activar Cuenta</button></a></td>
+		 <td ><a href='https://clancanino.000webhostapp.com/verificacion.php?token=$token&e=$email'><button  style ='color: #fff; background-color: #28a745; border-color: #28a745; line-height: 2;  border-radius: 1.5rem; display: inline-block; text-align: center; padding: 0.375rem 0.75rem; margin: 0 auto;'>Activar Cuenta</button></a></td>
 		</tr>
 		</tbody>
 		</table>
@@ -152,7 +152,7 @@ function recuperarContra($email, $token){
 		   En caso de no ser usted quien solicitó el cambio de contraseña haga caso omiso a las instrucciones de este correo.</td>
 			 </tr>  
 		   <tr align='center' height='100'>
-			 <td ><a href='localhost/Clan-canino/recuperacion.php?token=$token&e=$email'><button  style ='color: #fff; background-color: #28a745; border-color: #28a745; line-height: 2;  border-radius: 1.5rem; display: inline-block; text-align: center; padding: 0.375rem 0.75rem; margin: 0 auto;'>Cambiar Contraseña</button></a></td>
+			 <td ><a href='https://clancanino.000webhostapp.com/recuperacion.php?token=$token&e=$email'><button  style ='color: #fff; background-color: #28a745; border-color: #28a745; line-height: 2;  border-radius: 1.5rem; display: inline-block; text-align: center; padding: 0.375rem 0.75rem; margin: 0 auto;'>Cambiar Contraseña</button></a></td>
 			</tr>
 			</tbody>
 			</table>
