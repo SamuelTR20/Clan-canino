@@ -54,7 +54,8 @@ if($_SERVER["REQUEST_METHOD"] != "POST"){
             'id' =>(int)$_SESSION['userId'],
             'nombre'=> $_SESSION['userNombre'],
             'rol'=> $_SESSION['userRol'],
-            'correo'=> $_SESSION['userCorreo']
+            'correo'=> $_SESSION['userCorreo'],
+            'cuentaActiva'=>(int)$_SESSION['userActiva']
 
         ];
       header("HTTP/1.1 200 OK");
