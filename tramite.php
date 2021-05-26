@@ -133,20 +133,20 @@ if($_SESSION['userRol'] == 'cliente' and $tramite->getIdUsuario()->getId() != $_
 	    				</div>
 	    				
                 <form action="tramite.php" method="post" class="form-edit">
-                <div class="col-md-6 services-2 w-100 d-flex">
-	    					<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-veterinarian"></span></div>
-	    					<div class="text pl-3">
+                <div class="col-md-10   ">
+	    					<div class="col-md-8 "></div>
+	    					<div class="text pl-1 mb-3 col-md-8">
                 <label class="label" for="estado">Estado </label>
 
-                <select name="estado" id="estado" class="form-control" <?php if($_SESSION['userRol']!= 'admin') echo "disabled"; ?>>
+                <select name="estado" id="estado" class="form-control col-md-12 " <?php if($_SESSION['userRol']!= 'admin') echo "disabled"; ?>>
                      <option value="aceptado" <?php echo ($tramite->getEstado() == "aceptado") ? "selected" : ""; ?>>Aceptado</option>
                      <option value="procesando"<?php echo ($tramite->getEstado() == "procesando") ? "selected" : ""; ?> >Procesando</option>
                      <option value="cancelado" <?php echo ($tramite->getEstado() == "cancelado") ? "selected" : ""; ?>>Cancelado</option>
                      </select>
 	    				</div>
 	    					</div>
-                <div class="col-md-6 services-2 w-100 d-flex pl-20" >
-	    					<div class="text pl-3 pt-5 pl-5">
+                <div class="" >
+	    					<div class="col-md-3 offset-md-4  mt-4 pt-3 pl-3">
 
 
                 <input type="hidden" value="<?php echo $tramite->getIdMascota()->getId(); ?>" class="btn btn-primary" name="idMascota">

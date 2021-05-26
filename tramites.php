@@ -166,9 +166,9 @@ $tramites = getTramites($busqueda, $maximo, $mostrar);
 							
               <?php if ($_SESSION['userRol']=='admin'){ ?>
 							<td>
-              <form action="Tramite.php" method="POST">
+              <form action="tramite.php" method="POST">
 								
-                <a href="Tramite.php?idTramite=<?php echo $tramite->getId(); ?>" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span><i class="fa fa-edit iconos-usuarios"></i></a>
+                <a href="tramite.php?idTramite=<?php echo $tramite->getId(); ?>" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span><i class="fa fa-edit iconos-usuarios"></i></a>
               </form>
 
               </td>
