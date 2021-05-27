@@ -51,7 +51,7 @@ include "Negocio/RefugioNegocio.php";
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
-
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
  
     <link rel="stylesheet" href="css/animate.css">
@@ -224,28 +224,28 @@ include "Negocio/RefugioNegocio.php";
 						</div>
 						<div class="row">
 							<div class="col-md-6 services-2 w-100 d-flex">
-								<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-stethoscope"></span></div>
+								<div class="icon d-flex align-items-center justify-content-center"><i class="fas fa-users icon-pets"></i></div>
 								<div class="text pl-3">
 									<h4>Clan Canino</h4>
 									<p> <?php echo $_SESSION['refugioDescripcion']?></p>
 								</div>
 							</div>
 							<div class="col-md-6 services-2 w-100 d-flex">
-								<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-customer-service"></span></div>
+								<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-veterinarian"></span></div>
 								<div class="text pl-3">
 									<h4>¿Qué hacemos?</h4>
 									<p>Rescate y reubicación de mascotas de la calle ademas de la elaboración de dispensadores de croquetas y agua.</p>
 								</div>
 							</div>
 							<div class="col-md-6 services-2 w-100 d-flex">
-								<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-emergency-call"></span></div>
+								<div class="icon d-flex align-items-center justify-content-center"><i class="far fa-heart icon-pets"></i></div>
 								<div class="text pl-3">
 									<h4>¿Qué somos?</h4>
 									<p>Somos un grupo de jóvenes que busca ayudar a los animales sin hogar que se encuentran en las calles.</p>
 								</div>
 							</div>
 							<div class="col-md-6 services-2 w-100 d-flex">
-								<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-veterinarian"></span></div>
+								<div class="icon d-flex align-items-center justify-content-center"><i class="fas fa-paw icon-pets"></i></span></div>
 								<div class="text pl-3">
 									<h4>¿Qué esperamos?</h4>
 									<p>Concientizar a la sociedad aportando nuestro granito de arena y haciendo eco a futuras generaciones.</p>
