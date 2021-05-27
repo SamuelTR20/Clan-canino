@@ -47,6 +47,9 @@ $queryObtenerMascotas = sprintf(
 if (mysqli_num_rows($resQueryMascotas)) { 
 
 while ($mascData = mysqli_fetch_assoc($resQueryMascotas)){
+  $myDateTime = new DateTime($mascData['fecha_mascota']);
+  $fecha = $myDateTime->format('d-m-y H:i');
+  
   $masc = new Mascota();
 	$masc->setId($mascData['id']);
 	$masc->setNombre($mascData['nombre']);
@@ -58,7 +61,7 @@ while ($mascData = mysqli_fetch_assoc($resQueryMascotas)){
 	$masc->setEstado($mascData['estado']);
 	$masc->setObservaciones($mascData['observaciones']);
 	$masc->setEspecie($mascData['especie']);
-  $masc->setFechaMascota($mascData['fecha_mascota']);
+  $masc->setFechaMascota($fecha);
 
   
 	array_push($Mascotas, $masc);
@@ -90,6 +93,8 @@ function obtenerMascotasApp(){
   if (mysqli_num_rows($resQueryMascotas)) { 
   
   while ($mascData = mysqli_fetch_assoc($resQueryMascotas)){
+    $myDateTime = new DateTime($mascData['fecha_mascota']);
+    $fecha = $myDateTime->format('d-m-y H:i');
     $masc = new Mascota();
     $masc->setId($mascData['id']);
     $masc->setNombre($mascData['nombre']);
@@ -101,7 +106,7 @@ function obtenerMascotasApp(){
     $masc->setEstado($mascData['estado']);
     $masc->setObservaciones($mascData['observaciones']);
     $masc->setEspecie($mascData['especie']);
-    $masc->setFechaMascota($mascData['fecha_mascota']);
+    $masc->setFechaMascota($fecha);
 
   
     

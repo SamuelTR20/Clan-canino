@@ -72,7 +72,8 @@ if (mysqli_num_rows($resQueryTramites)) {
 
 while ($tramData = mysqli_fetch_assoc($resQueryTramites)){
   
- 
+  $myDateTime = new DateTime($tramData['fecha_tra']);
+  $fecha = $myDateTime->format('d-m-y H:i');
       
   $info = new UsuarioInfo();
   $info->setTelefono ( $tramData['tel_usu']);
@@ -105,7 +106,7 @@ while ($tramData = mysqli_fetch_assoc($resQueryTramites)){
 	$tram->setIdUsuario($usu);
 	$tram->setIdMascota($masc);
 	$tram->setEstado($tramData['estado_tra']);
-	$tram->setFechaSolicitud ($tramData['fecha_tra']);
+	$tram->setFechaSolicitud ($fecha);
 	
 	
 
@@ -193,7 +194,8 @@ if (mysqli_num_rows($resQueryTramites)) {
 
 while ($tramData = mysqli_fetch_assoc($resQueryTramites)){
   
- 
+  $myDateTime = new DateTime($tramData['fecha_tra']);
+  $fecha = $myDateTime->format('d-m-y H:i');
       
   $info = new UsuarioInfo();
   $info->setTelefono ( $tramData['tel_usu']);
@@ -226,7 +228,7 @@ while ($tramData = mysqli_fetch_assoc($resQueryTramites)){
 	$tram->setIdUsuario($usu);
 	$tram->setIdMascota($masc);
 	$tram->setEstado($tramData['estado_tra']);
-	$tram->setFechaSolicitud ($tramData['fecha_tra']);
+	$tram->setFechaSolicitud ($fecha);
 	
 	
 
@@ -571,7 +573,8 @@ if (mysqli_num_rows($resQueryTramites)) {
 
 while ($tramData = mysqli_fetch_assoc($resQueryTramites)){
   
- 
+  $myDateTime = new DateTime($tramData['fecha_tra']);
+  $fecha = $myDateTime->format('d-m-y H:i');
   
   $usu = new Usuario();
   $usu->setId ( $tramData['id_us']);
@@ -601,7 +604,7 @@ while ($tramData = mysqli_fetch_assoc($resQueryTramites)){
 	$tram->setIdUsuario($usu);
 	$tram->setIdMascota($masc);
 	$tram->setEstado($tramData['estado_tra']);
-	$tram->setFechaSolicitud ($tramData['fecha_tra']);
+	$tram->setFechaSolicitud ($fecha);
 	
 	
 
