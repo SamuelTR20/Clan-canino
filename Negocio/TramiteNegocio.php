@@ -31,7 +31,7 @@ function pdf($idTramite){
 	$pdf->SetFont('Arial', 'B', 15);
 
 	$pdf->cell(80);
-	$pdf->Cell(30, 10, utf8_decode('Reporte adopción'), 0,0,'C');
+	$pdf->Cell(30, 10, utf8_decode('Reporte adopción'), 0,0,'B');
 	$pdf->Ln(20);
 	//Info
 	$pdf->SetFont('Arial', '', 12);
@@ -45,6 +45,8 @@ function pdf($idTramite){
 	$pdf->write(5,utf8_decode('Edad: '.$tramite->getIdUsuario()->getInfo()->getEdad()));
 	$pdf->cell(20);
 	$pdf->write(5,utf8_decode('Dirección: '.$tramite->getIdUsuario()->getInfo()->getDireccion()));
+	$pdf->cell(20);
+	$pdf-> Ln(20);
 	$pdf->cell(20);
 	$pdf->write(5,utf8_decode('Email: '.$tramite->getIdUsuario()->getCorreo()) );
 	$pdf-> Ln(20);
@@ -68,8 +70,9 @@ function pdf($idTramite){
 	$pdf->write(5,utf8_decode('Tipo: '.$tramite->getIdMascota()->getEspecie()));
 	$pdf-> Ln(20);
 
+	$pdf->SetLeftMargin(15);
 	
-	$pdf->write(5,utf8_decode('El adooptante se compromete a las siguientes clausulas: 
+	$pdf->write(5,utf8_decode('El adoptante se compromete a las siguientes clausulas: 
 	- En caso de que la solicitud sea aceptada se agendará una cita en la vivienda del solicitante para determinar el resultado del proceso de adopción.
 	- El hecho de agendar una cita en la vivienda no asegura que la adopción de la mascota se concretará, la cita es para determinar ciertos aspectos antes de la decisión final.
 	- Se debe de contar con un espacio apropiado destinado para la mascota.
