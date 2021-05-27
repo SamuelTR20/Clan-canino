@@ -97,7 +97,7 @@ while ($tramData = mysqli_fetch_assoc($resQueryTramites)){
 	$masc->setNombre($tramData['nombre_mas']);
 	$masc->setSexo($tramData['sexo_mas']);
 	$masc->setEspecie($tramData['especie_mas']);
-  $masc->setIdRefugio($tramData['fecha_tra']);
+  $masc->setIdRefugio($ref);
 
 
   

@@ -1,10 +1,10 @@
 <?php 
 
-function getTotalMascotas($busqueda){
+function getTotalMascotas($busqueda, $estado){
 
 	include_once "Persistencia/MascotaDAO.php";
 	
-	$totalMascotas = obtenerTotalMasscotas($busqueda);
+	$totalMascotas = obtenerTotalMasscotas($busqueda,$estado);
 	
 	return $totalMascotas;
 	}

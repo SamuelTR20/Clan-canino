@@ -34,7 +34,7 @@ if (!isset($_GET['numPag'])) {
   $_GET['numPag'] = 1;
 }
 
-$totalMascotas = getTotalMascotas($busqueda);
+$totalMascotas = getTotalMascotas($busqueda,$estado);
 $maximo = 6;
 $pagina = (int)$_GET['numPag'];
 
@@ -127,6 +127,10 @@ $mascotas = getMascotas($busqueda, $mostrar , $maximo, $estado);
             
           <?php   if(isset($_GET['status']) and $_GET['status'] == "saved" ) {?>
               <div class="alert alert-success" role="alert"> La información se ha guardado exitosamente </div>
+              <?php }?>
+
+              <?php   if(isset($_GET['mascotaAdd']) and $_GET['mascotaAdd'] == "true" ) {?>
+              <div class="alert alert-success" role="alert"> La mascota se ha agregado exitosamente </div>
               <?php }?>
 
 

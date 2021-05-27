@@ -27,8 +27,16 @@ if(trim($vars) == "") $error[] = "Faltan campos por llenar";
 		}
 
 
-
 }
+
+if (empty($_FILES['file']['tmp_name'])) {
+	$error[] = "Debes elegir una imagen para la mascota";
+  } else {
+	if ($_FILES['file']['type'] != 'image/jpeg' and $_FILES['file']['type'] != 'image/jpg' and $_FILES['file']['type'] != 'image/png') {
+	  $error[] = "Debes elegir otro formato de imagen";
+	}
+  }
+
 include 'Negocio/MascotaNegocio.php';
 $permitido = false;
 if (!isset($error)) {
@@ -63,12 +71,15 @@ if (!isset($error)) {
     }
 
     if(!$permitido){
+		if (!isset($error)){
         $error[] = "Ha ocurrido un error al registrarse";            
     }
+}
+
 
     
     if (!isset($error)) {
-        header('Location:index.php');
+        header('Location:index.php?mascotaAdd=true#search');
         }else{
 
         }
@@ -131,7 +142,8 @@ if (!isset($error)) {
 									<div class="contact-wrap w-100 p-md-5 p-4">
 										<h3 class="mb-4">Registrar Mascota</h3>
 										<?php if(isset($error)){
-	                              		foreach($error as $err){ ?>
+	                              		foreach($error as $err){ 
+											  ?>
 		                             	<div class="alert alert-danger" role="alert"><?php echo $err?></div>
 	                             		<?php } } ?>
 										<form method="POST" id="contactForm" name="contactForm" class="contactForm" action="agregarMascota.php" enctype="multipart/form-data">
@@ -139,19 +151,19 @@ if (!isset($error)) {
 												<div class="col-md-6">
 													<div class="form-group">
 														<label class="label" for="nombre">Nombre</label>
-														<input type="text" class="form-control" name="nombre" id="name" placeholder="Nombre">
+														<input type="text" class="form-control" name="nombre" id="name" maxlength="30" placeholder="Nombre">
 													</div>
 												</div>
 												<div class="col-md-6"> 
 													<div class="form-group">
 														<label class="label" for="edad">Edad </label>
-														<input type="number" class="form-control" name="edad" id="edad" placeholder="Edad">
+														<input type="number" class="form-control" name="edad" id="edad"  min="0" max="100" placeholder="Numero en años(ej: 1)">
 													</div>
 												</div>
 												<div class="col-md-6"> 
 													<div class="form-group">
 														<label class="label" for="especie">Especie </label>
-														<input type="text" class="form-control" name="especie" id="email" placeholder="Especie">
+														<input type="text" class="form-control" name="especie" id="especie" maxlength="30" placeholder="Especie">
 													</div>
 												</div>
 												
@@ -168,13 +180,13 @@ if (!isset($error)) {
 												<div class="col-md-6"> 
 													<div class="form-group">
 														<label class="label" for="observaciones">Observaciones </label>
-														<input type="text" class="form-control" name="observaciones" id="observaciones" placeholder="Observaciones">
+														<input type="text" class="form-control" name="observaciones" id="observaciones" maxlength="100" placeholder="Observaciones">
 													</div>
 												</div>
 												<div class="col-md-6"> 
 													<div class="form-group">
 														<label class="label" for="historia">Historia </label>
-														<input type="text" class="form-control" name="historia" id="historia" placeholder="Historia">
+														<input type="text" class="form-control" name="historia" id="historia"  maxlength="100" placeholder="Historia">
 													</div>
 												</div>
 												

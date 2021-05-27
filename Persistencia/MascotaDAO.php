@@ -1,14 +1,15 @@
 <?php 
 
-function obtenerTotalMasscotas($busqueda){
+function obtenerTotalMasscotas($busqueda, $estado){
   include_once "Entidades/Mascota.php";
   include_once("Conexion.php");
   $connLocalhost = conexion();
   
   $queryTotalMascotas = sprintf(
-    "SELECT COUNT(*) as filas FROM emp_mascota where (nombre like '%%%s%%' or especie like '%%%s%%') and estado = 'disponible'",
+    "SELECT COUNT(*) as filas FROM emp_mascota where (nombre like '%%%s%%' or especie like '%%%s%%') and estado = '%s'",
     mysqli_real_escape_string($connLocalhost, $busqueda),
-    mysqli_real_escape_string($connLocalhost, $busqueda)
+    mysqli_real_escape_string($connLocalhost, $busqueda),
+    mysqli_real_escape_string($connLocalhost, $estado)
   );
     // Ejecutamos el query
     $resTotalMascotas = mysqli_query($connLocalhost, $queryTotalMascotas) or trigger_error("El query de login de usuario falló");

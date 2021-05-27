@@ -189,19 +189,19 @@ if(isset($idMascota)){
 												<div class="col-md-6">
 													<div class="form-group">
 														<label class="label" for="nombre">Nombre</label>
-														<input type="text" class="form-control" name="nombre" id="name" placeholder="Nombre" value="<?php if (($mascota)) echo $mascota->getNombre();?>">
+														<input type="text" class="form-control" name="nombre" id="name"maxlength="30" placeholder="Nombre" value="<?php if (($mascota)) echo $mascota->getNombre();?>">
 													</div>
 												</div>
 												<div class="col-md-6"> 
 													<div class="form-group">
 														<label class="label" for="edad">Edad </label>
-														<input type="number" class="form-control" name="edad" id="edad" placeholder="Edad" value="<?php if (($mascota)) echo $mascota->getEdad();?>">
+														<input type="number" class="form-control" name="edad" id="edad" min="0" max="100" placeholder="Numero en años(ej: 1)" value="<?php if (($mascota)) echo $mascota->getEdad();?>">
 													</div>
 												</div>
 												<div class="col-md-6"> 
 													<div class="form-group">
 														<label class="label" for="especie">Especie </label>
-														<input type="text" class="form-control" name="especie" id="email" placeholder="Especie" value="<?php if (($mascota)) echo $mascota->getEspecie();?>">
+														<input type="text" class="form-control" name="especie" id="email" maxlength="30" placeholder="Especie" value="<?php if (($mascota)) echo $mascota->getEspecie();?>">
 													</div>
 												</div>
 												<div class="col-md-6"> 
@@ -215,13 +215,13 @@ if(isset($idMascota)){
 												<div class="col-md-6"> 
 													<div class="form-group">
 														<label class="label" for="observaciones">Observaciones </label>
-														<input type="text" class="form-control" name="observaciones" id="observaciones" placeholder="Observaciones" value="<?php if (($mascota)) echo $mascota->getObservaciones();?>">
+														<input type="text" class="form-control" name="observaciones" id="observaciones" maxlength="100" placeholder="Observaciones" value="<?php if (($mascota)) echo $mascota->getObservaciones();?>">
 													</div>
 												</div>
 												<div class="col-md-6"> 
 													<div class="form-group">
 														<label class="label" for="historia">Historia </label>
-														<input type="text" class="form-control" name="historia" id="historia" placeholder="Historia" value="<?php if (($mascota)) echo $mascota->getHistoria();?>">
+														<input type="text" class="form-control" name="historia" id="historia" maxlength="100" placeholder="Historia" value="<?php if (($mascota)) echo $mascota->getHistoria();?>">
 													</div>
 												</div>
 												

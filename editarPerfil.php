@@ -36,7 +36,7 @@ if (isset($_SESSION['userId'])) {
     foreach ($_POST as $inputs => $vars) {
 
 		if($inputs != "contrasenia1" and $inputs != "contrasenia2" ){
-	if(trim($vars) == "") $error[] = "La caja $inputs es obligatoria";
+	if(trim($vars) == "") $error[0] = "Debes ingresar todos los datos";
 		}
 }
 
@@ -45,7 +45,7 @@ $contra = $_POST["contra"];
 
 
 if($_POST['contra'] == ""){
-	$error[] = "Debes ingresar tu contraseña para poder realizar los cambios";
+	$error[0] = "Debes ingresar tu contraseña para poder realizar los cambios";
 
 }
 
@@ -60,7 +60,9 @@ if($_POST['contrasenia1'] != $_POST['contrasenia2']){
 }
 
 if($_POST["contra"] != $_SESSION['userContrasenia']){
+	if(!isset($error)){
 	$error[] = "Debes ingresar correctamente tu contraseña para efectuar los cambios";
+}
 }
 
 
@@ -159,7 +161,7 @@ if (!isset($error)) {
 												<div class="col-md-6">
 													<div class="form-group">
 														<label class="label" for="nombre">Nombre</label>
-														<input type="text" class="form-control" name="nombre" id="name" placeholder="Nombre" value=" <?php echo $_SESSION['userNombre']?>">
+														<input type="text" class="form-control" name="nombre" id="name"  maxlength="30" placeholder="Nombre" value="<?php echo $_SESSION['userNombre']?>">
 													</div>
 												</div>
 												<div class="col-md-6"> 
@@ -171,19 +173,19 @@ if (!isset($error)) {
 												<div class="col-md-6"> 
 													<div class="form-group">
 														<label class="label" for="especie">Contraseña </label>
-														<input type="password" class="form-control" name="contra" id="email" placeholder="Contraseña">
+														<input type="password" class="form-control" name="contra" id="email"  maxlength="20" placeholder="Contraseña">
 													</div>
 												</div>
 												<div class="col-md-6"> 
 													<div class="form-group">
 														<label class="label" for="especie">Contraseña nueva</label>
-														<input type="password" class="form-control" name="contrasenia1" id="email" placeholder="Contraseña">
+														<input type="password" class="form-control" name="contrasenia1" id="email" maxlength="20" placeholder="Contraseña">
 													</div>
 												</div>
 												<div class="col-md-8"> 
 													<div class="form-group">
 														<label class="label" for="especie">Confirma contraseña nueva </label>
-														<input type="password" class="form-control" name="contrasenia2" id="email" placeholder="Contraseña">
+														<input type="password" class="form-control" name="contrasenia2" id="email" maxlength="20" placeholder="Contraseña">
 													</div>
 												</div>
 												<div class="col-md-6">

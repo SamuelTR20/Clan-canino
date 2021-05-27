@@ -133,8 +133,12 @@ $tramites = getTramites($busqueda, $maximo, $mostrar);
       <?php if(isset($eliminado) and $eliminado == true ){?>
         <div class="alert alert-success" role="alert" id="delete-success"> El tramite se ha eliminado exitosamente </div>
       <?php } ?>
-			<hr />
-			<br />
+
+      <?php 
+      if(count($tramites) == 0){  ?>
+        <div class="alert alert-warning" role="alert" id="add-success"> Aqui se mostrarán tus tramites </div>
+      <?php } ?>
+			
 			<div class="table-responsive">
 			<table class="table table-striped table-hover">
       <?php if ($_SESSION['userRol']=='admin'){ ?>
@@ -201,7 +205,7 @@ $tramites = getTramites($busqueda, $maximo, $mostrar);
               <td><?php echo $tramite->getFechaSolicitud(); ?></td>
 							<td><a href="formulario.php"><span class="glyphicon glyphicon-user" aria-hidden="true"><?php echo $tramite->getIdUsuario()->getNombre(); ?></span></a></td>
 							<td>clanCanino@gmail.com</td>
-							<td><a href="https://wa.me/52<?php echo $tramite->getIdMascota()->getIdRefugio()->getTelefono();?>" target="_blank"><?php echo $tramite->getIdUsuario()->getInfo()->getCelular(); ?></a></td>
+							<td><a href="https://wa.me/52<?php echo $tramite->getIdMascota()->getIdRefugio()->getTelefono();?>" target="_blank"><?php echo $tramite->getIdMascota()->getIdRefugio()->getTelefono(); ?></a></td>
               <td><a href="pet.php?idMascota=<?php echo $tramite->getIdMascota()->getId() ?>"><?php echo $tramite->getIdMascota()->getNombre();  ?></a></td>
               <td><?php echo $tramite->getIdMascota()->getEspecie();  ?></td>
               <td><?php echo $tramite->getEstado();  ?> </td>

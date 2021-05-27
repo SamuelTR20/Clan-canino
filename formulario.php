@@ -214,49 +214,49 @@ if (!isset($error)) {
 												<div class="col-md-6">
 													<div class="form-group">
 														<label class="label" for="name">Nombre completo</label>
-														<input type="text" class="form-control" name="name" id="name" value= <?php echo $_SESSION['userNombre'] ?> disabled>
+														<input type="text" class="form-control" name="name" id="name" maxlength="30" value= <?php echo $_SESSION['userNombre'] ?> disabled>
 													</div>
 												</div>
 												<div class="col-md-6"> 
 													<div class="form-group">
 														<label class="label" for="edad">Edad </label>
-														<input type="number" class="form-control" name="edad" id="edad" placeholder="Edad" value="<?php if (($usuario)) echo $usuario->getEdad();?>">
+														<input type="number" class="form-control" name="edad" id="edad"min="0" max="150" placeholder="Edad" value="<?php if (($usuario)) echo $usuario->getEdad();?>">
 													</div>
 												</div>
 												<div class="col-md-6"> 
 													<div class="form-group">
 														<label class="label" for="email">Email </label>
-														<input type="email" class="form-control" name="email" id="email" value=<?php echo $_SESSION['userCorreo'] ?> disabled>
+														<input type="email" class="form-control" name="email" id="email" maxlength="50" value=<?php echo $_SESSION['userCorreo'] ?> disabled>
 													</div>
 												</div>
 												<div class="col-md-6"> 
 													<div class="form-group">
 														<label class="label" for="telefono">telefono </label>
-														<input type="text" class="form-control" name="telefono" id="telefono" placeholder="Teléfono" value="<?php if($usuario) echo $usuario->getTelefono();?>">
+														<input type="number" class="form-control nspin" name="telefono" id="telefono" maxlength="16"  placeholder="6228957826" value="<?php if($usuario) echo $usuario->getTelefono();?>">
 													</div>
 												</div>
 												<div class="col-md-6"> 
 													<div class="form-group">
 														<label class="label" for="numeroMascotas">Número de mascotas </label>
-														<input type="number" class="form-control" name="numeroMascotas" id="mascotas" placeholder="Número de mascotas" value="<?php if($usuario) echo $usuario->getNumeroMascotas();?>">
+														<input type="number" class="form-control" name="numeroMascotas" id="mascotas" min="0" max="50" placeholder="Número de mascotas" value="<?php if($usuario) echo $usuario->getNumeroMascotas();?>">
 													</div>
 												</div>
 												<div class="col-md-6"> 
 													<div class="form-group">
 														<label class="label" for="celular">Celular </label>
-														<input type="text" class="form-control" name="celular" id="celular" placeholder="celular" value="<?php if($usuario) echo $usuario->getCelular();?>">
+														<input type="number" class="form-control" name="celular" id="celular" placeholder="6228957826" maxlength="16" value="<?php if($usuario) echo $usuario->getCelular();?>">
 													</div>
 												</div>
 												<div class="col-md-12">
 													<div class="form-group">
 														<label class="label" for="cedula">Cedula</label>
-														<input type="text" class="form-control" name="cedula" id="cedula" placeholder="Cedula" value="<?php if($usuario) echo $usuario->getCedula();?>">
+														<input type="text" class="form-control" name="cedula" id="cedula" maxlength="50" placeholder="Cedula" value="<?php if($usuario) echo $usuario->getCedula();?>">
 													</div>
 												</div>
 												<div class="col-md-12">
 													<div class="form-group">
 														<label class="label" for="#">Dirección</label>
-														<textarea name="direccion" class="form-control" id="message" cols="30" rows="4" placeholder="Ingresa tu dirección"><?php if($usuario) echo $usuario->getDireccion();?></textarea>
+														<textarea name="direccion" class="form-control" id="message" cols="30" rows="4"maxlength="100" placeholder="Ingresa tu dirección"><?php if($usuario) echo $usuario->getDireccion();?></textarea>
 													</div>
 												</div>
 												
