@@ -10,6 +10,7 @@ class Mascota{
 	private $estado;
 	private $observaciones;
 	private $especie;
+	private $fecha_mascota;
 
 	public function getId(){
 		return $this->id;
@@ -17,6 +18,14 @@ class Mascota{
 
 	public function setId($id){
 		$this->id = $id;
+	}
+
+	public function getFechaMascota(){
+		return $this->fecha_mascota;
+	}
+
+	public function setFechaMascota($fecha_mascota){
+		$this->fecha_mascota = $fecha_mascota;
 	}
 
 	public function getIdRefugio(){
