@@ -56,7 +56,7 @@ $mascotas = getMascotas($busqueda, $mostrar , $maximo, $estado);
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
  
     <link rel="stylesheet" href="css/animate.css">
@@ -146,8 +146,8 @@ $mascotas = getMascotas($busqueda, $mostrar , $maximo, $estado);
               <div class="text p-4">
               	<div class="meta mb-2">
                   <div><a href="#"><?php echo $mascota->getFechaMascota(); ?></a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a></div>
+                  <div><a href="#"></a></div>
+                  <div><a href="#" class="meta-chat"><span <?php if($mascota->getEspecie() == "Gato" or $mascota->getEspecie() == "gato") {?>class="fas fa-cat" <?php }else{ ?>class="fas fa-paw"<?php } ?>></span> <?php if($mascota->getEdad() < 1){ echo "cachorro"; }else{ echo $mascota->getEdad()." año(s) "; } ?></a></div>
                 </div>
                 <h3 class="heading"><a href="<?php echo "pet.php?idMascota=".$mascota->getId(); ?>"><?php echo $mascota->getNombre()." ". $mascota->getHistoria(); ?></a></h3>
                 <a href="pet.php?idMascota=<?php echo $mascota->getId() ?>">Ver más</a>

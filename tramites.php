@@ -64,7 +64,7 @@ $tramites = getTramites($busqueda, $maximo, $mostrar);
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
  
     <link rel="stylesheet" href="css/animate.css">
@@ -204,7 +204,7 @@ $tramites = getTramites($busqueda, $maximo, $mostrar);
 							<td><a href="https://wa.me/52<?php echo $tramite->getIdMascota()->getIdRefugio()->getTelefono();?>" target="_blank"><?php echo $tramite->getIdUsuario()->getInfo()->getCelular(); ?></a></td>
               <td><a href="pet.php?idMascota=<?php echo $tramite->getIdMascota()->getId() ?>"><?php echo $tramite->getIdMascota()->getNombre();  ?></a></td>
               <td><?php echo $tramite->getIdMascota()->getEspecie();  ?></td>
-              <td><?php echo $tramite->getEstado();  ?></td>
+              <td><?php echo $tramite->getEstado();  ?> </td>
 							
               
 							<td>

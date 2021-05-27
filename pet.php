@@ -85,6 +85,11 @@ if(isset($_GET['SendEmail'])){
     			</div>
     			<div class="col-md-7 pl-md-5 py-md-5">
     				<div class="heading-section pt-md-5">
+            <?php  if(!isset($_SESSION['userNombre'])){ ?>
+            <a href="login.php">
+              <div class="alert alert-primary " role="alert"> ¡Inicia sesión para conocerme!  </div>
+            </a>
+            <?php } ?>
             <?php if(isset($_SESSION['userActiva']) and $_SESSION['userRol'] == "cliente" and $_SESSION['userActiva'] == 0 ) {?>
               <div class="alert alert-danger" role="alert"> Para poder adoptar debes de activar tu cuenta, se mandó un correo electronico a  <?php echo $_SESSION['userCorreo'] ?> ¿No recibiste un correo? <a href="pet.php?idMascota=<?php echo $mascota->getId(); ?>&SendEmail=1012">Clic aquí para volver a enviarlo </a></div>
             
@@ -146,6 +151,9 @@ if(isset($_GET['SendEmail'])){
                 <?php if(isset($_SESSION['userNombre']) and $_SESSION['userRol']!='admin' and $_SESSION['userActiva'] == 1) { if($tramiteActivo == false and $mascota->getEstado() == 'disponible' ) {?>
                   <a href="formulario.php?idMascota=<?php echo $mascota->getId() ?>" class="btn btn-primary"> Adoptar </a>
 	    					<?php } }?>
+                <?php if(!isset($_SESSION['userNombre'])){ ?>
+                  <a href="login.php" class="btn btn-primary"> Iniciar sesión </a>
+                <?php } ?>
                 </div>
 	    				</div>
 	    			</div>
