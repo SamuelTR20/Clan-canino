@@ -66,7 +66,7 @@
         <br>
         <?php }?>
 
-        <?php if(isset($_GET['loggedOff']) ){
+        <?php if(isset($_GET['loggedOff']) and !isset($_GET['delete'])){
             ?>
             <div class=" alert alert-success" role="alert"><?php echo 'Has cerrado sesión, ¡vuelve pronto!';?></div>
         <?php }

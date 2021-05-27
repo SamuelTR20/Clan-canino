@@ -44,8 +44,7 @@
     		<div class="row">
     			<div class="col-lg-6 order-md-last">
     				<div class="img img-video d-flex align-self-stretch align-items-center justify-content-center justify-content-md-center mb-4 mb-sm-0" style="background-image:url(images/about.jpg);">
-    					<a href="https://vimeo.com/45830194" class="icon-video popup-vimeo d-flex justify-content-center align-items-center">
-    						<span class="fa fa-play"></span>
+    				
     					</a>
     				</div>
     				<div class="d-flex mt-3">
@@ -75,7 +74,7 @@
 						      		<li><a href="formulario.php">Brindanos tu información de contacto y más</a></li>
 						      		<li><a href="#search">Conoce a nuestros lindas mascotas</a></li>
 						      		<li><a>Inicia el tramite de adopción</a></li>
-						      		<li>Ahora solo tienes que esperar a que nos contactemos</li>
+						      		<li>Ahora solo tienes que esperar a que te contactemos</li>
 						      	</ol>
 						      </div>
 						    </div>

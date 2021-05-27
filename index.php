@@ -149,9 +149,9 @@ $mascotas = getMascotas($busqueda, $mostrar , $maximo, $estado);
               </a>
               <div class="text p-4">
               	<div class="meta mb-2">
-                  <div><a href="#"><?php echo $mascota->getFechaMascota(); ?></a></div>
-                  <div><a href="#"></a></div>
-                  <div><a href="#" class="meta-chat"><span <?php if($mascota->getEspecie() == "Gato" or $mascota->getEspecie() == "gato") {?>class="fas fa-cat" <?php }else{ ?>class="fas fa-paw"<?php } ?>></span> <?php if($mascota->getEdad() < 1){ echo "cachorro"; }else{ echo $mascota->getEdad()." año(s) "; } ?></a></div>
+                  <div><a href="pet.php?idMascota=<?php echo $mascota->getId() ?>"><?php echo $mascota->getFechaMascota(); ?></a></div>
+                  <div><a ></a></div>
+                  <div><a href="pet.php?idMascota=<?php echo $mascota->getId() ?>" class="meta-chat"><span <?php if($mascota->getEspecie() == "Gato" or $mascota->getEspecie() == "gato") {?>class="fas fa-cat" <?php }else{ ?>class="fas fa-paw"<?php } ?>></span> <?php if($mascota->getEdad() < 1){ echo "cachorro"; }else{ echo $mascota->getEdad()." año(s) "; } ?></a></div>
                 </div>
                 <h3 class="heading"><a href="<?php echo "pet.php?idMascota=".$mascota->getId(); ?>"><?php echo $mascota->getNombre()." ". $mascota->getHistoria(); ?></a></h3>
                 <a href="pet.php?idMascota=<?php echo $mascota->getId() ?>">Ver más</a>

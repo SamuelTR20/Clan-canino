@@ -14,8 +14,8 @@
 						<h2 class="footer-heading">Acceso Rápido</h2>
 						<ul class="list-unstyled">
               <li><a href="index.php" class="py-2 d-block">Inicio</a></li>
-              <li><a href="editarPerfil.php" class="py-2 d-block">Perfil</a></li>
-              <li><a href="Refugio.php" class="py-2 d-block">Refugio</a></li>
+              <li><a href="formulario.php" class="py-2 d-block">Perfil</a></li>
+              <li><a href="refugio.php" class="py-2 d-block">Refugio</a></li>
               <li><a href="tramites.php" class="py-2 d-block">Tramites</a></li>
               <li><a href="ayuda.php" class="py-2 d-block">Ayuda</a></li>
               
@@ -36,7 +36,7 @@
           <div class="col-md-12 text-center">
 
             <p class="copyright"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> 
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Clan canino <i class="fa fa-heart" aria-hidden="true"></i> 
   <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
           </div>
         </div>
