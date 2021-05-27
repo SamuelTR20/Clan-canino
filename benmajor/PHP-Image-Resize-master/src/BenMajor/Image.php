@@ -29,7 +29,7 @@ class Image
     private $tmpDir;
     private $rename;
     
-    protected $supported = [ 'image/jpeg', 'image/gif', 'image/png' ];    
+    protected $supported = [ 'image/jpeg', 'image/gif', 'image/png', 'image/webp' ];    
     
     function __construct( $image = null, $errorMode = 'json' )
     {
