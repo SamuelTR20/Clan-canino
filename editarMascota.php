@@ -60,6 +60,10 @@ if (isset($_POST['masc_sent'])){
 
 }
 
+	if (!empty($_FILES['file']['tmp_name']) and $_FILES['file']['type'] != 'image/jpeg' and $_FILES['file']['type'] != 'image/jpg' and $_FILES['file']['type'] != 'image/png') {
+	  $error[] = "Debes elegir otro formato de imagen";
+	}
+  
 
 if (!isset($error)) {
 	
@@ -97,11 +101,13 @@ if (!isset($error)) {
 
     $permitido = editMascota($idMascota, 16, $_POST['nombre'], $_POST['especie'], $_POST['edad'], $_POST['sexo'], $_POST['observaciones'],$_POST['estado'], $_POST['historia'],$ruta );
 
-	echo $permitido;
+	
     }
 
     if(!$permitido){
-        $error[] = "Ha ocurrido un error al registrarse";            
+		if (!isset($error)){
+        $error[] = "Ha ocurrido un error al registrarse"; 
+		}           
     }else{
 
 		header('Location:index.php?status=saved');
