@@ -53,7 +53,7 @@ ref.nombre as nombre_ref, ref.ciudad as ciudad_ref, ref.telefono as telefono_ref
 tra.estado as estado_tra, tra.fecha_solicitud as fecha_tra
 from emp_tramite as tra join emp_usuarios as usu on tra.id_usuario = usu.id 
 join emp_mascota as mas on tra.id_mascota=mas.id join emp_refugio as ref on mas.id_refugio = ref.id 
-join emp_usuario_info as inf on usu.id=inf.id_usuario where usu.id = '%s' and (tra.estado like '%%%s%%' or usu.nombre like '%%%s%%' or mas.nombre like '%%%s%%') limit %d OFFSET %d",
+join emp_usuario_info as inf on usu.id=inf.id_usuario where usu.id = '%s' and (tra.estado like '%%%s%%' or usu.nombre like '%%%s%%' or mas.nombre like '%%%s%%') order by tra.fecha_solicitud desc limit %d OFFSET %d",
 mysqli_real_escape_string($connLocalhost, $id),
 mysqli_real_escape_string($connLocalhost, $busqueda),
 mysqli_real_escape_string($connLocalhost, $busqueda),
@@ -175,7 +175,7 @@ ref.nombre as nombre_ref, ref.ciudad as ciudad_ref, ref.telefono as telefono_ref
 tra.estado as estado_tra, tra.fecha_solicitud as fecha_tra
 from emp_tramite as tra join emp_usuarios as usu on tra.id_usuario = usu.id 
 join emp_mascota as mas on tra.id_mascota=mas.id join emp_refugio as ref on mas.id_refugio = ref.id 
-join emp_usuario_info as inf on usu.id=inf.id_usuario where tra.estado like '%%%s%%' or usu.nombre like '%%%s%%' or mas.nombre like '%%%s%%' limit %d OFFSET %d",
+join emp_usuario_info as inf on usu.id=inf.id_usuario where tra.estado like '%%%s%%' or usu.nombre like '%%%s%%' or mas.nombre like '%%%s%%' order by tra.fecha_solicitud desc  limit %d OFFSET %d",
 mysqli_real_escape_string($connLocalhost, $busqueda),
 mysqli_real_escape_string($connLocalhost, $busqueda),
 mysqli_real_escape_string($connLocalhost, $busqueda),
@@ -409,8 +409,11 @@ function agregarTramite( $idUsuario, $idMascota, $estado)
   include_once("Conexion.php");
   $connLocalhost = conexion();
 
+  date_default_timezone_set('America/Hermosillo');
+  $date = date('Y-m-d H:i:s');
+
 $queryInsertTramite = sprintf(
-      "INSERT INTO emp_tramite (id_usuario, id_mascota, estado) VALUES ( '%d', '%d', '%s')",
+  "INSERT INTO emp_tramite (id_usuario, id_mascota, estado, fecha_solicitud) VALUES ( '%d', '%d', '%s', '$date' )",
       mysqli_real_escape_string($connLocalhost, trim($idUsuario)),
       mysqli_real_escape_string($connLocalhost, trim($idMascota)),
       mysqli_real_escape_string($connLocalhost, trim($estado))
@@ -554,7 +557,7 @@ ref.nombre as nombre_ref, ref.ciudad as ciudad_ref, ref.telefono as telefono_ref
 tra.estado as estado_tra, tra.fecha_solicitud as fecha_tra
 from emp_tramite as tra join emp_usuarios as usu on tra.id_usuario = usu.id 
 join emp_mascota as mas on tra.id_mascota=mas.id join emp_refugio as ref on mas.id_refugio = ref.id 
-join emp_usuario_info as inf on usu.id=inf.id_usuario where usu.id = '%d' ",
+join emp_usuario_info as inf on usu.id=inf.id_usuario where usu.id = '%d' order by tra.fecha_solicitud desc ",
 mysqli_real_escape_string($connLocalhost, $id));
 
 
