@@ -94,12 +94,12 @@ if (!isset($error)) {
     <p>Introduzca la nueva contraseña para su cuenta.</p>
             <div class="txt_field">
                 <label>Contraseña</label><br>
-                <input type="password" name="contrasena" placeholder="Contraseña">
+                <input type="password" name="contrasena" maxlength="20" placeholder="Contraseña">
             </div>
 
             <div class="txt_field">
                 <label>Repita su contraseña</label><br>
-                <input type="password" name="contrasena2" placeholder="Contraseña">
+                <input type="password" name="contrasena2" maxlength="20" placeholder="Contraseña">
             </div>
             
             <div class="spassword">
@@ -118,7 +118,7 @@ if (!isset($error)) {
     <p>Introduzca la direccion de correo electronico asociada a su cuenta.</p>
     <div class="txt_field">
                 <label>Correo Electronico</label><br>
-                <input type="text" name="correo" placeholder="Correo elecontrico">
+                <input type="text" name="correo" maxlength="50" placeholder="Correo elecontrico">
             </div>
     <div class="spassword">
                 <input type="submit" name="correo_sent"  value="Enviar Correo"><br>

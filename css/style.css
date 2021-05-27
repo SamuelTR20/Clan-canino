@@ -13625,3 +13625,9 @@ ul ul li {
     color:#fff;
     font-size: 2rem;
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }

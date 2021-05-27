@@ -159,7 +159,7 @@ if (!isset($error)) {
 												<div class="col-md-6">
 													<div class="form-group">
 														<label class="label" for="nombre">Nombre</label>
-														<input type="text" class="form-control" name="nombre" id="name" placeholder="Nombre" value=" <?php echo $_SESSION['userNombre']?>">
+														<input type="text" class="form-control" name="nombre" id="name"  maxlength="30" placeholder="Nombre" value=" <?php echo $_SESSION['userNombre']?>">
 													</div>
 												</div>
 												<div class="col-md-6"> 
@@ -171,19 +171,19 @@ if (!isset($error)) {
 												<div class="col-md-6"> 
 													<div class="form-group">
 														<label class="label" for="especie">Contraseña </label>
-														<input type="password" class="form-control" name="contra" id="email" placeholder="Contraseña">
+														<input type="password" class="form-control" name="contra" id="email"  maxlength="20" placeholder="Contraseña">
 													</div>
 												</div>
 												<div class="col-md-6"> 
 													<div class="form-group">
 														<label class="label" for="especie">Contraseña nueva</label>
-														<input type="password" class="form-control" name="contrasenia1" id="email" placeholder="Contraseña">
+														<input type="password" class="form-control" name="contrasenia1" id="email" maxlength="20" placeholder="Contraseña">
 													</div>
 												</div>
 												<div class="col-md-8"> 
 													<div class="form-group">
 														<label class="label" for="especie">Confirma contraseña nueva </label>
-														<input type="password" class="form-control" name="contrasenia2" id="email" placeholder="Contraseña">
+														<input type="password" class="form-control" name="contrasenia2" id="email" maxlength="20" placeholder="Contraseña">
 													</div>
 												</div>
 												<div class="col-md-6">

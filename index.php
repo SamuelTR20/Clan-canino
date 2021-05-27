@@ -34,7 +34,7 @@ if (!isset($_GET['numPag'])) {
   $_GET['numPag'] = 1;
 }
 
-$totalMascotas = getTotalMascotas($busqueda);
+$totalMascotas = getTotalMascotas($busqueda,$estado);
 $maximo = 6;
 $pagina = (int)$_GET['numPag'];
 

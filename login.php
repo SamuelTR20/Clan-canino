@@ -76,12 +76,12 @@
 			<?php } } ?>
             <div class="txt_field">
                 <label>Correo Electronico</label><br>
-                <input type="text" name="correo" placeholder="Correo elecontrico">
+                <input type="text" name="correo" maxlength="50" placeholder="Correo elecontrico">
             </div>
 
             <div class="txt_field">
                 <label>Contraseña</label><br>
-                <input type="password" name="contrasenia" placeholder="Contraseña">
+                <input type="password" name="contrasenia"maxlength="20" placeholder="Contraseña">
             </div>
 
             <div class="password">

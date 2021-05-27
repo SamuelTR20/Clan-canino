@@ -139,19 +139,19 @@ if (!isset($error)) {
 												<div class="col-md-6">
 													<div class="form-group">
 														<label class="label" for="nombre">Nombre</label>
-														<input type="text" class="form-control" name="nombre" id="name" placeholder="Nombre">
+														<input type="text" class="form-control" name="nombre" id="name" maxlength="30" placeholder="Nombre">
 													</div>
 												</div>
 												<div class="col-md-6"> 
 													<div class="form-group">
 														<label class="label" for="edad">Edad </label>
-														<input type="number" class="form-control" name="edad" id="edad" placeholder="Edad">
+														<input type="number" class="form-control" name="edad" id="edad"  min="0" max="100" placeholder="Numero en años(ej: 1)">
 													</div>
 												</div>
 												<div class="col-md-6"> 
 													<div class="form-group">
 														<label class="label" for="especie">Especie </label>
-														<input type="text" class="form-control" name="especie" id="email" placeholder="Especie">
+														<input type="text" class="form-control" name="especie" id="especie" maxlength="30" placeholder="Especie">
 													</div>
 												</div>
 												
@@ -168,13 +168,13 @@ if (!isset($error)) {
 												<div class="col-md-6"> 
 													<div class="form-group">
 														<label class="label" for="observaciones">Observaciones </label>
-														<input type="text" class="form-control" name="observaciones" id="observaciones" placeholder="Observaciones">
+														<input type="text" class="form-control" name="observaciones" id="observaciones" maxlength="100" placeholder="Observaciones">
 													</div>
 												</div>
 												<div class="col-md-6"> 
 													<div class="form-group">
 														<label class="label" for="historia">Historia </label>
-														<input type="text" class="form-control" name="historia" id="historia" placeholder="Historia">
+														<input type="text" class="form-control" name="historia" id="historia"  maxlength="100" placeholder="Historia">
 													</div>
 												</div>
 												

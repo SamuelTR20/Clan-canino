@@ -60,24 +60,24 @@ if (!isset($error)) {
             
             <div class="txt_field">
                 <label>Nombre</label><br>
-                <input type="text" name="nombre" placeholder="Nombre">
+                <input type="text" name="nombre" maxlength="30" placeholder="Nombre">
             
             </div>
             
             <div class="txt_field">
                 <label>Correo electronico</label><br>
-                <input type="text" name="email" placeholder="Correo electronico">
+                <input type="text" name="email" maxlength="50" placeholder="Correo electronico">
             </div>
             
             
             <div class="txt_field">
                 <label>Contraseña</label><br>
-                <input type="password" name="contrasena" placeholder="Contraseña">
+                <input type="password" name="contrasena" maxlength="20" placeholder="Contraseña">
             </div>
 
             <div class="txt_field">
                 <label>Repita su contraseña</label><br>
-                <input type="password" name="contrasena2" placeholder="Contraseña">
+                <input type="password" name="contrasena2"  maxlength="20" placeholder="Contraseña">
             </div>
 
             <div class="spassword">

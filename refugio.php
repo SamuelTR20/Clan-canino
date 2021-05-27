@@ -157,31 +157,31 @@ include "Negocio/RefugioNegocio.php";
 												<div class="col-md-6">
 													<div class="form-group">
 														<label class="label" for="nombre">Nombre</label>
-														<input type="text" class="form-control" name="nombre" id="name"  value=" <?php echo $_SESSION['refugioNombre']?>">
+														<input type="text" class="form-control" name="nombre" id="name" maxlength="30" value=" <?php echo $_SESSION['refugioNombre']?>">
 													</div>
 												</div>
 												<div class="col-md-6"> 
 													<div class="form-group">
 														<label class="label" for="edad">Ciudad</label>
-														<input type="text" class="form-control" name="ciudad" id="edad"  value=" <?php echo $_SESSION['refugioCiudad']?>">
+														<input type="text" class="form-control" name="ciudad" id="edad" maxlength="30" value=" <?php echo $_SESSION['refugioCiudad']?>">
 													</div>
 												</div>
 												<div class="col-md-6"> 
 													<div class="form-group">
 														<label class="label" for="especie">Teléfono </label>
-														<input type="text" class="form-control" name="telefono" id="email"  value=" <?php echo $_SESSION['refugioTelefono']?>" >
+														<input type="number" class="form-control" name="telefono" id="email"  maxlength="16" value=" <?php echo $_SESSION['refugioTelefono']?>" >
 													</div>
 												</div>
 												<div class="col-md-6"> 
 													<div class="form-group">
 														<label class="label" for="especie">Dirección</label>
-														<input type="text" class="form-control" name="direccion" id="email"  value=" <?php echo $_SESSION['refugioDireccion']?>" >
+														<input type="text" class="form-control" name="direccion" id="email" maxlength="100" value=" <?php echo $_SESSION['refugioDireccion']?>" >
 													</div>
 												</div>
 												<div class="col-md-12"> 
 													<div class="form-group">
 														<label class="label" for="especie">Descripción </label>
-														<textarea type="text" class="form-control" name="descripcion" id="email"  ><?php echo $_SESSION['refugioDescripcion']?></textarea>
+														<textarea type="text" class="form-control" name="descripcion" maxlength="100" id="email"  ><?php echo $_SESSION['refugioDescripcion']?></textarea>
 													</div>
 												</div>
 												
