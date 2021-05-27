@@ -93,9 +93,7 @@ if(isset($_POST['edit_submit'])){
     </section>
 
     <section class="ftco-section pt-5 pb-5">
-		<?php if($success==1){	?>
-				<div class=" alert alert-success" role="alert"><?php echo 'La información se ha guardado exitosamente';?></div>
-				<?php } ?>
+		
     	<div class="container d-flex justify-content-center" >
 		
     		<div class="row d-flex no-gutters">
@@ -105,20 +103,24 @@ if(isset($_POST['edit_submit'])){
     			<div class="col-md-7 pl-md-5 py-md-5">
     				<div class="heading-section pt-md-5">
 	            <h2 class="mb-4"><?php echo $usuario->getNombre(); ?></h2>
+				<?php if($success==1){	?>
+				<div class=" alert alert-success " role="alert"><?php echo 'La información se ha guardado exitosamente';?></div>
+				<?php } ?>
     				</div>
     				<div class="row">
-	    				<div class="col-md-6 services-2 w-100 d-flex">
+	    				
+					<div class="col-md-6 services-2 w-100 d-flex">
+	    					<div class="icon d-flex align-items-center justify-content-center"><i class="fas fa-money-check icon-pets"></i></div>
+	    					<div class="text pl-3">
+	    						<h4>Cedula</h4>
+	    						<p><?php if("" != ($usuario->getInfo()->getCedula())){  echo $usuario->getInfo()->getCedula();} else {echo "No se han registrado los datos " ;} ?></p>
+	    					</div>
+	    				</div>
+						<div class="col-md-6 services-2 w-100 d-flex">
 	    					<div class="icon d-flex align-items-center justify-content-center"><i class="fas fa-at icon-pets"></i></div>
 	    					<div class="text pl-3">
 	    						<h4>Correo Electronico</h4>
 	    						<p><?php echo $usuario->getCorreo(); ?></p>
-	    					</div>
-	    				</div>
-	    				<div class="col-md-6 services-2 w-100 d-flex">
-	    					<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-customer-service"></span></div>
-	    					<div class="text pl-3">
-	    						<h4>Edad</h4>
-	    						<p><?php if("" != ($usuario->getInfo()->getEdad())){ echo $usuario->getInfo()->getEdad();}else{echo "No se han registrado los datos";} ?></p>
 	    					</div>
 	    				</div>
 	    				<div class="col-md-6 services-2 w-100 d-flex">
@@ -143,14 +145,14 @@ if(isset($_POST['edit_submit'])){
 	    						<p><?php if("" != ($usuario->getInfo()->getTelefono())){ echo $usuario->getInfo()->getTelefono(); } else{echo "No se han registrado los datos ";}?></p>
 	    					</div>
 	    				</div>
+	    				
 	    				<div class="col-md-6 services-2 w-100 d-flex">
-	    					<div class="icon d-flex align-items-center justify-content-center"><i class="fas fa-money-check icon-pets"></i></div>
+	    					<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-customer-service"></span></div>
 	    					<div class="text pl-3">
-	    						<h4>Cedula</h4>
-	    						<p><?php if("" != ($usuario->getInfo()->getCedula())){  echo $usuario->getInfo()->getCedula();} else {echo "No se han registrado los datos " ;} ?></p>
+	    						<h4>Edad</h4>
+	    						<p><?php if("" != ($usuario->getInfo()->getEdad())){ echo $usuario->getInfo()->getEdad();}else{echo "No se han registrado los datos";} ?></p>
 	    					</div>
 	    				</div>
-	    				
 						<div class="col-md-6 services-2 w-100 d-flex">
 	    					<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-map-marker"></span></div>
 	    					<div class="text pl-3">

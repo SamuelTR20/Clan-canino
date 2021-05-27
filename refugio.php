@@ -84,7 +84,7 @@ include "Negocio/RefugioNegocio.php";
     </section>
 
 
-    <section class="ftco-section bg-light">
+    <section class="p-5 bg-light mb-3">
 			<div class="container">
 				<div class="row justify-content-center">
 					<div class="col-md-6 text-center mb-5">
@@ -210,7 +210,8 @@ include "Negocio/RefugioNegocio.php";
 		</section>
 	
 
-
+	<?php if (isset($_SESSION['userRol']) and $_SESSION['userRol'] != 'admin'){	?>
+										
 	<section class="ftco-section ftco-no-pt ftco-no-pb">
 			<div class="container">
 				<div class="row d-flex no-gutters">
@@ -259,8 +260,10 @@ include "Negocio/RefugioNegocio.php";
 			</div>
 			
 		</section>
-	
-
+<?php
+  }
+?>	
+		
 
 
 

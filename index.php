@@ -129,6 +129,10 @@ $mascotas = getMascotas($busqueda, $mostrar , $maximo, $estado);
               <div class="alert alert-success" role="alert"> La información se ha guardado exitosamente </div>
               <?php }?>
 
+              <?php   if(isset($_GET['mascotaAdd']) and $_GET['mascotaAdd'] == "true" ) {?>
+              <div class="alert alert-success" role="alert"> La mascota se ha agregado exitosamente </div>
+              <?php }?>
+
 
         <div class="row d-flex">
         <?php if(isset($_SESSION['userActiva']) and $_SESSION['userRol'] == "cliente" and $_SESSION['userActiva'] == 0 ) {?>
