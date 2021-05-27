@@ -47,6 +47,9 @@ $queryObtenerMascotas = sprintf(
 if (mysqli_num_rows($resQueryMascotas)) { 
 
 while ($mascData = mysqli_fetch_assoc($resQueryMascotas)){
+  $myDateTime = new DateTime($mascData['fecha_mascota']);
+  $fecha = $myDateTime->format('d-m-y H:i');
+  
   $masc = new Mascota();
 	$masc->setId($mascData['id']);
 	$masc->setNombre($mascData['nombre']);
@@ -58,6 +61,7 @@ while ($mascData = mysqli_fetch_assoc($resQueryMascotas)){
 	$masc->setEstado($mascData['estado']);
 	$masc->setObservaciones($mascData['observaciones']);
 	$masc->setEspecie($mascData['especie']);
+  $masc->setFechaMascota($fecha);
 
   
 	array_push($Mascotas, $masc);
@@ -89,6 +93,9 @@ function obtenerMascotasApp(){
   if (mysqli_num_rows($resQueryMascotas)) { 
   
   while ($mascData = mysqli_fetch_assoc($resQueryMascotas)){
+    $myDateTime = new DateTime($mascData['fecha_mascota']);
+    $fecha = $myDateTime->format('d-m-y H:i');
+
     $masc = new Mascota();
     $masc->setId($mascData['id']);
     $masc->setNombre($mascData['nombre']);
@@ -100,6 +107,8 @@ function obtenerMascotasApp(){
     $masc->setEstado($mascData['estado']);
     $masc->setObservaciones($mascData['observaciones']);
     $masc->setEspecie($mascData['especie']);
+    $masc->setFechaMascota($fecha);
+
   
     
     array_push($Mascotas, $masc);
@@ -119,8 +128,11 @@ include_once "Entidades/Mascota.php";
 include_once("Conexion.php");
 $connLocalhost = conexion();
 
+date_default_timezone_set('America/Hermosillo');
+  $date = date("Y-m-d G:i:s");
+
 $queryInsertMascota = sprintf(
-      "INSERT INTO emp_mascota (id_refugio, nombre, especie, edad, sexo, observaciones, estado, historia, foto) VALUES ('%d', '%s', '%s', '%d', '%s', '%s', '%s', '%s', '%s')",
+      "INSERT INTO emp_mascota (id_refugio, nombre, especie, edad, sexo, observaciones, estado, historia, foto, fecha_mascota) VALUES ('%d', '%s', '%s', '%d', '%s', '%s', '%s', '%s', '%s', '$date')",
       mysqli_real_escape_string($connLocalhost, trim($idRefugio)),
       mysqli_real_escape_string($connLocalhost, trim($nombre)),
       mysqli_real_escape_string($connLocalhost, trim($especie)),

@@ -145,7 +145,7 @@ $mascotas = getMascotas($busqueda, $mostrar , $maximo, $estado);
               </a>
               <div class="text p-4">
               	<div class="meta mb-2">
-                  <div><a href="#">April 07, 2020</a></div>
+                  <div><a href="#"><?php echo $mascota->getFechaMascota(); ?></a></div>
                   <div><a href="#">Admin</a></div>
                   <div><a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a></div>
                 </div>
