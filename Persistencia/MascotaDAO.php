@@ -95,6 +95,7 @@ function obtenerMascotasApp(){
   while ($mascData = mysqli_fetch_assoc($resQueryMascotas)){
     $myDateTime = new DateTime($mascData['fecha_mascota']);
     $fecha = $myDateTime->format('d-m-y H:i');
+
     $masc = new Mascota();
     $masc->setId($mascData['id']);
     $masc->setNombre($mascData['nombre']);
@@ -128,7 +129,7 @@ include_once("Conexion.php");
 $connLocalhost = conexion();
 
 date_default_timezone_set('America/Hermosillo');
-$date = date('Y-m-d H:i:s');
+  $date = date("Y-m-d G:i:s");
 
 $queryInsertMascota = sprintf(
       "INSERT INTO emp_mascota (id_refugio, nombre, especie, edad, sexo, observaciones, estado, historia, foto, fecha_mascota) VALUES ('%d', '%s', '%s', '%d', '%s', '%s', '%s', '%s', '%s', '$date')",

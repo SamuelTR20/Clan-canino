@@ -97,7 +97,7 @@ while ($tramData = mysqli_fetch_assoc($resQueryTramites)){
 	$masc->setNombre($tramData['nombre_mas']);
 	$masc->setSexo($tramData['sexo_mas']);
 	$masc->setEspecie($tramData['especie_mas']);
-  $masc->setIdRefugio($ref);
+  $masc->setIdRefugio($tramData['fecha_tra']);
 
 
   
@@ -412,7 +412,7 @@ function agregarTramite( $idUsuario, $idMascota, $estado)
   $connLocalhost = conexion();
 
   date_default_timezone_set('America/Hermosillo');
-  $date = date('Y-m-d H:i:s');
+  $date = date("Y-m-d G:i:s");
 
 $queryInsertTramite = sprintf(
   "INSERT INTO emp_tramite (id_usuario, id_mascota, estado, fecha_solicitud) VALUES ( '%d', '%d', '%s', '$date' )",
